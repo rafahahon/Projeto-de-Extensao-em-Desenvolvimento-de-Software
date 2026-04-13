@@ -1,0 +1,207 @@
+/*CONFIGURAÇÕES GERAIS*/
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /*fontes*/
+    background-color: #f5f1e9;} /*fundo bege clarinho da imagem*/
+/*MENU NAVBAR*/
+.navbar { /*agrupa links,logos e botões de busca*/
+    background-color: #634226; /*cor do fundo, marrom café*/
+    display: flex; /*alinhamento*/
+    justify-content: space-between; /*distribui o espaço igualmente*/
+    align-items: center; /*centraliza verticalmente*/
+    padding: 15px 50px; /*espaçamento interno do conteúdo e a borda*/
+    color: white; /*cor da fonte*/
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);} /*sombra do botão*/
+.navigation { /*embelezamento*/
+    display: flex;
+    align-items: center;
+    gap: 25px;}
+.navigation a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.3s;}
+.navigation a:hover {
+    color: #f28d4f;}
+/*LOGO*/
+.logo-container {
+    display: flex;
+    align-items: center; /*alinha o texto e o icon verticalmente pelo centro*/
+    gap: 15px;} /*espaço entre a logo e o texto*/
+.logo-icon { /*ajuste de altura e comprimento da logo*/
+    height: 100px;
+    width: auto;}
+.logo-text h1 { /*título da logo*/
+    margin: 0;
+    font-size: 26px;
+    color: #f28d4f; /*logo texto*/
+    line-height: 1;}
+.logo-text span { /*utilizada para estilizar pequenas partes de texto ou elementos sem quebrar a linha*/
+    font-size: 13px;
+    color: #e0e0e0;}
+/*BOTÕES*/
+.btn-home, .btn-cardapio, .btn-avaliacoes, .btn-contato { /*configs padrão*/
+    padding: 10px 25px;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all 0.2s ease;}
+.btn-home:hover, .btn-cardapio:hover, .btn-avaliacoes:hover, .btn-contato:hover { /*efeito quando passa o mouse*/
+    background-color: rgba(230, 126, 60, 0.1); /*um laranja bem clarinho só para indicar o mouse*/
+    border-radius: 12px;}
+.btn-home:active, .btn-cardapio:active, .btn-avaliacoes:active, .btn-contato:active { /*efeito quando apertar o botão*/
+    background-color: #e67e3c;
+    color: #ffffff;
+    border-radius: 12px;
+    box-shadow: inset 0px 4px 6px rgba(0,0,0,0.2); /*sombra*/
+    transform: translateY(0px);} /*volta para a posição original ao clicar*/
+/*BANNER VER SE O PESSOAL VAI QUERER*/
+.banner-hero { /*configs gerais do banner*/
+    background-color: #634226; /*cor do menu*/
+    color: #FFFFFF;
+    text-align: center;
+    padding: 60px 20px;
+    font-family: sans-serif;}
+.banner-content { /*conteúdo dentro do banner*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;}
+.banner-title {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 0;}
+.icon-code { /*incon de <> */
+    font-size: 3.5rem;
+    color: #e67e3c;}
+.icon-coffee { /*icon de café*/
+    font-size: 3.5rem;}
+.banner-subtitle { /*subtítulo do banner*/
+    font-size: 1.8rem;
+    opacity: 0.9;}
+/*FINAL DO BANNER!!*/
+.menu-main-title { /*título do cardápio*/
+    font-size: 3.5rem;
+    margin-bottom: 5px;}
+.menu-category { /*título cafés*/
+    font-size: 2.6rem;
+    font-weight: bold;
+    text-align: center;
+    color: #634226;
+    margin-top: 40px;}
+.carousel-container { /*configs gerais do carrossel*/
+    padding: 20px;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;}
+.carousel-wrapper { /*moldura do carrossel*/
+    display: flex;
+    align-items: center;
+    position: relative;}
+.carousel-content { /*conteudo do carrossel*/
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* Alterado para auto para permitir a rolagem CSS */
+    scroll-behavior: smooth; /*efeito suave*/
+    scroll-snap-type: x mandatory; /* NOVO: Faz o card 'grudar' no início */
+    padding: 20px 0;}
+/* Esconde a barra de rolagem mas mantém a função */
+.carousel-content::-webkit-scrollbar {
+    display: none;}
+.carousel-content {
+    -ms-overflow-style: none;
+    scrollbar-width: none;}
+.card { /*estilo dos cards*/
+    min-width: 300px;
+    scroll-snap-align: start; /* NOVO: Alinha o card ao carrossel */
+    background: #FFF3E0;
+    border: 3px solid #D2691E;
+    border-radius: 10px;
+    overflow:hidden;
+    transition: transform 0.3s ease; /*efeito ao passar o mouse*/
+    scroll-margin-top: 150px;} /*ajuste de elementos na tela*/ 
+.card:hover {
+    transform: translateY(-10px);} /*efeito do card de subir*/
+.card img { /*configs imagem dos cards*/
+    width: 100%;
+    height: 200px;
+    object-fit:cover; /*redimensiona as imagens deixando elas cobrirem o card*/
+    scroll-margin-top: 150px;}
+.card-info { /*config geral das infos dos cards*/
+    padding: 15px;
+    text-align: left;}
+.card-info h5 { /*info título dos cards*/
+    color: #634226;
+    font-size: 1.4rem;
+    margin: 0 0 10px 0;}
+.card-info p { /*infos dos cards*/
+    color: #8D6E63;
+    font-size: 1.0rem;
+    min-height: 30px;}
+.price { /*config preços*/
+    display: block;
+    color: #D2691E;
+    font-weight: bold;
+    margin-top: 10px;}
+/*SETAS DO CARROSSEL*/
+.arrow {
+    text-decoration: none; /*remove sublinhado de link*/
+    display: flex; /*para centralizar ícone*/
+    justify-content: center;
+    align-items: center;
+    background: #634226;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    transition: background 0.3s;}
+.arrow:hover {
+    background: #D2691E;}
+.left { left: -20px;}
+.right { right: -20px;}
+/* Nova regra para o fundo branco */
+.carousel-white {
+    background-color: #FFFFFF;
+    max-width: 100% !important; /* Permite que o fundo branco ocupe a largura total */
+    padding: 40px 0;}
+/*garante que o conteúdo interno continue centralizado */
+.carousel-white .carousel-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;}
+
+/* NOVA CLASSE PARA O SUBTÍTULO DA SEÇÃO */
+.section-subtitle {
+    text-align: center;
+    color: #8D6E63; /* Marrom médio para o subtítulo */
+    font-size: 1.1rem;
+    margin-top: -10px; /* Traz para perto do título */
+    margin-bottom: 30px; /* Afasta do carrossel */
+}
+
+
+
+
+/*FINAL DA PAG*/ 
+.footer-final { /*configs do final da pag*/
+    background-color: #634226;
+    padding: 30px 20px;
+    text-align: center;
+    color: #e0e0e0;}
+.footer-linha { /*config da linha que aparece*/
+    max-width: 1100px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1); 
+    margin: 0 auto 20px auto;}
+.footer-conteudo p {
+    margin: 5px 0;
+    font-size: 14px;
+    font-weight: 300;}
+.footer-conteudo p:last-child {
+    font-size: 13px;
+    color: #f28d4f;}
