@@ -18,7 +18,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <sqlite3.h> // para trabalhar com o SQLite em C, precisamos adicionar a sua biblioteca
+#include <string.h>
 
 // Aqui nós declaramos a referência ao banco de dados como "bd" para facilitar na hora de chamar
 sqlite3* bd;
@@ -56,7 +58,7 @@ void cadastrarProduto()
     char *nome, *query;
     float preco;
     int quantidade, categoria;
-    sqlite3_stmt *statement;
+    sqlite3_stmt* statement;
 
     // aqui nos pedimos para o usuário o nome do produto
     printf("Nome do produto: ");
@@ -106,6 +108,7 @@ void cadastrarProduto()
     if (retorno != SQLITE_DONE)
     {
         printf("Erro ao executar a consulta: %s\n", sqlite3_errmsg(bd));
+        sqlite3_finalize(statement);
         sqlite3_close(bd);
         exit(1);
     }
@@ -118,9 +121,12 @@ void cadastrarProduto()
 
 void cadastrarPedido()
 {
-    char data, *query;
-    int cliente, produto, quantidade;
+    char data[11], *query;
+    int cliente, produto, quantidade, dia, mes, ano;
     float total = 0.0;
+    struct tm dataHelper = {0};
+    time_t agora = time(NULL);
+    sqlite3_stmt* statement;
 
     printf("Cliente: ");
     // TODO: Listar os clientes
@@ -133,25 +139,70 @@ void cadastrarPedido()
     printf("Quantidade: ");
     scanf("%f", &quantidade);
 
-    printf("Data do pedido: ");
+    printf("Data do pedido (DD-MM-AAAA ou vazio para hoje): ");
     scanf("%s", &data);
 
-    total = quantidade * valor_unitario;
-
-    query = "INSERT INTO pedido(id_cliente, id_func, id_forma_pagto, data_pedido, valor_total_pedido) VALUES (?, ?, ?, ?, ?)";
-
-    sprintf(query,
-            ,
-            cliente, produto, quantidade, data, total);
-
-    if (mysql_query(bd, query))
+    if (strcmp(data, "\n") != 0)
     {
-        printf("Erro: %s\n", mysql_error(bd));
+        strftime(data, sizeof data, "%d-%m-%Y", localtime(&agora));
     }
-    else
+
+    sscanf(data, "%d-%d-%d", &dia, &mes, &ano);
+    dataHelper.tm_mday = dia;
+    dataHelper.tm_mon = mes - 1; // Meses vão de 0 a 11, tem que subtrair 1
+    dataHelper.tm_year = ano - 1900; // Precisa subtrair, pq o epoch
+    dataHelper.tm_isdst = -1; // Deixa o sistema arrumar para horario de verão
+    time_t epoch = mktime(&dataHelper);
+
+    if (epoch == -1)
     {
-        printf("Pedido cadastrado!\n");
+        printf("Erro ao converter data.\n");
+        sqlite3_close(bd);
+        exit(1);
     }
+
+    // total = quantidade * valor_unitario;
+
+    query =
+        "INSERT INTO pedido(id_cliente, id_func, id_forma_pagto, data_pedido, valor_total_pedido) VALUES (?, ?, ?, ?, ?)";
+
+    retorno = sqlite3_prepare_v3(
+        bd, /* Referencia do banco de dados */
+        query, /* Consulta SQL, UTF-8 encoded */
+        -1, /* Tamanho máximo da consulta em bytes. */
+        SQLITE_PREPARE_FROM_DDL | SQLITE_PREPARE_NORMALIZE, /* Zero ou mais flags SQLITE_PREPARE_ */
+        &statement, /* SAIDA: Referencia a statement */
+        NULL /* SAIDA: Ponteiro para a parte nao usada da query */
+    );
+
+    if (retorno != SQLITE_OK)
+    {
+        printf("Erro ao preparar a consulta: %s\n", sqlite3_errmsg(bd));
+        sqlite3_close(bd);
+        exit(1);
+    }
+
+    // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
+    sqlite3_bind_int(statement, 1, cliente);
+    sqlite3_bind_int(statement, 2, 1);
+    sqlite3_bind_int(statement, 3, 1);
+    sqlite3_bind_int64(statement, 4, epoch);
+    sqlite3_bind_double(statement, 5, total);
+
+    // Rodamos a consulta
+    retorno = sqlite3_step(statement);
+
+    if (retorno != SQLITE_DONE)
+    {
+        printf("Erro ao criar o pedido: %s\n", sqlite3_errmsg(bd));
+        sqlite3_finalize(statement);
+        sqlite3_close(bd);
+        exit(1);
+    }
+
+    // TODO: cadastrar o item no pedido
+
+    printf("Pedido cadastrado!\n");
 }
 
 void listarPedidos()
