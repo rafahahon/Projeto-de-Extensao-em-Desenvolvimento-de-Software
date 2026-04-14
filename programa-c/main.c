@@ -56,7 +56,7 @@ void cadastrarProduto()
     char *nome, *query;
     float preco;
     int quantidade, categoria;
-    sqlite3_stmt statement;
+    sqlite3_stmt *statement;
 
     // aqui nos pedimos para o usuário o nome do produto
     printf("Nome do produto: ");
@@ -95,13 +95,13 @@ void cadastrarProduto()
     }
 
     // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
-    sqlite3_bind_text(&statement, 1, nome, -1, SQLITE_STATIC);
-    sqlite3_bind_double(&statement, 2, preco);
-    sqlite3_bind_int(&statement, 3, quantidade);
-    sqlite3_bind_int(&statement, 4, categoria);
+    sqlite3_bind_text(statement, 1, nome, -1, SQLITE_STATIC);
+    sqlite3_bind_double(statement, 2, preco);
+    sqlite3_bind_int(statement, 3, quantidade);
+    sqlite3_bind_int(statement, 4, categoria);
 
     // Rodamos a consulta
-    retorno = sqlite3_step(&statement);
+    retorno = sqlite3_step(statement);
 
     if (retorno != SQLITE_DONE)
     {
@@ -111,7 +111,7 @@ void cadastrarProduto()
     }
 
     // Limpeza pós-execução
-    sqlite3_finalize(&statement);
+    sqlite3_finalize(statement);
 
     printf("Produto cadastrado!\n");
 }
