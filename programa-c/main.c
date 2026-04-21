@@ -150,7 +150,7 @@ void cadastrarPedido()
     sscanf(data, "%d-%d-%d", &dia, &mes, &ano);
     dataHelper.tm_mday = dia;
     dataHelper.tm_mon = mes - 1; // Meses vão de 0 a 11, tem que subtrair 1
-    dataHelper.tm_year = ano - 1900; // Precisa subtrair, pq o epoch
+    dataHelper.tm_year = ano - 1900; // Precisa subtrair, pq o epoch do C vai de 1900 até hoje
     dataHelper.tm_isdst = -1; // Deixa o sistema arrumar para horario de verão
     time_t epoch = mktime(&dataHelper);
 
@@ -231,6 +231,8 @@ int main()
     int opcao;
 
     conectar();
+
+    // TODO: login de funcionario?
 
     do
     {
