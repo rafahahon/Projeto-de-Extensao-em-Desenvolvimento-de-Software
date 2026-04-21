@@ -1,0 +1,195 @@
+@import "_header.css";
+@import "_menu.css";
+@import "_footer.css";
+
+:root {
+    --primary-brown: #4a3427;
+    --accent-orange: #ff8e53;
+    --bg-cream: #fdfaf7;
+    --text-coffee: #5d4a3e;
+    --text-light: #9e8d82;
+    --white: #ffffff;
+    --shadow: rgba(74, 52, 39, 0.06);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-cream);
+    color: var(--text-coffee);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar {
+    background-color: var(--primary-brown);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 55px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-orange);
+    margin-right: 15px;
+}
+
+.brand-text h1 {
+    margin: 0;
+    font-size: 24px;
+    color: var(--accent-orange);
+}
+
+.brand-text p {
+    margin: 0;
+    font-size: 13px;
+    color: #dccbc0;
+}
+
+.menu {
+    display: flex;
+    gap: 30px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #f5ece5;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.btn-active {
+    background: var(--accent-orange);
+    padding: 10px 22px;
+    border-radius: 12px;
+    color: white !important;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 32px;
+    color: var(--primary-brown);
+}
+
+.summary-card, .form-card, .review-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow);
+    margin-bottom: 30px;
+}
+
+.stars-display {
+    color: var(--accent-orange);
+    font-size: 24px;
+    text-align: center;
+}
+
+.rating-value {
+    font-size: 52px;
+    font-weight: 800;
+    color: var(--primary-brown);
+    text-align: center;
+}
+
+/* ESTILO DAS ESTRELAS CLICÁVEIS */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse; /* Inverte para a lógica de seleção funcionar */
+    justify-content: center;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.star-rating label {
+    color: #e2d7cf;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Quando seleciona ou passa o mouse, as estrelas ficam laranjas */
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: var(--accent-orange);
+}
+
+.filter-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.filter-btn {
+    border: none;
+    padding: 8px 18px;
+    background: #f7f2ee;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: var(--primary-brown);
+    color: white;
+}
+
+textarea {
+    width: 100%;
+    height: 90px;
+    border: 2px solid #f0e9e4;
+    border-radius: 12px;
+    padding: 12px;
+    margin: 15px 0;
+    font-family: inherit;
+    resize: none;
+    box-sizing: border-box;
+}
+
+.btn-publish {
+    background: var(--accent-orange);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 700;
+    border: none;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card-stars {
+    color: var(--accent-orange);
+    margin-bottom: 10px;
+}
+
+.author {
+    font-weight: 700;
+    color: var(--primary-brown);
+    display: block;
+    margin-top: 10px;
+}

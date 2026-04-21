@@ -1,0 +1,55 @@
+/**
+ * NAVEGACAO
+ */
+
+/*fundo bege clarinho da imagem*/
+/*MENU NAVBAR*/
+.navbar { /*agrupa links,logos e botões de busca*/
+    background-color: #634226; /*cor do fundo, marrom café*/
+    display: flex; /*alinhamento*/
+    justify-content: space-between; /*distribui o espaço igualmente*/
+    align-items: center; /*centraliza verticalmente*/
+    padding: 15px 50px; /*espaçamento interno do conteúdo e a borda*/
+    color: white; /*cor da fonte*/
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/*sombra do botão*/
+.navigation { /*embelezamento*/
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.navigation a:hover {
+    color: #f28d4f;
+}
+
+/*BOTÕES*/
+.btn-home, .btn-cardapio, .btn-avaliacoes, .btn-contato { /*configs padrão*/
+    padding: 10px 25px;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all 0.2s ease;
+}
+
+.btn-home:hover, .btn-cardapio:hover, .btn-avaliacoes:hover, .btn-contato:hover { /*efeito quando passa o mouse*/
+    background-color: rgba(230, 126, 60, 0.1); /*um laranja bem clarinho só para indicar o mouse*/
+    border-radius: 12px;
+}
+
+.btn-home:active, .btn-cardapio:active, .btn-avaliacoes:active, .btn-contato:active { /*efeito quando apertar o botão*/
+    background-color: #e67e3c;
+    color: #ffffff;
+    border-radius: 12px;
+    box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.2); /*sombra*/
+    transform: translateY(0px);
+}

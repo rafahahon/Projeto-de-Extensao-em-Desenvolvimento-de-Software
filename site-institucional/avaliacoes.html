@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-br"> <!--linguagem pt-br da pag-->
+<html lang="pt-br">
 
 <head>
-    <meta charset="utf-8"/> <!--para caracteres especiais-->
-    <title>CODE CAT COFFEE 😻</title> <!--título na aba-->
+    <meta charset="UTF-8">
+    <title>Avaliações - Code & Cats Café</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="copyright" content="CODE CAT COFFEE"/> <!--copyright-->
-    <link rel="stylesheet" type="text/css" href="styles/contato.css"/> <!--endereço do css-->
+    <link rel="stylesheet" href="styles/avaliacoes.css">
 </head>
 
 <body>
-<!--MENU-->
+
 <header class="navbar">
     <div class="logo-container">
         <img src="images/logo.png" alt="Code Cat Coffee - Code, Cats, Coffee e Wellbeing" class="logo-icon">
@@ -27,150 +27,53 @@
         <a href="contato.html" class="btn-contato">CONTATO</a>
     </nav>
 </header>
-<!--SEÇÕES DA PÁGINA-->
-<section class="secao-contato">
-    <div class="titulo-secao">
-        <h2>Entre em Contato</h2>
-        <p>Estamos prontos para receber você! 😻</p>
-    </div>
-    <div class="contato-container"> <!--dentro das colunas-->
-        <div class="contato-info">
-            <div class="card">
-                <div class="icon-box">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                </div>
-                <div>
-                    <h3>Endereço</h3>
-                    <p>Av. Professor Luiz Ignácio Anhaia Mello, 1363<br>Bairro Vila Prudente<br>São Paulo - SP,
-                        03155-000</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="icon-box">
-                    <svg viewBox="0 0 24 24">
-                        <path
-                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-2.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                        </path>
-                    </svg>
-                </div>
-                <div>
-                    <h3>Telefone</h3>
-                    <p>(11) 2633-9000<br>(11) 90000-2633</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="icon-box">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                        </path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                </div>
-                <div class="card-content">
-                    <h3>E-mail</h3>
-                    <p>contato@codecatscoffee.com.br<br>reservas@codecatscoffee.com.br</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="icon-box">
-                    <svg viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                    </svg>
-                </div>
-                <div class="card-content">
-                    <tr>
-                        <p>
-                            <td class="coluna-dias">Segunda a Sexta:</td>
-                            <td class="coluna-horas">08:00 - 22:00</td>
-                        </p>
-                    </tr>
-                    <tr>
-                        <p>
-                            <td class="coluna-dias">Sábado:</td>
-                            <td class="coluna-horas">09:00 - 23:00</td>
-                        </p>
-                    </tr>
-                    <tr>
-                        <p>
-                            <td class="coluna-dias">Domingo:</td>
-                            <td class="coluna-horas">10:00 - 20:00</td>
-                        </p>
-                    </tr>
-                </div>
-            </div>
+
+<main class="container">
+    <section class="intro">
+        <h2 class="section-title">Avaliações</h2>
+        <p class="section-subtitle">O que nossos clientes dizem sobre nós</p>
+    </section>
+
+    <section class="summary-card">
+        <div class="stars-display">★★★★★</div>
+        <div class="rating-value">5.0</div>
+        <div class="filter-group">
+            <button class="filter-btn active">Todas</button>
+            <button class="filter-btn">5 Estrelas</button>
+            <button class="filter-btn">4 Estrelas</button>
         </div>
-        <!--ENVIAR MENSAGEM! VER SE O PESSOAL VAI QUERER!!-->
-        <div class="contato-form">
-            <h3>Envie uma Mensagem</h3>
-            <form>
-                <label>Nome</label>
-                <input type="text" placeholder="Seu nome">
-                <label>E-mail</label>
-                <input type="email" placeholder="seu@email.com">
-                <label>Mensagem</label>
-                <textarea rows="5" placeholder="Escreva sua mensagem..."></textarea>
-                <button type="submit" class="btn-enviar">Enviar Mensagem</button>
-            </form>
-        </div> <!--FINAL DO ENVIAR MENSAGEM-->
-    </div>
-</section>
-<section class="secao-social">
-    <div class="social-container">
-        <div class="redes-sociais-box">
-            <h3>Nossas Redes Sociais</h3>
-            <div class="redes-grid">
-                <div class="social-card">
-                    <svg viewBox="0 0 24 24" class="social-icon">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
-                    <div>
-                        <strong>Instagram</strong>
-                        <span>@codecatscoffee</span>
-                    </div>
-                </div>
-                <div class="social-card">
-                    <svg viewBox="0 0 24 24" class="social-icon">
-                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                    </svg>
-                    <div>
-                        <strong>Facebook</strong>
-                        <span>/codecatscoffee</span>
-                    </div>
-                </div>
-                <div class="social-card">
-                    <svg viewBox="0 0 24 24" class="social-icon">
-                        <path
-                                d="M4 4l11.733 16h4.267l-11.733-16h-4.267zm0 16l6.765-7.733m13.235-8.267l-6.765 7.733m6.765-7.733h-4.267l-13.235 16h4.267l13.235-16z">
-                        </path>
-                        s
-                    </svg>
-                    <div>
-                        <strong>Twitter</strong>
-                        <span>@codecatscoffee</span>
-                    </div>
-                </div>
-                <div class="social-card">
-                    <svg viewBox="0 0 24 24" class="social-icon">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                        </path>
-                        <rect x="2" y="9" width="4" height="12"></rect>
-                        <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                    <div>
-                        <strong>LinkedIn</strong>
-                        <span>/codecatscoffee</span>
-                    </div>
-                </div>
-            </div>
+    </section>
+
+    <section class="form-card">
+        <h3>Deixe sua avaliação</h3>
+
+        <div class="star-rating">
+            <input type="radio" name="stars" id="star5" hidden><label for="star5">★</label>
+            <input type="radio" name="stars" id="star4" hidden><label for="star4">★</label>
+            <input type="radio" name="stars" id="star3" hidden><label for="star3">★</label>
+            <input type="radio" name="stars" id="star2" hidden><label for="star2">★</label>
+            <input type="radio" name="stars" id="star1" hidden><label for="star1">★</label>
         </div>
+
+        <textarea placeholder="Conte-nos como foi sua experiência..."></textarea>
+        <button class="btn-publish">Publicar Avaliação</button>
+    </section>
+
+    <div class="reviews-grid">
+        <article class="review-card">
+            <div class="card-stars">★★★★★</div>
+            <p>"Lugar perfeito para trabalhar! O WiFi é rápido e o café é excelente."</p>
+            <span class="author">Ana Silva</span>
+        </article>
+
+        <article class="review-card">
+            <div class="card-stars">★★★★☆</div>
+            <p>"Ambiente muito legal, os gatos são super mansos e carinhosos."</p>
+            <span class="author">Pedro Almeida</span>
+        </article>
     </div>
-</section>
+</main>
+
 <!--RODAPÉ-->
 <footer class="rodape-principal">
     <div class="secao-redes-sociais">
