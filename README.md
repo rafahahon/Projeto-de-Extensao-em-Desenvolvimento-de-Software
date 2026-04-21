@@ -27,3 +27,8 @@ Temos 3 pastas, uma para cada tarefa designada:
 
 Temos um arquivo compatível com MySQL e outro compatível com SQLite.
 
+O DER está dentro da pasta com toda a estrutura das tabelas usadas no programa em C.
+
+### Site Institucional
+
+Temos o site institucional com X páginas, feito em HTML5 e CSS3. 
