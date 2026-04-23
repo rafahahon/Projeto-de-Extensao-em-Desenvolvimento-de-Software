@@ -205,25 +205,30 @@ void cadastrarPedido()
     printf("Pedido cadastrado!\n");
 }
 
+static int listarPedidosCallback(void* naoUsado, int numColunas, char** valores, char** nomeColuna)
+{
+    for (int i = 0; i < numColunas; i++)
+    {
+        printf("%s: %s |", nomeColuna[i], valores[i] ? valores[i] : "NULL");
+    }
+    printf("\n");
+    return 0;
+}
+
 void listarPedidos()
 {
-    MYSQL_RES* res;
-    MYSQL_ROW row;
+    char* erro;
+    int retorno = sqlite3_exec(bd, "SELECT * FROM pedido", listarPedidosCallback, 0, &erro);
 
-    mysql_query(bd, "SELECT * FROM pedido");
-
-    res = mysql_store_result(bd);
-
-    printf("\nPedidos cadastrados:\n");
-
-    while ((row = mysql_fetch_row(res)))
+    if (retorno != SQLITE_OK)
     {
-        printf(
-            "ID: %s | Id_cliente: %d | Produto: %d | Data do pedido: %? |Quantidade: %s | Valor: %s | Total: %.2f\n",
-            row[0], row[1], row[2], row[3], row[4], row[5], row[6]);
+        printf("Erro ao selecionar os pedidos: %s\n", sqlite3_errmsg(bd));
+        sqlite3_free(erro);
+        sqlite3_close(bd);
+        exit(1);
     }
 
-    mysql_free_result(res);
+    sqlite3_close(bd);
 }
 
 int main()
