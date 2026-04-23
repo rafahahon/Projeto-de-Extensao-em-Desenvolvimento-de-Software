@@ -19,7 +19,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <sqlite3.h> // para trabalhar com o SQLite em C, precisamos adicionar a sua biblioteca
+#include "./sqlite3.h" // para trabalhar com o SQLite em C, precisamos adicionar a sua biblioteca
 #include <string.h>
 
 // Aqui nós declaramos a referência ao banco de dados como "bd" para facilitar na hora de chamar
@@ -122,7 +122,7 @@ void cadastrarProduto()
 void cadastrarPedido()
 {
     char data[11], *query;
-    int cliente, produto, quantidade, dia, mes, ano;
+    int cliente, produto, quantidade, dia, mes, ano, retorno;
     float total = 0.0;
     struct tm dataHelper = {0};
     time_t agora = time(NULL);
