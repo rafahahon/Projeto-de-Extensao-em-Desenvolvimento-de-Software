@@ -10,7 +10,6 @@ Projeto do grupo **HttpCats** para o primeiro semestre do curso de Sistemas de I
 | Ana Santos Nascimento        | 3036101499 |
 | Breno Fessel Da Paz          | 3026104340 |
 | Gabrielli Minhano Barbosa    | 3026103592 |
-| Pedro Junior da Silva Soares | 3026104213 |
 | Rafael Baptista de Almeida   | 3026103546 |
 | Rafaella Pinto Hahon         | 3026102787 |
 | Victor Nunes Garcia          | 3026101023 |
