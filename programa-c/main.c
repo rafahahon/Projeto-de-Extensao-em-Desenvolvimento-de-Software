@@ -18,7 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "./sqlite3.h" // para trabalhar com o SQLite em C, precisamos adicionar a sua biblioteca
+#include "sqlite3.h" // para trabalhar com o SQLite em C, precisamos adicionar a sua biblioteca
 #include <string.h>
 
 // Aqui nós declaramos a referência ao banco de dados como "bd" para facilitar na hora de chamar
