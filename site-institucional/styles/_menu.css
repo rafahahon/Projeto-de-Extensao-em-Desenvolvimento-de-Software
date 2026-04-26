@@ -34,19 +34,19 @@
 }
 
 /*BOTÕES*/
-.btn-home, .btn-cardapio, .btn-avaliacoes, .btn-contato { /*configs padrão*/
+.btn-home, .btn-cardapio, .btn-avaliacoes, .btn-contato, .btn-empresa { /*configs padrão*/
     padding: 10px 25px;
     cursor: pointer;
     background-color: transparent;
     transition: all 0.2s ease;
 }
 
-.btn-home:hover, .btn-cardapio:hover, .btn-avaliacoes:hover, .btn-contato:hover { /*efeito quando passa o mouse*/
+.btn-home:hover, .btn-cardapio:hover, .btn-avaliacoes:hover, .btn-contato:hover, .btn-empresa.btn-empresa:hover { /*efeito quando passa o mouse*/
     background-color: rgba(230, 126, 60, 0.1); /*um laranja bem clarinho só para indicar o mouse*/
     border-radius: 12px;
 }
 
-.btn-home:active, .btn-cardapio:active, .btn-avaliacoes:active, .btn-contato:active { /*efeito quando apertar o botão*/
+.btn-home:active, .btn-cardapio:active, .btn-avaliacoes:active, .btn-contato:active, .btn-empresa:active { /*efeito quando apertar o botão*/
     background-color: #e67e3c;
     color: #ffffff;
     border-radius: 12px;
