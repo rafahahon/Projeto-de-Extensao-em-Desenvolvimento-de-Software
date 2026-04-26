@@ -17,6 +17,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 #include <time.h>
 #include "sqlite3.h" // para trabalhar com o SQLite em C, precisamos adicionar a sua biblioteca
 #include <string.h>
@@ -29,6 +30,7 @@ int retorno;
 // Aqui criamos a função Conectar, que faz a conexão do código com o banco
 void conectar()
 {
+    setlocale(LC_ALL, "Portuguese");
     // Aqui nós iniciamos a conexão com o banco de dados
     retorno = sqlite3_open_v2(
         "file://./../banco-de-dados/codecatcoffee.sqlite",
@@ -54,6 +56,7 @@ void conectar()
    cadastrando um novo produto */
 void cadastrarProduto()
 {
+    setlocale(LC_ALL, "Portuguese");
     char *nome, *query;
     float preco;
     int quantidade, categoria;
@@ -120,6 +123,7 @@ void cadastrarProduto()
 
 void cadastrarPedido()
 {
+    setlocale(LC_ALL, "Portuguese");
     char data[11], *query;
     int cliente, produto, quantidade, dia, mes, ano, retorno;
     float total = 0.0;
@@ -206,6 +210,7 @@ void cadastrarPedido()
 
 static int listarPedidosCallback(void* naoUsado, int numColunas, char** valores, char** nomeColuna)
 {
+    setlocale(LC_ALL, "Portuguese");
     for (int i = 0; i < numColunas; i++)
     {
         printf("%s: %s |", nomeColuna[i], valores[i] ? valores[i] : "NULL");
@@ -216,6 +221,7 @@ static int listarPedidosCallback(void* naoUsado, int numColunas, char** valores,
 
 void listarPedidos()
 {
+    setlocale(LC_ALL, "Portuguese");
     char* erro;
     int retorno = sqlite3_exec(bd, "SELECT * FROM pedido", listarPedidosCallback, 0, &erro);
 
@@ -232,6 +238,7 @@ void listarPedidos()
 
 int main()
 {
+    setlocale(LC_ALL, "Portuguese");
     int opcao;
 
     conectar();
