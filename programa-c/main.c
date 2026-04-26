@@ -36,7 +36,7 @@ void conectar()
         "file://./../banco-de-dados/codecatcoffee.sqlite",
         &bd,
         SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX | SQLITE_OPEN_PRIVATECACHE,
-        "unix-dotfile"
+        "win32"
     );
 
     // Aqui nós vamos testar se a conexão com o banco de dados deu certo, e caso não tenha dado,
