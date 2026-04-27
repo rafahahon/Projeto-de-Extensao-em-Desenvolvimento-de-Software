@@ -56,7 +56,7 @@ CREATE TABLE gato (
     personalidade VARCHAR(100),
     status_gato ENUM('Disponível', 'Descansando', 'Veterinário') DEFAULT 'Disponível', 
     id_playground INT,
-    FOREIGN KEY (id_playground) REFERENCES playground(id_playground)
+    FOREIGN KEY (id_playground) REFERENCES Playground(id_playground)
 );
 
 -- 6. PRODUTO
@@ -66,18 +66,19 @@ CREATE TABLE produto (
     descricao TEXT, 
     preco DECIMAL(10,2) NOT NULL,
     quantidade_estoque INT DEFAULT 0,
-    categoria ENUM('Doce', 'Salgado', 'Bebida', 'Petisco') NOT NULL
+    id_categoria INT,
+    FOREIGN KEY (id_categoria) REFERENCES categoria_produto(id_categoria)
 );
 
 -- 7. RESERVA DE MESA
-CREATE TABLE reserva_mesa (
+CREATE TABLE reserva_Mesa (
     id_reserva INT PRIMARY KEY AUTO_INCREMENT,
     id_cliente INT,
     id_mesa INT,
     inicio_reserva DATETIME,
     fim_reserva DATETIME,
-    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
-    FOREIGN KEY (id_mesa) REFERENCES mesa(id_mesa)
+    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente),
+    FOREIGN KEY (id_mesa) REFERENCES Mesa(id_mesa)
 );
 
 -- 8. SESSÕES DE PLAYGROUND
@@ -88,8 +89,8 @@ CREATE TABLE sessoes_playground (
     hora_entrada DATETIME DEFAULT CURRENT_TIMESTAMP,
     minutos_permanencia INT,
     valor_pago DECIMAL(10,2),
-    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
-    FOREIGN KEY (id_playground) REFERENCES playground(id_playground)
+    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente),
+    FOREIGN KEY (id_playground) REFERENCES Playground(id_playground)
 );
 
 -- 9. PEDIDO (Cabeçalho)
@@ -98,10 +99,11 @@ CREATE TABLE pedido (
     id_cliente INT,
     id_fun INT, 
     valor_total_pedido DECIMAL(10,2),
-    forma_pagamento ENUM('PIX', 'Cartão Débito', 'Cartão Crédito', 'Dinheiro'),
+    id_pagamento INT,
     data_pedido DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
-    FOREIGN KEY (id_fun) REFERENCES funcionario(id_fun)
+    FOREIGN KEY (id_fun) REFERENCES funcionario(id_fun),
+    FOREIGN KEY (id_pagamento) REFERENCES forma_pagamento(id_pagamento)
 );
 
 -- 10. ITENS_PEDIDO (Detalhes)
@@ -111,6 +113,18 @@ CREATE TABLE itens_pedido (
     id_produto INT,
     quantidade_pedida INT NOT NULL,
     preco_unitario DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido),
-    FOREIGN KEY (id_produto) REFERENCES produto(id_produto)
+    FOREIGN KEY (id_pedido) REFERENCES Pedido(id_pedido),
+    FOREIGN KEY (id_produto) REFERENCES Produto(id_produto)
+);
+
+-- 11. CATEGORIA_PRODUTO (Identificar e individualizar cada produto)
+CREATE TABLE categoria_produto (
+    id_categoria INT PRIMARY KEY AUTO_INCREMENT,
+    nome_categoria VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- 12. FORMA_PAGAMENTO (Categorizar forma de pagamento dos pedidos)
+CREATE TABLE forma_pagamento (
+    id_pagamento INT PRIMARY KEY AUTO_INCREMENT,
+    nome_pagamento VARCHAR(50) NOT NULL UNIQUE
 );
