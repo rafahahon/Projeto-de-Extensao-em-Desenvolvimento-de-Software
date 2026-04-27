@@ -88,7 +88,7 @@ INSERT INTO produto (nome, descricao, preco, quantidade_estoque, categoria) VALU
 ('Sachê de Salmão', 'Petisco nutritivo para gatos', 4.50, 200, 'Petisco'),
 ('Sachê de Carne', 'Petisco saboroso para gatos', 4.00, 150, 'Petisco');
 
-INSERT INTO reserva_Mesa (id_cliente, id_mesa, inicio_reserva, fim_reserva) VALUES 
+INSERT INTO reserva_mesa (id_cliente, id_mesa, inicio_reserva, fim_reserva) VALUES 
 -- Lista de Reservas de mesas
 (1, 1, '2026-04-26 14:00:00', '2026-04-26 15:30:00'), 
 (2, 2, '2026-04-26 15:00:00', '2026-04-26 16:30:00'),
