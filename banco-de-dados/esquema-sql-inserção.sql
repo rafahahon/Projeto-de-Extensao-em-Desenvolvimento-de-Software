@@ -57,36 +57,36 @@ INSERT INTO gato (nome, personalidade, status_gato, id_playground) VALUES
 ('C#', 'Elegante e organizado', 'Disponível', 1),
 ('Dart', 'Muito veloz e sociável', 'Disponível', 1);
 
-INSERT INTO produto (nome, descricao, preco, quantidade_estoque, categoria) VALUES 
+INSERT INTO produto (nome, descricao, preco, quantidade_estoque, id_categoria) VALUES 
 -- CAFÉS (Categoria: Bebida)
-('Latte Art', 'Café com leite vaporizado e desenho', 15.70, 50, 'Bebida'),
-('Canela Café', 'Café com um toque aromático de canela', 15.00, 30, 'Bebida'),
-('Flat White', 'Café com leite cremoso', 9.00, 40, 'Bebida'),
-('Macchiato', 'Café expresso com uma mancha de espuma', 8.50, 35, 'Bebida'),
-('Espresso', 'Café concentrado de alta qualidade', 7.00, 100, 'Bebida'),
-('Shot', 'Dose única de puro café', 10.50, 100, 'Bebida'),
-('Capuccino', 'Café com leite e cacau em pó', 8.00, 45, 'Bebida'),
+('Latte Art', 'Café com leite vaporizado e desenho', 15.70, 50, '3'),
+('Canela Café', 'Café com um toque aromático de canela', 15.00, 30, '3'),
+('Flat White', 'Café com leite cremoso', 9.00, 40, '3'),
+('Macchiato', 'Café expresso com uma mancha de espuma', 8.50, 35, '3'),
+('Espresso', 'Café concentrado de alta qualidade', 7.00, 100, '3'),
+('Shot', 'Dose única de puro café', 10.50, 100, '3'),
+('Capuccino', 'Café com leite e cacau em pó', 8.00, 45, '3'),
 
 -- SALGADOS E DOCES (Categoria: Salgados e Doces)
-('Queijo', 'Pão de queijo artesanal', 7.00, 80, 'Salgado'),
-('Muffins', 'Muffin de frutas vermelhas', 8.50, 20, 'Doce'),
-('Quiche', 'Quiche de alho poró', 10.00, 15, 'Salgado'),
-('Brownie', 'Brownie de chocolate belga', 9.00, 25, 'Doce'),
-('Coxinha', 'Coxinha de frango tradicional', 10.00, 60, 'Salgado'),
-('Cheesecake', 'Cheesecake com calda de frutas', 12.00, 10, 'Doce'),
+('Queijo', 'Pão de queijo artesanal', 7.00, 80, '2'),
+('Muffins', 'Muffin de frutas vermelhas', 8.50, 20, '1'),
+('Quiche', 'Quiche de alho poró', 10.00, 15, '2'),
+('Brownie', 'Brownie de chocolate belga', 9.00, 25, '1'),
+('Coxinha', 'Coxinha de frango tradicional', 10.00, 60, '2'),
+('Cheesecake', 'Cheesecake com calda de frutas', 12.00, 10, '1'),
 
 -- BEBIDAS GELADAS (Categoria: Bebida)
-('Americano', 'Café diluído com gelo', 10.00, 40, 'Bebida'),
-('Pink', 'Bebida refrescante de morango', 10.50, 20, 'Bebida'),
-('Frappé', 'Café batido com gelo e chantilly', 16.00, 30, 'Bebida'),
-('Soda', 'Soda italiana artesanal', 15.00, 25, 'Bebida'),
-('Hibisco', 'Chá de hibisco gelado', 14.50, 20, 'Bebida'),
-('Cold Brew', 'Café extraído a frio', 15.00, 30, 'Bebida'),
+('Americano', 'Café diluído com gelo', 10.00, 40, '3'),
+('Pink', 'Bebida refrescante de morango', 10.50, 20, '3'),
+('Frappé', 'Café batido com gelo e chantilly', 16.00, 30, '3'),
+('Soda', 'Soda italiana artesanal', 15.00, 25, '3'),
+('Hibisco', 'Chá de hibisco gelado', 14.50, 20, '3'),
+('Cold Brew', 'Café extraído a frio', 15.00, 30, '3'),
 
 -- PETISCO (Categoria: Petisco)
-('Sachê de Frango', 'Petisco premium para gatos', 4.00, 200, 'Petisco'),
-('Sachê de Salmão', 'Petisco nutritivo para gatos', 4.50, 200, 'Petisco'),
-('Sachê de Carne', 'Petisco saboroso para gatos', 4.00, 150, 'Petisco');
+('Sachê de Frango', 'Petisco premium para gatos', 4.00, 200, '4'),
+('Sachê de Salmão', 'Petisco nutritivo para gatos', 4.50, 200, '4'),
+('Sachê de Carne', 'Petisco saboroso para gatos', 4.00, 150, '4');
 
 INSERT INTO reserva_mesa (id_cliente, id_mesa, inicio_reserva, fim_reserva) VALUES 
 -- Lista de Reservas de mesas
@@ -124,23 +124,23 @@ INSERT INTO sessoes_playground (id_cliente, id_playground, minutos_permanencia, 
 (14, 1, 60, 25.00), 
 (15, 1, 45, 20.00);
 
-INSERT INTO pedido (id_cliente, id_fun, valor_total_pedido, forma_pagamento) VALUES 
+INSERT INTO pedido (id_cliente, id_fun, valor_total_pedido, id_pagamento) VALUES 
 -- Lista de Pedidos feitos pelos clientes
-(1,1,24.50,'PIX'),
-(2,2,28.50,'Cartão Crédito'),
-(3,3,15.00,'Dinheiro'),
-(4,4,30.00,'PIX'),
-(5,5,12.00,'PIX'),
-(6,6,45.00,'Cartão Débito'),
-(7,7,20.00,'PIX'),
-(8,8,18.00,'Cartão Crédito'),
-(9,9,25.00,'Dinheiro'),
-(10,10,35.00,'PIX'),
-(11,11,10.00,'Cartão Débito'),
-(12,12,22.00,'PIX'),
-(13,13,40.00,'Cartão Crédito'),
-(14,14,15.00,'Dinheiro'),
-(15,15,20.00,'PIX');
+(1,1,24.50,'1'),
+(2,2,28.50,'3'),
+(3,3,15.00,'4'),
+(4,4,30.00,'1'),
+(5,5,12.00,'1'),
+(6,6,45.00,'2'),
+(7,7,20.00,'1'),
+(8,8,18.00,'3'),
+(9,9,25.00,'4'),
+(10,10,35.00,'1'),
+(11,11,10.00,'2'),
+(12,12,22.00,'1'),
+(13,13,40.00,'3'),
+(14,14,15.00,'4'),
+(15,15,20.00,'1');
 
 INSERT INTO itens_pedido (id_pedido, id_produto, quantidade_pedida, preco_unitario) VALUES 
 -- Lista de itens em pedidos de clientes
@@ -175,3 +175,18 @@ INSERT INTO itens_pedido (id_pedido, id_produto, quantidade_pedida, preco_unitar
 (14, 4, 1, 9.50),
 (15, 20, 2, 4.00), 
 (15, 7, 1, 11.50);
+
+INSERT INTO categoria_produto (nome_categoria) VALUES 
+-- Lista de categoria de produto
+('Doce'),
+('Salgado'),
+('Bebida'),
+('Petisco');
+
+
+INSERT INTO forma_pagamento (nome_pagamento) VALUES
+-- Lista de formas de pagamento
+('PIX'),
+('Cartão Débito'),
+('Cartão Crédito'),
+('Dinheiro');
