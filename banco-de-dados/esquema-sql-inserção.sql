@@ -176,7 +176,7 @@ INSERT INTO itens_pedido (id_pedido, id_produto, quantidade_pedida, preco_unitar
 (15, 20, 2, 4.00), 
 (15, 7, 1, 11.50);
 
-INSERT INTO categoria_produto (nome_categoria) VALUES 
+INSERT INTO categoria_produto (nome) VALUES 
 -- Lista de categoria de produto
 ('Doce'),
 ('Salgado'),
@@ -184,7 +184,7 @@ INSERT INTO categoria_produto (nome_categoria) VALUES
 ('Petisco');
 
 
-INSERT INTO forma_pagamento (nome_pagamento) VALUES
+INSERT INTO forma_pagamento (nome) VALUES
 -- Lista de formas de pagamento
 ('PIX'),
 ('Cartão Débito'),
