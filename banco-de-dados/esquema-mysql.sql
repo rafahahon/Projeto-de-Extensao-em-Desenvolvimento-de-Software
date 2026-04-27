@@ -99,11 +99,11 @@ CREATE TABLE pedido (
     id_cliente INT,
     id_fun INT, 
     valor_total_pedido DECIMAL(10,2),
-    id_pagamento INT,
+    id_forma_pagto INT,
     data_pedido DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
     FOREIGN KEY (id_fun) REFERENCES funcionario(id_fun),
-    FOREIGN KEY (id_pagamento) REFERENCES forma_pagamento(id_pagamento)
+    FOREIGN KEY (id_forma_pagto) REFERENCES forma_pagamento(id_forma_pagto)
 );
 
 -- 10. ITENS_PEDIDO (Detalhes)
@@ -119,12 +119,12 @@ CREATE TABLE itens_pedido (
 
 -- 11. CATEGORIA_PRODUTO (Identificar e individualizar cada produto)
 CREATE TABLE categoria_produto (
-    id_categoria INT PRIMARY KEY AUTO_INCREMENT,
-    nome_categoria VARCHAR(50) NOT NULL UNIQUE
+    id_cat_produto INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL UNIQUE
 );
 
 -- 12. FORMA_PAGAMENTO (Categorizar forma de pagamento dos pedidos)
 CREATE TABLE forma_pagamento (
-    id_pagamento INT PRIMARY KEY AUTO_INCREMENT,
-    nome_pagamento VARCHAR(50) NOT NULL UNIQUE
+    id_forma_pagto INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL UNIQUE
 );
