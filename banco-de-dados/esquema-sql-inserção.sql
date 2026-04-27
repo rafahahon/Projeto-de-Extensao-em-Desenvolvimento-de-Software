@@ -1,4 +1,4 @@
-INSERT INTO Cliente (nome, github_user, email) VALUES 
+INSERT INTO cliente (nome, github_user, email) VALUES 
 -- Lista de Clientes
 ('João Silva', 'joaosilva_dev', 'joao.silva@codecoffee.com'),
 ('Maria Santos', 'msantos_coder', 'maria.santos@codecoffee.com'),
@@ -16,7 +16,7 @@ INSERT INTO Cliente (nome, github_user, email) VALUES
 ('Larissa Gomes', 'lari_gomes_dev', 'larissa.gomes@codecoffee.com'),
 ('Rafael Costa', 'rafa_costa_coder', 'rafael.costa@codecoffee.com');
 
-INSERT INTO Funcionario (nome, cargo) VALUES 
+INSERT INTO funcionario (nome, cargo) VALUES 
 -- Lista de Funcionários
 ('Lara Silva', 'Gerente de Loja'),
 ('Bruno Alves', 'Barista'),
@@ -39,11 +39,11 @@ INSERT INTO Funcionario (nome, cargo) VALUES
 ('Tiago Oliveira', 'Auxiliar de Limpeza'),
 ('Vanessa Souza', 'Gerente de Loja');
 
-INSERT INTO Playground (nome_setor, capacidade_gatos, capacidade_clientes) VALUES 
+INSERT INTO playground (nome_setor, capacidade_gatos, capacidade_clientes) VALUES 
 -- Lista de Playground
 ('Zona de Programação Felina', 10, 5);
 
-INSERT INTO Gato (nome, personalidade, status_gato, id_playground) VALUES 
+INSERT INTO gato (nome, personalidade, status_gato, id_playground) VALUES 
 -- Lista de Gatos
 ('Python', 'Simpático', 'Disponível', 1),
 ('Java', 'Misterioso', 'Disponível', 1),
@@ -57,7 +57,7 @@ INSERT INTO Gato (nome, personalidade, status_gato, id_playground) VALUES
 ('C#', 'Elegante e organizado', 'Disponível', 1),
 ('Dart', 'Muito veloz e sociável', 'Disponível', 1);
 
-INSERT INTO Produto (nome, descricao, preco, quantidade_estoque, categoria) VALUES 
+INSERT INTO produto (nome, descricao, preco, quantidade_estoque, categoria) VALUES 
 -- CAFÉS (Categoria: Bebida)
 ('Latte Art', 'Café com leite vaporizado e desenho', 15.70, 50, 'Bebida'),
 ('Canela Café', 'Café com um toque aromático de canela', 15.00, 30, 'Bebida'),
@@ -88,7 +88,7 @@ INSERT INTO Produto (nome, descricao, preco, quantidade_estoque, categoria) VALU
 ('Sachê de Salmão', 'Petisco nutritivo para gatos', 4.50, 200, 'Petisco'),
 ('Sachê de Carne', 'Petisco saboroso para gatos', 4.00, 150, 'Petisco');
 
-INSERT INTO Reserva_Mesa (id_cliente, id_mesa, inicio_reserva, fim_reserva) VALUES 
+INSERT INTO reserva_Mesa (id_cliente, id_mesa, inicio_reserva, fim_reserva) VALUES 
 -- Lista de Reservas de mesas
 (1, 1, '2026-04-26 14:00:00', '2026-04-26 15:30:00'), 
 (2, 2, '2026-04-26 15:00:00', '2026-04-26 16:30:00'),
@@ -106,7 +106,7 @@ INSERT INTO Reserva_Mesa (id_cliente, id_mesa, inicio_reserva, fim_reserva) VALU
 (14, 4, '2026-04-28 12:00:00', '2026-04-28 13:30:00'),
 (15, 5, '2026-04-28 13:00:00', '2026-04-28 14:30:00');
 
-INSERT INTO Sessoes_Playground (id_cliente, id_playground, minutos_permanencia, valor_pago) VALUES 
+INSERT INTO sessoes_playground (id_cliente, id_playground, minutos_permanencia, valor_pago) VALUES 
 -- Lista de Sessões no Playground
 (1, 1, 30, 15.00), 
 (2, 1, 60, 25.00), 
@@ -124,7 +124,7 @@ INSERT INTO Sessoes_Playground (id_cliente, id_playground, minutos_permanencia, 
 (14, 1, 60, 25.00), 
 (15, 1, 45, 20.00);
 
-INSERT INTO Pedido (id_cliente, id_fun, valor_total_pedido, forma_pagamento) VALUES 
+INSERT INTO pedido (id_cliente, id_fun, valor_total_pedido, forma_pagamento) VALUES 
 -- Lista de Pedidos feitos pelos clientes
 (1,1,24.50,'PIX'),
 (2,2,28.50,'Cartão Crédito'),
@@ -142,7 +142,7 @@ INSERT INTO Pedido (id_cliente, id_fun, valor_total_pedido, forma_pagamento) VAL
 (14,14,15.00,'Dinheiro'),
 (15,15,20.00,'PIX');
 
-INSERT INTO Itens_Pedido (id_pedido, id_produto, quantidade_pedida, preco_unitario) VALUES 
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade_pedida, preco_unitario) VALUES 
 -- Lista de itens em pedidos de clientes
 (1, 1, 1, 12.50), 
 (1, 8, 1, 6.00), 
