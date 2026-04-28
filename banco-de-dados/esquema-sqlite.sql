@@ -119,7 +119,7 @@ CREATE TABLE pedido
     data_pedido        INTEGER DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente),
     FOREIGN KEY (id_fun) REFERENCES funcionario (id_fun),
-    FOREIGN KEY (id_forma_pagto) REFERENCES forma_pagamento (id_forma_pagto)
+    FOREIGN KEY (id_forma_pagto) REFERENCES funcionario (id_forma_pagto)
 );
 
 -- FORMAS DE PAGAMENTO DO PEDIDO
