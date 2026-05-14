@@ -11,25 +11,177 @@
  * | Victor Nunes Garcia             | 3026101023 |
  * ================================================
  *
- * Olá, pro! Nosso programa em C está ligado ao nosso banco de dados!
+ * Olá, pro! O nosso programa em C está ligado ao nosso banco de dados!
  */
 
+#include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
+#include <string.h>
 #include <time.h>
 #include "sqlite3.h" // para trabalhar com o SQLite em C, precisamos adicionar a sua biblioteca
-#include <string.h>
 
-// Aqui nós declaramos a referência ao banco de dados como "bd" para facilitar na hora de chamar
-sqlite3* bd;
-// variável para armazenar o retorno das funções chamadas do SQLite
-int retorno;
+/*
+ * Aqui criamos variáveis em comum para uso no programa
+ */
+int retorno; // Para armazenar o retorno das funções chamadas do SQLite
+char *query, // Para armazenar a última query em uso
+     *erro; // Para armazenar o último erro do BD
+sqlite3_stmt* statement; // Para armazenar prepared statements
+sqlite3* bd; // Referência ao banco de dados como "bd" para facilitar na hora de chamar
 
-// Aqui criamos a função Conectar, que faz a conexão do código com o banco
-void conectar()
+/**
+ * Lê um arquivo no sistema de arquivos atual e retorna o seu conteúdo.
+ * @param caminho_arquivo O caminho para o arquivo a ser lido.
+ * @return O conteúdo do arquivo.
+ */
+char* ler_arquivo(const char* caminho_arquivo)
+{
+    char* conteudo;
+    // Aqui abrimos o arquivo para leitura
+    FILE* arquivo = fopen(caminho_arquivo, "rb");
+
+    if (arquivo == NULL)
+    {
+        fprintf(stderr, "Não foi possível abrir o arquivo.\n");
+        exit(1);
+    }
+
+    // Aqui pegamos o tamanho total do arquivo para usar em seguida
+    fseek(arquivo, 0, SEEK_END);
+    const long tam_arquivo = ftell(arquivo);
+    fseek(arquivo, 0, SEEK_SET);
+
+    // Aqui colocamos o conteúdo de cada linha do arquivo dentro da variável conteudo
+    fread(&conteudo, 1, tam_arquivo, arquivo);
+    conteudo[tam_arquivo] = 0; // Finaliza a string com um null
+
+    // Fechando o arquivo para liberar memória
+    fclose(arquivo);
+
+    return conteudo;
+}
+
+/**
+ * Inicializa o Banco de Dados com a estrutura básica de tabelas para o programa.
+ */
+void bd_criar_tabelas()
+{
+    // Vamos ler o arquivo SQL num buffer de string
+    query = ler_arquivo("./../banco-de-dados/esquema-sqlite.sql");
+
+    // Executa a query
+    retorno = sqlite3_exec(bd, query, NULL, 0, &erro);
+
+    if (retorno != SQLITE_OK)
+    {
+        printf("Erro ao inicializar o banco de dados: %s\n", erro);
+        sqlite3_free(erro);
+        sqlite3_close(bd);
+        exit(1);
+    }
+
+    printf("Banco de dados inicializado com sucesso!\n");
+}
+
+/**
+ * Preenche as tabelas do Banco de Dados com dados de exemplo.
+ */
+void bd_popular_tabelas()
+{
+    // Vamos ler o arquivo SQL num buffer de string
+    query = ler_arquivo("./../banco-de-dados/esquema-sql-inserção.sql");
+
+    // Executa a query
+    retorno = sqlite3_exec(bd, query, NULL, 0, &erro);
+
+    if (retorno != SQLITE_OK)
+    {
+        printf("Erro ao popular o banco de dados: %s\n", erro);
+        sqlite3_free(erro);
+        return;
+    }
+
+    printf("Banco de dados populado com sucesso!\n");
+}
+
+/**
+ * Verifica a integridade do Banco de Dados através das tabelas presentes.
+ */
+void bd_verificar_integridade()
+{
+    char confirmacao,
+         *tabelasEsperadas[12] = {
+             "cliente", "funcionario", "mesa", "reserva_mesa", "playground", "sessoes_playground", "gato",
+             "produto", "categoria_produto", "pedido", "itens_pedido", "forma_pagto"
+         };
+    int tabelasRetornadas[12] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+    query = "SELECT name FROM sqlite_schema WHERE type ='table' AND name NOT LIKE 'sqlite_%';";
+    retorno = sqlite3_prepare_v2(bd, query, -1, &statement, 0);
+
+    if (retorno != SQLITE_OK)
+    {
+        printf("Erro ao verificar integridade do banco de dados: %s\n", erro);
+        sqlite3_free(erro);
+        sqlite3_close(bd);
+        exit(1);
+    }
+
+    // Vamos agora verificar linha a linha dos resultados e popular se todas as tabelas esperadas foram retornadas
+    while (sqlite3_step(statement) == SQLITE_ROW)
+    {
+        // Coluna 0 é o 'name' da nossa consulta SELECT
+        const char* nomeTabela = (const char*)sqlite3_column_text(statement, 0);
+
+        if (nomeTabela == NULL) continue; // Verificação de segurança
+
+        for (int i = 0; i < 12; i++)
+        {
+            // strcmp retorna 0 se as strings forem idênticas
+            if (strcmp(tabelasEsperadas[i], nomeTabela) == 0)
+            {
+                tabelasRetornadas[i] = 1;
+                break;
+            }
+        }
+    }
+
+    sqlite3_finalize(statement);
+
+    for (int i = 0; i < 12; i++)
+    {
+        if (tabelasRetornadas[i] == 0)
+        {
+            printf("Tabela %s não está presente no banco de dados. ", tabelasEsperadas[i]);
+            printf("Deseja inicializar as tabelas no banco de dados? [s/n]\n");
+            scanf("%s", &confirmacao);
+
+            if (confirmacao == 's')
+            {
+                bd_criar_tabelas();
+
+                printf("Deseja popular as tabelas com dados de exemplo? [s/n]\n");
+                scanf("%s", &confirmacao);
+
+                if (confirmacao == 's')
+                {
+                    bd_popular_tabelas();
+                }
+
+                break;
+            }
+        }
+    }
+}
+
+/**
+ * Conecta com o banco de dados SQLite para uso durante a execução.
+ */
+void bd_conectar()
 {
     setlocale(LC_ALL, "Portuguese");
+
     // Aqui nós iniciamos a conexão com o banco de dados
     retorno = sqlite3_open_v2(
         "file://./../banco-de-dados/codecatcoffee.sqlite",
@@ -47,19 +199,21 @@ void conectar()
         exit(1);
     }
 
-    // caso a conexão tenha dado certo, essa será a mensagem exibida
+    // Caso a conexão tenha dado certo, essa será a mensagem exibida
     printf("Conectado ao banco!\n");
+
+    bd_verificar_integridade();
 }
+
 
 /* aqui criamos a função cadastrar produto, onde vamos pedir e salvar os valores dos atributos da tabela Produto,
    cadastrando um novo produto */
 void cadastrarProduto()
 {
     setlocale(LC_ALL, "Portuguese");
-    char *nome, *query;
+    char* nome;
     float preco;
     int quantidade, categoria;
-    sqlite3_stmt* statement;
 
     // aqui nos pedimos para o usuário o nome do produto
     printf("Nome do produto: ");
@@ -123,12 +277,11 @@ void cadastrarProduto()
 void cadastrarPedido()
 {
     setlocale(LC_ALL, "Portuguese");
-    char data[11], *query;
-    int cliente, produto, quantidade, dia, mes, ano, retorno;
+    char data[11];
+    int cliente, produto, quantidade, dia, mes, ano;
     float total = 0.0;
     struct tm dataHelper = {0};
     time_t agora = time(NULL);
-    sqlite3_stmt* statement;
 
     printf("Cliente: ");
     // TODO: Listar os clientes
@@ -221,18 +374,16 @@ static int listarPedidosCallback(void* naoUsado, int numColunas, char** valores,
 void listarPedidos()
 {
     setlocale(LC_ALL, "Portuguese");
-    char* erro;
-    int retorno = sqlite3_exec(bd, "SELECT * FROM pedido", listarPedidosCallback, 0, &erro);
+
+    retorno = sqlite3_exec(bd, "SELECT * FROM pedido", listarPedidosCallback, 0, &erro);
 
     if (retorno != SQLITE_OK)
     {
-        printf("Erro ao selecionar os pedidos: %s\n", sqlite3_errmsg(bd));
+        printf("Erro ao selecionar os pedidos: %s\n", erro);
         sqlite3_free(erro);
         sqlite3_close(bd);
         exit(1);
     }
-
-    sqlite3_close(bd);
 }
 
 int main()
@@ -240,7 +391,7 @@ int main()
     setlocale(LC_ALL, "Portuguese");
     int opcao;
 
-    conectar();
+    bd_conectar();
 
     // TODO: login de funcionario?
 
@@ -253,6 +404,9 @@ int main()
         printf("4 - Sair\n");
         printf("Escolha: ");
         scanf("%d", &opcao);
+
+        // TODO: cadastrar clientes
+        // TODO: cadastrar funcionarios
 
         switch (opcao)
         {
@@ -278,6 +432,9 @@ int main()
     }
     while (opcao != 4);
 
+    // Limpando e fechando tudo antes de finalizar
+    sqlite3_finalize(statement);
+    sqlite3_free(erro);
     sqlite3_close(bd);
 
     return 0;
