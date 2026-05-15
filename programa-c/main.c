@@ -205,6 +205,49 @@ void bd_conectar()
     bd_verificar_integridade();
 }
 
+/**
+ * Roda uma consulta select e imprime os nomes das colunas e cada linha no resultado.
+ * @param stmt A consulta preparada (prepared statement)
+ */
+void bd_imprimir_resultados_tabela(sqlite3_stmt* stmt)
+{
+    int total_col = sqlite3_column_count(stmt);
+    int i;
+
+    // 1. Mostra o cabeçalho
+    printf("\n");
+
+    for (i = 0; i < total_col; i++)
+    {
+        // %-15s é: string, alinhada a esquerda (COMUNISTA!!), 15 caracteres de largura
+        printf("%-15s | ", sqlite3_column_name(stmt, i));
+    }
+
+    printf("\n");
+
+    // 2. Separador de linhas/colunas
+    for (i = 0; i < total_col; i++)
+    {
+        printf("----------------|");
+    }
+
+    printf("\n");
+
+    // 3. Mostra as linhas
+    while (sqlite3_step(stmt) == SQLITE_ROW)
+    {
+        for (i = 0; i < total_col; i++)
+        {
+            const char* val = (const char*)sqlite3_column_text(stmt, i);
+            printf("%-15s | ", val ? val : "NULL");
+        }
+
+        printf("\n");
+    }
+
+    printf("\n");
+}
+
 
 /* aqui criamos a função cadastrar produto, onde vamos pedir e salvar os valores dos atributos da tabela Produto,
    cadastrando um novo produto */
@@ -274,7 +317,82 @@ void cadastrarProduto()
     printf("Produto cadastrado!\n");
 }
 
-void cadastrarPedido()
+/**
+ * Roda uma consulta de busca de clientes e imprime o resultado da busca.
+ */
+void cliente_buscar()
+{
+    setlocale(LC_ALL, "Portuguese");
+    char* nome;
+
+    printf("Digite o nome cliente a buscar: ");
+    scanf("%s", &nome);
+
+    query = "SELECT id_cliente, nome FROM cliente WHERE nome LIKE '%?%' ORDER BY nome ASC;";
+
+    sqlite3_bind_text(statement, 1, nome, -1, SQLITE_STATIC);
+
+    printf("Clientes encontrados:\n");
+
+    bd_imprimir_resultados_tabela(statement);
+
+    // Limpeza pós-execução
+    sqlite3_finalize(statement);
+}
+
+/**
+ * Roda uma consulta de todos os clientes e lista os resultados.
+ */
+void cliente_listar()
+{
+    setlocale(LC_ALL, "Portuguese");
+
+    query = "SELECT id_cliente, nome FROM cliente ORDER BY nome ASC;";
+
+    printf("Clientes cadastrados:\n");
+
+    bd_imprimir_resultados_tabela(statement);
+
+    // Limpeza pós-execução
+    sqlite3_finalize(statement);
+}
+
+/**
+ * Dá ao usuario a opção de buscar ou listar clientes e pede para o usuário selecionar um por ID.
+ * @return ID do cliente selecionado.
+ */
+int cliente_selecionar()
+{
+    setlocale(LC_ALL, "Portuguese");
+    int cliente = 0, opcao;
+
+    while (cliente == 0)
+    {
+        printf("Selecione a opção desejada:\n  1) buscar um cliente\n  2) listar todos\n");
+        scanf("%d", &opcao);
+
+        if (opcao == 1)
+        {
+            cliente_buscar();
+        }
+        else if (opcao == 2)
+        {
+            cliente_listar();
+        }
+        else
+        {
+            printf("Opção inválida!\n");
+            continue;
+        }
+
+        printf("Qual cliente deseja selecionar?\n");
+        scanf("%d", &cliente);
+    }
+
+    return cliente;
+}
+
+void pedido_criar()
 {
     setlocale(LC_ALL, "Portuguese");
     char data[11];
@@ -283,25 +401,29 @@ void cadastrarPedido()
     struct tm dataHelper = {0};
     time_t agora = time(NULL);
 
-    printf("Cliente: ");
-    // TODO: Listar os clientes
-    scanf("%d", &cliente);
+    cliente = cliente_selecionar();
 
     printf("Produto: ");
     // TODO: listar os produtos
     scanf("%d", &produto);
 
     printf("Quantidade: ");
-    scanf("%f", &quantidade);
+    scanf("%d", &quantidade);
 
     printf("Data do pedido (DD-MM-AAAA ou vazio para hoje): ");
-    scanf("%s", &data);
+    fgets(data, sizeof(data), stdin);
 
-    if (strcmp(data, "\n") != 0)
+    /**
+     * Pra moder mexer com datas em C, precisamos usar a biblioteca de tempo do C.
+     * Vamos primeiro fazer o parsing da string enviada e depois separar em dia, mes e ano.
+     * Feito isso, precisamos transformar em um objeto time_t compatível com a SQLite.
+     */
+    if (strcmp(data, "\n") != 0) // Se a data for vazia, usar a data de hoje
     {
         strftime(data, sizeof data, "%d-%m-%Y", localtime(&agora));
     }
 
+    // Separar a data passada e atribuir cada %d para a variável que for passada na ordem
     sscanf(data, "%d-%d-%d", &dia, &mes, &ano);
     dataHelper.tm_mday = dia;
     dataHelper.tm_mon = mes - 1; // Meses vão de 0 a 11, tem que subtrair 1
@@ -316,13 +438,14 @@ void cadastrarPedido()
         exit(1);
     }
 
+    // TODO: pegar o valor do item pedido pode começar vazio ou com um item inicial e colocar como total
     // total = quantidade * valor_unitario;
 
     query =
         "INSERT INTO pedido(id_cliente, id_func, id_forma_pagto, data_pedido, valor_total_pedido) VALUES (?, ?, ?, ?, ?)";
 
     retorno = sqlite3_prepare_v3(
-        bd, /* Referencia do banco de dados */
+        bd, /* Referência do banco de dados */
         query, /* Consulta SQL, UTF-8 encoded */
         -1, /* Tamanho máximo da consulta em bytes. */
         SQLITE_PREPARE_FROM_DDL | SQLITE_PREPARE_NORMALIZE, /* Zero ou mais flags SQLITE_PREPARE_ */
@@ -339,7 +462,7 @@ void cadastrarPedido()
 
     // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
     sqlite3_bind_int(statement, 1, cliente);
-    sqlite3_bind_int(statement, 2, 1);
+    sqlite3_bind_int(statement, 2, 1); // TODO: substituir por funcionario logado?
     sqlite3_bind_int(statement, 3, 1);
     sqlite3_bind_int64(statement, 4, epoch);
     sqlite3_bind_double(statement, 5, total);
@@ -355,7 +478,8 @@ void cadastrarPedido()
         exit(1);
     }
 
-    // TODO: cadastrar o item no pedido
+    // Pega o ID do pedido, para referência
+    id_pedido = sqlite3_last_insert_rowid(bd);
 
     printf("Pedido cadastrado!\n");
 }
@@ -415,7 +539,7 @@ int main()
             break;
 
         case 2:
-            cadastrarPedido();
+            pedido_criar();
             break;
 
         case 3:
