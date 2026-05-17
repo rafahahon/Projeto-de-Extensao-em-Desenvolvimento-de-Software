@@ -131,7 +131,7 @@ void bd_verificar_integridade()
          confirmacao,
          *tabelasEsperadas[12] = {
              "cliente", "funcionario", "mesa", "reserva_mesa", "playground", "sessoes_playground", "gato",
-             "produto", "categoria_produto", "pedido", "itens_pedido", "forma_pagto"
+             "produto", "categoria_produto", "pedido", "itens_pedido", "forma_pagamento"
          };
     int tabelasRetornadas[12] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
