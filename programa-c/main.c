@@ -21,6 +21,11 @@
 #include <time.h>
 #include "sqlite3.h" // para trabalhar com o SQLite em C, precisamos adicionar a sua biblioteca
 
+// Para poder rodar os printf em Português corretamente
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 /*
  * Aqui criamos variáveis em comum para uso no programa
  */
@@ -193,8 +198,6 @@ void bd_verificar_integridade()
  */
 void bd_conectar()
 {
-    setlocale(LC_ALL, "Portuguese");
-
     // Aqui nós iniciamos a conexão com o banco de dados
     retorno = sqlite3_open_v2(
         "file://./../banco-de-dados/codecatcoffee.sqlite",
@@ -291,7 +294,6 @@ int bd_prepara_consulta(char* query)
  */
 void cat_prod_buscar()
 {
-    setlocale(LC_ALL, "Portuguese");
     char* nome;
 
     printf("Digite o nome da categoria a buscar: ");
@@ -321,8 +323,6 @@ void cat_prod_buscar()
  */
 void cat_prod_listar()
 {
-    setlocale(LC_ALL, "Portuguese");
-
     retorno = bd_prepara_consulta("SELECT id_cat_produto, nome FROM categoria_produto ORDER BY nome ASC;");
 
     if (retorno != 0)
@@ -344,7 +344,6 @@ void cat_prod_listar()
  */
 int cat_prod_selecionar()
 {
-    setlocale(LC_ALL, "Portuguese");
     int id_cat_produto = 0, opcao;
 
     while (id_cat_produto == 0)
@@ -378,7 +377,6 @@ int cat_prod_selecionar()
  */
 void produto_cadastrar()
 {
-    setlocale(LC_ALL, "Portuguese");
     char* nome;
     float preco;
     int quantidade, categoria;
@@ -435,7 +433,6 @@ void produto_cadastrar()
  */
 void cliente_buscar()
 {
-    setlocale(LC_ALL, "Portuguese");
     char* nome;
 
     printf("Digite o nome do cliente a buscar: ");
@@ -463,8 +460,6 @@ void cliente_buscar()
  */
 void cliente_listar()
 {
-    setlocale(LC_ALL, "Portuguese");
-
     retorno = bd_prepara_consulta("SELECT id_cliente, nome FROM cliente ORDER BY nome ASC;");
 
     if (retorno != 0)
@@ -486,7 +481,6 @@ void cliente_listar()
  */
 int cliente_selecionar()
 {
-    setlocale(LC_ALL, "Portuguese");
     int cliente = 0, opcao;
 
     while (cliente == 0)
@@ -520,7 +514,6 @@ int cliente_selecionar()
  */
 void produto_buscar()
 {
-    setlocale(LC_ALL, "Portuguese");
     char* nome;
 
     printf("Digite o nome produto a buscar: ");
@@ -549,8 +542,6 @@ void produto_buscar()
  */
 void produto_listar()
 {
-    setlocale(LC_ALL, "Portuguese");
-
     retorno = bd_prepara_consulta(
         "SELECT id_produto, nome, preco, quantidade_estoque FROM produto WHERE quantidade_estoque > 0 ORDER BY nome ASC;");
 
@@ -574,7 +565,6 @@ void produto_listar()
  */
 int produto_selecionar()
 {
-    setlocale(LC_ALL, "Portuguese");
     int produto = 0, opcao;
 
     while (produto == 0)
@@ -609,7 +599,6 @@ int produto_selecionar()
  */
 void pedido_adicionar_item(sqlite3_int64 id_pedido)
 {
-    setlocale(LC_ALL, "Portuguese");
     char confirmacao, *nome_produto;
     int id_produto = 0, quantidade = 0, prod_quantidade_estoque = 0;
     float preco_produto = 0, total = 0;
@@ -747,7 +736,6 @@ void pedido_adicionar_item(sqlite3_int64 id_pedido)
 
 void pedido_criar()
 {
-    setlocale(LC_ALL, "Portuguese");
     char data[11], confirmacao;
     int cliente, dia, mes, ano;
     float total = 0;
@@ -824,8 +812,6 @@ void pedido_criar()
 
 void pedido_listar()
 {
-    setlocale(LC_ALL, "Portuguese");
-
     retorno = bd_prepara_consulta(
         "SELECT id_pedido, cliente.nome, forma_pagamento.nome, valor_total_pedido, data_pedido FROM pedido OUTER JOIN cliente ON cliente.id_cliente = pedido.id_cliente OUTER JOIN forma_pagamento ON forma_pagamento.id_forma_pagto = pedido.id_forma_pagto ORDER BY data_pedido DESC;");
 
@@ -844,7 +830,14 @@ void pedido_listar()
 
 int main()
 {
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "pt_BR.UTF-8");
+
+    // Para poder usar o encoding e o idioma Português no terminal do Windows
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+#endif
+
     int opcao;
 
     bd_conectar();
