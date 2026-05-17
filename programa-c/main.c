@@ -36,13 +36,15 @@ sqlite3* bd; // Referência ao banco de dados como "bd" para facilitar na hora d
  */
 char* ler_arquivo(const char* caminho_arquivo)
 {
+    printf("Lendo arquivo %s\n", caminho_arquivo);
     char* conteudo;
     // Aqui abrimos o arquivo para leitura
     FILE* arquivo = fopen(caminho_arquivo, "rb");
 
     if (arquivo == NULL)
     {
-        fprintf(stderr, "Não foi possível abrir o arquivo.\n");
+        printf("Não foi possível abrir o arquivo.\n");
+        fclose(arquivo);
         exit(1);
     }
 
@@ -51,9 +53,18 @@ char* ler_arquivo(const char* caminho_arquivo)
     const long tam_arquivo = ftell(arquivo);
     fseek(arquivo, 0, SEEK_SET);
 
+    conteudo = malloc(tam_arquivo + 1);
+
+    if (conteudo == NULL)
+    {
+        printf("Erro de falta de memória.\n");
+        fclose(arquivo);
+        exit(1);
+    }
+
     // Aqui colocamos o conteúdo de cada linha do arquivo dentro da variável conteudo
-    fread(&conteudo, 1, tam_arquivo, arquivo);
-    conteudo[tam_arquivo] = 0; // Finaliza a string com um null
+    size_t bytes_lidos = fread(conteudo, 1, tam_arquivo, arquivo);
+    conteudo[bytes_lidos] = '\0'; // Finaliza a string com um null
 
     // Fechando o arquivo para liberar memória
     fclose(arquivo);
@@ -66,8 +77,9 @@ char* ler_arquivo(const char* caminho_arquivo)
  */
 void bd_criar_tabelas()
 {
+    printf("Criando tabelas...\n");
     // Vamos ler o arquivo SQL num buffer de string
-    char* query = ler_arquivo("./../banco-de-dados/esquema-sqlite.sql");
+    char* query = ler_arquivo("file://./../banco-de-dados/esquema-sqlite.sql");
 
     // Executa a query
     retorno = sqlite3_exec(bd, query, NULL, 0, &erro);
@@ -88,8 +100,9 @@ void bd_criar_tabelas()
  */
 void bd_popular_tabelas()
 {
+    printf("Populando tabelas...\n");
     // Vamos ler o arquivo SQL num buffer de string
-    char* query = ler_arquivo("./../banco-de-dados/esquema-sql-insercao.sql");
+    char* query = ler_arquivo("file://./../banco-de-dados/esquema-sql-insercao.sql");
 
     // Executa a query
     retorno = sqlite3_exec(bd, query, NULL, 0, &erro);
@@ -184,9 +197,9 @@ void bd_conectar()
 
     // Aqui nós iniciamos a conexão com o banco de dados
     retorno = sqlite3_open_v2(
-        "file://./../banco-de-dados/codecatcoffee2.sqlite",
+        "file://./../banco-de-dados/codecatcoffee.sqlite",
         &bd,
-        SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX | SQLITE_OPEN_PRIVATECACHE,
+        SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX | SQLITE_OPEN_PRIVATECACHE,
         "win32"
     );
 
