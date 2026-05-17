@@ -316,6 +316,7 @@ void cat_prod_buscar()
         exit(1);
     }
 
+    // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
     sqlite3_bind_text(statement, 1, nome, -1, SQLITE_STATIC);
 
     printf("Categorias encontradas:\n");
@@ -453,6 +454,7 @@ void cliente_buscar()
         return;
     }
 
+    // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
     sqlite3_bind_text(statement, 1, nome, -1, SQLITE_STATIC);
 
     printf("Clientes encontrados:\n");
@@ -535,6 +537,7 @@ void produto_buscar()
         return;
     }
 
+    // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
     sqlite3_bind_text(statement, 1, nome, -1, SQLITE_STATIC);
 
     printf("Produtos encontrados:\n");
@@ -621,6 +624,7 @@ void pedido_adicionar_item(sqlite3_int64 id_pedido)
             return;
         }
 
+        // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
         sqlite3_bind_int(statement, 1, id_produto);
 
         // Rodamos a consulta
@@ -632,7 +636,7 @@ void pedido_adicionar_item(sqlite3_int64 id_pedido)
             return;
         }
 
-        // Vamos agora pegar os dados do produto
+        // Vamos agora pegar os dados do produto retornado do BD
         while (sqlite3_step(statement) == SQLITE_ROW)
         {
             // Coluna 0 é o 'nome' da nossa consulta SELECT
@@ -673,6 +677,7 @@ void pedido_adicionar_item(sqlite3_int64 id_pedido)
             return;
         }
 
+        // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
         sqlite3_bind_int64(statement, 1, id_pedido);
         sqlite3_bind_int(statement, 1, id_produto);
         sqlite3_bind_int(statement, 1, quantidade);
@@ -698,6 +703,7 @@ void pedido_adicionar_item(sqlite3_int64 id_pedido)
             return;
         }
 
+        // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
         sqlite3_bind_double(statement, 1, total);
         sqlite3_bind_int64(statement, 2, id_pedido);
 
@@ -721,6 +727,7 @@ void pedido_adicionar_item(sqlite3_int64 id_pedido)
             return;
         }
 
+        // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
         sqlite3_bind_int(statement, 1, quantidade);
         sqlite3_bind_int64(statement, 2, id_produto);
 
