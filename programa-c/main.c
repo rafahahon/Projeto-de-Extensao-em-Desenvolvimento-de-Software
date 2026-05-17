@@ -273,9 +273,97 @@ int bd_prepara_consulta(char* query)
     return 0;
 }
 
-/* aqui criamos a função cadastrar produto, onde vamos pedir e salvar os valores dos atributos da tabela Produto,
-   cadastrando um novo produto */
-void cadastrarProduto()
+/**
+ * Roda uma consulta de busca de categoria de produto e imprime o resultado da busca.
+ */
+void cat_prod_buscar()
+{
+    setlocale(LC_ALL, "Portuguese");
+    char* nome;
+
+    printf("Digite o nome da categoria a buscar: ");
+    scanf("%s", &nome);
+
+    retorno = bd_prepara_consulta(
+        "SELECT id_cat_produto, nome FROM categoria_produto WHERE nome LIKE '%?%' ORDER BY nome ASC;");
+
+    if (retorno != 0)
+    {
+        sqlite3_close(bd);
+        exit(1);
+    }
+
+    sqlite3_bind_text(statement, 1, nome, -1, SQLITE_STATIC);
+
+    printf("Categorias encontradas:\n");
+
+    bd_imprimir_resultados_tabela(statement);
+
+    // Limpeza pós-execução
+    sqlite3_finalize(statement);
+}
+
+/**
+ * Roda uma consulta de todas as categorias de produto e lista os resultados.
+ */
+void cat_prod_listar()
+{
+    setlocale(LC_ALL, "Portuguese");
+
+    retorno = bd_prepara_consulta("SELECT id_cat_produto, nome FROM categoria_produto ORDER BY nome ASC;");
+
+    if (retorno != 0)
+    {
+        return;
+    }
+
+    printf("Categorias cadastradas:\n");
+
+    bd_imprimir_resultados_tabela(statement);
+
+    // Limpeza pós-execução
+    sqlite3_finalize(statement);
+}
+
+/**
+ * Dá ao usuário a opção de buscar ou listar categorias de produto e pede para o usuário selecionar um por ID.
+ * @return ID da categoria de produto selecionada.
+ */
+int cat_prod_selecionar()
+{
+    setlocale(LC_ALL, "Portuguese");
+    int id_cat_produto = 0, opcao;
+
+    while (id_cat_produto == 0)
+    {
+        printf("Selecione a opção desejada:\n  1) buscar uma categoria\n  2) listar todas\n");
+        scanf("%d", &opcao);
+
+        if (opcao == 1)
+        {
+            cat_prod_buscar();
+        }
+        else if (opcao == 2)
+        {
+            cat_prod_listar();
+        }
+        else
+        {
+            printf("Opção inválida!\n");
+            continue;
+        }
+
+        printf("Qual o ID da categoria você deseja selecionar?\n");
+        scanf("%d", &id_cat_produto);
+    }
+
+    return id_cat_produto;
+}
+
+/**
+ * Cadastra um novo produto no banco de dados.
+ */
+void produto_cadastrar()
 {
     setlocale(LC_ALL, "Portuguese");
     char* nome;
@@ -296,9 +384,7 @@ void cadastrarProduto()
     scanf("%d", &quantidade);
 
     // aqui pedimos a categoria
-    printf("Selecione a categoria: ");
-    scanf("%d", &categoria);
-    // TODO: ALTERAR PARA PEGAR AS CATEGORIAS DO BD E LISTAR. USUARIO DEVE DIGITAR O ID DA CATEGORIA
+    categoria = cat_prod_selecionar();
 
     retorno = bd_prepara_consulta("INSERT INTO produto(nome, preco, quantidade, categoria) VALUES (?, ?, ?, ?)");
 
@@ -547,7 +633,7 @@ int main()
         switch (opcao)
         {
         case 1:
-            cadastrarProduto();
+            produto_cadastrar();
             break;
 
         case 2:
