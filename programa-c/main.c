@@ -227,8 +227,15 @@ void bd_conectar()
  */
 void bd_imprimir_resultados_tabela(sqlite3_stmt* stmt)
 {
-    int total_col = sqlite3_column_count(stmt);
-    int i;
+    int i,
+        total_col = sqlite3_column_count(stmt),
+        rc = sqlite3_step(stmt);
+
+    if (rc == SQLITE_DONE)
+    {
+        printf("Nenhum resultado encontrado.\n");
+        return;
+    }
 
     // 1. Mostra o cabeçalho
     printf("\n");
@@ -250,7 +257,7 @@ void bd_imprimir_resultados_tabela(sqlite3_stmt* stmt)
     printf("\n");
 
     // 3. Mostra as linhas
-    while (sqlite3_step(stmt) == SQLITE_ROW)
+    while (rc == SQLITE_ROW)
     {
         for (i = 0; i < total_col; i++)
         {
@@ -259,6 +266,7 @@ void bd_imprimir_resultados_tabela(sqlite3_stmt* stmt)
         }
 
         printf("\n");
+        rc = sqlite3_step(stmt);
     }
 
     printf("\n");
@@ -813,14 +821,14 @@ void pedido_criar()
 void pedido_listar()
 {
     retorno = bd_prepara_consulta(
-        "SELECT id_pedido, cliente.nome, forma_pagamento.nome, valor_total_pedido, data_pedido FROM pedido OUTER JOIN cliente ON cliente.id_cliente = pedido.id_cliente OUTER JOIN forma_pagamento ON forma_pagamento.id_forma_pagto = pedido.id_forma_pagto ORDER BY data_pedido DESC;");
+        "SELECT id_pedido, cliente.nome AS cliente, forma_pagamento.nome AS forma_pagto, valor_total_pedido as total, data_pedido FROM pedido JOIN cliente ON cliente.id_cliente = pedido.id_cliente JOIN forma_pagamento ON forma_pagamento.id_forma_pagto = pedido.id_forma_pagto ORDER BY data_pedido DESC;");
 
     if (retorno != 0)
     {
         return;
     }
 
-    printf("Pedidos cadastrados:\n");
+    printf("\nPedidos cadastrados:\n");
 
     bd_imprimir_resultados_tabela(statement);
 
@@ -840,13 +848,51 @@ int main()
 
     int opcao;
 
+    printf("\n\n");
+    printf("                         ::-======+.:*                      \n");
+    printf("                    :=======%%==:%%%%=======.+                         ███   ███  ████  █████\n");
+    printf("                 .=====-===%%@%%==%%===%%====-===                      █     █   █ █   █ █\n");
+    printf("              .===%%====%%%%%%===========%%@=%%==%%===:                   █     █   █ █   █ ████\n");
+    printf("            :=====%%==%%====%%%%#######%%%%====%%%%=%%=%%==:                 █     █   █ █   █ █\n");
+    printf("           :==%%==%%====%%##-%%#########:*##%%======-%%==                 ███   ███  ████  █████\n");
+    printf("          :=%%%%-=%%===####.+==.:...:#-=*#####==:-=%%===.       \n");
+    printf("         .=%%===#==%%#####%%:+++*+-++++=*######%%==#%%%%=%%=.      \n");
+    printf("        :========#######.++-=++++*.*++.#######==%%=====              ███   ███  █████\n");
+    printf("        ==%%==@==%%#######++++.+:.+.++.+=#######%%==*==%%=:            █     █   █   █\n");
+    printf("       :=======@########..+..%%%%:%%.:.+-.##.#####*=======            █     █████   █\n");
+    printf("       .===+===%%#######=#.=%%%%%%%%%%%%%%%%+=:####.####%%===+===:           █     █   █   █\n");
+    printf("       :++%%%%++=%%########.+-=#%%####+=+-:%%*-*%%:##%%=+%%%%%%+=.            ███  █   █   █\n");
+    printf("       :+++%%%%+-%%#################.%%+++.#%%#%%#:+:%%=+%%%%=+=:    \n");
+    printf("       :=++++++=#:################%%%%*+=%%#.%%##:#=++++++=     \n");
+    printf(
+        "        =++++++-%%#*#+##.%%##*%%.:###%%%%+*++*+-+.#%%-++++++:             ███   ███  █████ █████ █████ █████ \n");
+    printf(
+        "        -=++++++-%%.###############:%%++=::.@##%%=+=@%%++:             █     █   █ █     █     █     █    \n");
+    printf(
+        "         .=++@%%-++=++#############%%: :* +=++=++%%+@++=              █     █   █ ████  ████  ████  ████  \n");
+    printf(
+        "          +=++#%%%%++=:*++++#.:.-=+##*+:=+++=-+++%%%%++.               █     █   █ █     █     █     █  \n");
+    printf(
+        "            :=++-+*=++==+++++++++===+++==+++=+%%++=:                 ███   ███  █     █     █████ █████ \n");
+    printf("              .=++#++=%%+++=====+=-===+++%%%%@%%=++=:           \n");
+    printf("                :=++++++++%%%%%%+=-+@%%%%+++%%-++++=:             \n");
+    printf("                   :==++++++@=%%+=+*++++++=+:                \n");
+    printf("                       .:+==-+++++===+:-                    \n");
+    printf("\n\n");
+
     bd_conectar();
 
     // TODO: login de funcionario?
 
     do
     {
-        printf("\n Code Cat Coffee ^. .^\n");
+        printf("\n\n");
+        printf("        ▓   ▓ ▓▓▓▓▓ ▓   ▓ ▓   ▓    ▓▓▓▓  ▓▓▓▓  ▓▓▓ ▓   ▓  ▓▓▓  ▓▓▓ ▓▓▓▓   ▓▓▓  ▓\n");
+        printf("        ▓▓ ▓▓ ▓     ▓▓  ▓ ▓   ▓    ▓   ▓ ▓   ▓  ▓  ▓▓  ▓ ▓      ▓  ▓   ▓ ▓   ▓ ▓\n");
+        printf("        ▓ ▓ ▓ ▓▓▓▓  ▓ ▓ ▓ ▓   ▓    ▓▓▓▓  ▓▓▓▓   ▓  ▓ ▓ ▓ ▓      ▓  ▓▓▓▓  ▓▓▓▓▓ ▓\n");
+        printf("        ▓   ▓ ▓     ▓  ▓▓ ▓   ▓    ▓     ▓  ▓   ▓  ▓  ▓▓ ▓      ▓  ▓     ▓   ▓ ▓\n");
+        printf("        ▓   ▓ ▓▓▓▓▓ ▓   ▓  ▓▓▓     ▓     ▓   ▓ ▓▓▓ ▓   ▓  ▓▓▓  ▓▓▓ ▓     ▓   ▓ ▓▓▓▓▓\n");
+        printf("\n");
         printf("1 - Cadastrar produto\n");
         printf("2 - Cadastrar pedidos\n");
         printf("3 - Listar pedidos\n");
