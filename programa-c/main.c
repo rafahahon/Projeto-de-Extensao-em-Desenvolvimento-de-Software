@@ -809,30 +809,24 @@ void pedido_criar()
     }
 }
 
-static int listarPedidosCallback(void* naoUsado, int numColunas, char** valores, char** nomeColuna)
-{
-    setlocale(LC_ALL, "Portuguese");
-    for (int i = 0; i < numColunas; i++)
-    {
-        printf("%s: %s |", nomeColuna[i], valores[i] ? valores[i] : "NULL");
-    }
-    printf("\n");
-    return 0;
-}
-
-void listarPedidos()
+void pedido_listar()
 {
     setlocale(LC_ALL, "Portuguese");
 
-    retorno = sqlite3_exec(bd, "SELECT * FROM pedido", listarPedidosCallback, 0, &erro);
+    retorno = bd_prepara_consulta(
+        "SELECT id_pedido, cliente.nome, forma_pagamento.nome, valor_total_pedido, data_pedido FROM pedido OUTER JOIN cliente ON cliente.id_cliente = pedido.id_cliente OUTER JOIN forma_pagamento ON forma_pagamento.id_forma_pagto = pedido.id_forma_pagto ORDER BY data_pedido DESC;");
 
-    if (retorno != SQLITE_OK)
+    if (retorno != 0)
     {
-        printf("Erro ao selecionar os pedidos: %s\n", erro);
-        sqlite3_free(erro);
-        sqlite3_close(bd);
-        exit(1);
+        return;
     }
+
+    printf("Pedidos cadastrados:\n");
+
+    bd_imprimir_resultados_tabela(statement);
+
+    // Limpeza pós-execução
+    sqlite3_finalize(statement);
 }
 
 int main()
@@ -868,7 +862,7 @@ int main()
             break;
 
         case 3:
-            listarPedidos();
+            pedido_listar();
             break;
 
         case 4:
