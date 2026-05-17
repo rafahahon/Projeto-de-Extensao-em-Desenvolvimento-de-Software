@@ -312,8 +312,7 @@ void cat_prod_buscar()
 
     if (retorno != 0)
     {
-        sqlite3_close(bd);
-        exit(1);
+        return;
     }
 
     // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
@@ -410,8 +409,7 @@ void produto_cadastrar()
 
     if (retorno != 0)
     {
-        sqlite3_close(bd);
-        exit(1);
+        return;
     }
 
     // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
@@ -425,10 +423,8 @@ void produto_cadastrar()
 
     if (retorno != SQLITE_DONE)
     {
-        printf("Erro ao executar a consulta: %s\n", sqlite3_errmsg(bd));
-        sqlite3_finalize(statement);
-        sqlite3_close(bd);
-        exit(1);
+        printf("Erro ao cadastrar produto: %s\n", sqlite3_errmsg(bd));
+        return;
     }
 
     // Limpeza pós-execução
