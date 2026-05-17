@@ -248,6 +248,11 @@ void bd_imprimir_resultados_tabela(sqlite3_stmt* stmt)
     printf("\n");
 }
 
+/**
+ * Cria uma prepared statement para a consulta SQL passada.
+ * @param query A consulta SQL para ser preparada.
+ * @return 0 se sucesso ao preparar a consulta, caso contrário, 1
+ */
 int bd_prepara_consulta(char* query)
 {
     retorno = sqlite3_prepare_v3(
@@ -334,7 +339,7 @@ void cliente_buscar()
     setlocale(LC_ALL, "Portuguese");
     char* nome;
 
-    printf("Digite o nome cliente a buscar: ");
+    printf("Digite o nome do cliente a buscar: ");
     scanf("%s", &nome);
 
     retorno = bd_prepara_consulta("SELECT id_cliente, nome FROM cliente WHERE nome LIKE '%?%' ORDER BY nome ASC;");
@@ -377,7 +382,7 @@ void cliente_listar()
 }
 
 /**
- * Dá ao usuario a opção de buscar ou listar clientes e pede para o usuário selecionar um por ID.
+ * Dá ao usuário a opção de buscar ou listar clientes e pede para o usuário selecionar um por ID.
  * @return ID do cliente selecionado.
  */
 int cliente_selecionar()
@@ -404,7 +409,7 @@ int cliente_selecionar()
             continue;
         }
 
-        printf("Qual cliente deseja selecionar?\n");
+        printf("Qual o ID do cliente você deseja selecionar?\n");
         scanf("%d", &cliente);
     }
 
