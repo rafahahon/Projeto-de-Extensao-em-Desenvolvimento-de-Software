@@ -502,23 +502,247 @@ int cliente_selecionar()
     return cliente;
 }
 
+/**
+ * Roda uma consulta de busca de produtos disponíveis em estoque e imprime o resultado da busca.
+ */
+void produto_buscar()
+{
+    setlocale(LC_ALL, "Portuguese");
+    char* nome;
+
+    printf("Digite o nome produto a buscar: ");
+    scanf("%s", &nome);
+
+    retorno = bd_prepara_consulta(
+        "SELECT id_produto, nome, preco, quantidade_estoque FROM produto WHERE nome LIKE '%?%' AND quantidade_estoque > 0 ORDER BY nome ASC;");
+
+    if (retorno != 0)
+    {
+        return;
+    }
+
+    sqlite3_bind_text(statement, 1, nome, -1, SQLITE_STATIC);
+
+    printf("Produtos encontrados:\n");
+
+    bd_imprimir_resultados_tabela(statement);
+
+    // Limpeza pós-execução
+    sqlite3_finalize(statement);
+}
+
+/**
+ * Roda uma consulta de todos os produtos disponíveis em estoque e lista os resultados.
+ */
+void produto_listar()
+{
+    setlocale(LC_ALL, "Portuguese");
+
+    retorno = bd_prepara_consulta(
+        "SELECT id_produto, nome, preco, quantidade_estoque FROM produto WHERE quantidade_estoque > 0 ORDER BY nome ASC;");
+
+    if (retorno != 0)
+    {
+        return;
+    }
+
+    printf("Produtos cadastrados:\n");
+
+    bd_imprimir_resultados_tabela(statement);
+
+    // Limpeza pós-execução
+    sqlite3_finalize(statement);
+}
+
+/**
+ * Dá ao usuário a opção de buscar ou listar produtos disponíveis em estoque e pede para o usuário
+ * selecionar um por ID.
+ * @return ID, nome, preço e quantidade em estoque do produto selecionado.
+ */
+int produto_selecionar()
+{
+    setlocale(LC_ALL, "Portuguese");
+    int produto = 0, opcao;
+
+    while (produto == 0)
+    {
+        printf("Selecione a opção desejada:\n  1) buscar um produto\n  2) listar todos\n");
+        scanf("%d", &opcao);
+
+        if (opcao == 1)
+        {
+            produto_buscar();
+        }
+        else if (opcao == 2)
+        {
+            produto_listar();
+        }
+        else
+        {
+            printf("Opção inválida!\n");
+            continue;
+        }
+
+        printf("Qual o ID do produto você deseja selecionar?\n");
+        scanf("%d", &produto);
+    }
+
+    return produto;
+}
+
+/**
+ * Adiciona um produto ao pedido.
+ * @param id_pedido ID do pedido
+ */
+void pedido_adicionar_item(sqlite3_int64 id_pedido)
+{
+    setlocale(LC_ALL, "Portuguese");
+    char confirmacao, *nome_produto;
+    int id_produto = 0, quantidade = 0, prod_quantidade_estoque = 0;
+    float preco_produto = 0, total = 0;
+
+    do
+    {
+        id_produto = produto_selecionar();
+        retorno = bd_prepara_consulta("SELECT nome, preco, quantidade_estoque FROM produto WHERE id = ? LIMIT 1;");
+
+        if (retorno != 0)
+        {
+            return;
+        }
+
+        sqlite3_bind_int(statement, 1, id_produto);
+
+        // Rodamos a consulta
+        retorno = sqlite3_step(statement);
+
+        if (retorno != SQLITE_DONE)
+        {
+            printf("Erro ao obter dados do produto: %s\n", sqlite3_errmsg(bd));
+            return;
+        }
+
+        // Vamos agora pegar os dados do produto
+        while (sqlite3_step(statement) == SQLITE_ROW)
+        {
+            // Coluna 0 é o 'nome' da nossa consulta SELECT
+            nome_produto = (char*)sqlite3_column_text(statement, 0);
+            preco_produto = (float)sqlite3_column_double(statement, 1);
+            prod_quantidade_estoque = sqlite3_column_int(statement, 2);
+        }
+
+        sqlite3_finalize(statement);
+
+        // Verificação de segurança
+        if (nome_produto == NULL || preco_produto == 0 || prod_quantidade_estoque == 0) continue;
+
+        printf("Quantidade: ");
+        scanf("%d", &quantidade);
+
+        if (quantidade > prod_quantidade_estoque)
+        {
+            printf("A quantidade digitada (%d) excede a quantidade em estoque (%d) do produto %s", quantidade,
+                   prod_quantidade_estoque, nome_produto);
+            printf("Deseja mudar a quantidade para %d e continuar? [s/n]");
+            scanf("%s", &confirmacao);
+
+            if (confirmacao != 's')
+            {
+                return;
+            }
+
+            quantidade = prod_quantidade_estoque;
+        }
+
+        // Adiciona o item do pedido no BD
+        retorno = bd_prepara_consulta(
+            "INSERT INTO itens_pedido (id_pedido, id_produto, quantidade_pedida, preco_unitario) VALUES (?, ?, ?, ?, ?);");
+
+        if (retorno != 0)
+        {
+            return;
+        }
+
+        sqlite3_bind_int64(statement, 1, id_pedido);
+        sqlite3_bind_int(statement, 1, id_produto);
+        sqlite3_bind_int(statement, 1, quantidade);
+        sqlite3_bind_double(statement, 1, preco_produto);
+
+        // Rodamos a consulta
+        retorno = sqlite3_step(statement);
+
+        if (retorno != SQLITE_DONE)
+        {
+            printf("Erro ao adicionar item ao pedido: %s\n", sqlite3_errmsg(bd));
+            return;
+        }
+
+        sqlite3_finalize(statement);
+
+        // Atualiza o total do pedido atual
+        total = (float)quantidade * preco_produto;
+        retorno = bd_prepara_consulta("UPDATE pedido SET total = total + ? WHERE id_pedido = ?;");
+
+        if (retorno != 0)
+        {
+            return;
+        }
+
+        sqlite3_bind_double(statement, 1, total);
+        sqlite3_bind_int64(statement, 2, id_pedido);
+
+        // Rodamos a consulta
+        retorno = sqlite3_step(statement);
+
+        if (retorno != SQLITE_DONE)
+        {
+            printf("Erro atualizar total do pedido: %s\n", sqlite3_errmsg(bd));
+            return;
+        }
+
+        sqlite3_finalize(statement);
+
+        // Atualiza a quantidade em estoque do produto
+        retorno = bd_prepara_consulta(
+            "UPDATE produto SET quantidade_estoque = quantidade_estoque - ? WHERE id_produto = ?;");
+
+        if (retorno != 0)
+        {
+            return;
+        }
+
+        sqlite3_bind_int(statement, 1, quantidade);
+        sqlite3_bind_int64(statement, 2, id_produto);
+
+        // Rodamos a consulta
+        retorno = sqlite3_step(statement);
+
+        if (retorno != SQLITE_DONE)
+        {
+            printf("Erro atualizar quantidade em estoque do produto: %s\n", sqlite3_errmsg(bd));
+            return;
+        }
+
+        sqlite3_finalize(statement);
+
+        printf("Produto %s adicionado ao pedido %lld! Deseja adicionar outro produto? [s/n]\n", nome_produto,
+               id_pedido);
+        scanf("%s", &confirmacao);
+    }
+    while (confirmacao == 's');
+}
+
 void pedido_criar()
 {
     setlocale(LC_ALL, "Portuguese");
-    char data[11];
-    int cliente, produto, quantidade, dia, mes, ano;
-    float total = 0.0;
+    char data[11], confirmacao;
+    int cliente, dia, mes, ano;
+    float total = 0;
     struct tm dataHelper = {0};
     time_t agora = time(NULL);
+    sqlite3_int64 id_pedido;
 
     cliente = cliente_selecionar();
-
-    printf("Produto: ");
-    // TODO: listar os produtos
-    scanf("%d", &produto);
-
-    printf("Quantidade: ");
-    scanf("%d", &quantidade);
 
     printf("Data do pedido (DD-MM-AAAA ou vazio para hoje): ");
     fgets(data, sizeof(data), stdin);
@@ -547,10 +771,6 @@ void pedido_criar()
         return;
     }
 
-    // TODO: pegar o valor do item pedido pode começar vazio ou com um item inicial e colocar como total
-    // total = quantidade * valor_unitario;
-
-
     retorno = bd_prepara_consulta(
         "INSERT INTO pedido(id_cliente, id_func, id_forma_pagto, data_pedido, valor_total_pedido) VALUES (?, ?, ?, ?, ?)");
 
@@ -563,7 +783,7 @@ void pedido_criar()
     // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
     sqlite3_bind_int(statement, 1, cliente);
     sqlite3_bind_int(statement, 2, 1); // TODO: substituir por funcionario logado?
-    sqlite3_bind_int(statement, 3, 1);
+    sqlite3_bind_int(statement, 3, 1); // TODO: trocar para selecionar forma de pagto ou deixar opcional?
     sqlite3_bind_int64(statement, 4, epoch);
     sqlite3_bind_double(statement, 5, total);
 
@@ -578,8 +798,15 @@ void pedido_criar()
 
     // Pega o ID do pedido, para referência
     id_pedido = sqlite3_last_insert_rowid(bd);
+    sqlite3_finalize(statement);
 
-    printf("Pedido cadastrado!\n");
+    printf("Pedido criado com sucesso! Deseja adicionar um item? [s/n]\n");
+    scanf("%s", &confirmacao);
+
+    if (confirmacao == 's')
+    {
+        pedido_adicionar_item(id_pedido);
+    }
 }
 
 static int listarPedidosCallback(void* naoUsado, int numColunas, char** valores, char** nomeColuna)
