@@ -25,8 +25,7 @@
  * Aqui criamos variáveis em comum para uso no programa
  */
 int retorno; // Para armazenar o retorno das funções chamadas do SQLite
-char *query, // Para armazenar a última query em uso
-     *erro; // Para armazenar o último erro do BD
+char* erro; // Para armazenar o último erro do BD
 sqlite3_stmt* statement; // Para armazenar prepared statements
 sqlite3* bd; // Referência ao banco de dados como "bd" para facilitar na hora de chamar
 
@@ -68,7 +67,7 @@ char* ler_arquivo(const char* caminho_arquivo)
 void bd_criar_tabelas()
 {
     // Vamos ler o arquivo SQL num buffer de string
-    query = ler_arquivo("./../banco-de-dados/esquema-sqlite.sql");
+    char* query = ler_arquivo("./../banco-de-dados/esquema-sqlite.sql");
 
     // Executa a query
     retorno = sqlite3_exec(bd, query, NULL, 0, &erro);
@@ -90,7 +89,7 @@ void bd_criar_tabelas()
 void bd_popular_tabelas()
 {
     // Vamos ler o arquivo SQL num buffer de string
-    query = ler_arquivo("./../banco-de-dados/esquema-sql-inserção.sql");
+    char* query = ler_arquivo("./../banco-de-dados/esquema-sql-inserção.sql");
 
     // Executa a query
     retorno = sqlite3_exec(bd, query, NULL, 0, &erro);
@@ -110,7 +109,8 @@ void bd_popular_tabelas()
  */
 void bd_verificar_integridade()
 {
-    char confirmacao,
+    char *query,
+         confirmacao,
          *tabelasEsperadas[12] = {
              "cliente", "funcionario", "mesa", "reserva_mesa", "playground", "sessoes_playground", "gato",
              "produto", "categoria_produto", "pedido", "itens_pedido", "forma_pagto"
@@ -248,6 +248,25 @@ void bd_imprimir_resultados_tabela(sqlite3_stmt* stmt)
     printf("\n");
 }
 
+int bd_prepara_consulta(char* query)
+{
+    retorno = sqlite3_prepare_v3(
+        bd, /* Referência do banco de dados */
+        query, /* Consulta SQL, UTF-8 encoded */
+        -1, /* Tamanho máximo da consulta em bytes. */
+        SQLITE_PREPARE_FROM_DDL | SQLITE_PREPARE_NORMALIZE, /* Zero ou mais flags SQLITE_PREPARE_ */
+        &statement, /* SAIDA: Referencia a statement */
+        NULL /* SAIDA: Ponteiro para a parte nao usada da query */
+    );
+
+    if (retorno != SQLITE_OK)
+    {
+        printf("Erro ao preparar a consulta: %s\n", sqlite3_errmsg(bd));
+        return 1;
+    }
+
+    return 0;
+}
 
 /* aqui criamos a função cadastrar produto, onde vamos pedir e salvar os valores dos atributos da tabela Produto,
    cadastrando um novo produto */
@@ -276,20 +295,10 @@ void cadastrarProduto()
     scanf("%d", &categoria);
     // TODO: ALTERAR PARA PEGAR AS CATEGORIAS DO BD E LISTAR. USUARIO DEVE DIGITAR O ID DA CATEGORIA
 
-    query = "INSERT INTO produto(nome, preco, quantidade, categoria) VALUES (?, ?, ?, ?)";
+    retorno = bd_prepara_consulta("INSERT INTO produto(nome, preco, quantidade, categoria) VALUES (?, ?, ?, ?)");
 
-    retorno = sqlite3_prepare_v3(
-        bd, /* Referencia do banco de dados */
-        query, /* Consulta SQL, UTF-8 encoded */
-        -1, /* Tamanho máximo da consulta em bytes. */
-        SQLITE_PREPARE_FROM_DDL | SQLITE_PREPARE_NORMALIZE, /* Zero ou mais flags SQLITE_PREPARE_ */
-        &statement, /* SAIDA: Referencia a statement */
-        NULL /* SAIDA: Ponteiro para a parte nao usada da query */
-    );
-
-    if (retorno != SQLITE_OK)
+    if (retorno != 0)
     {
-        printf("Erro ao preparar a consulta: %s\n", sqlite3_errmsg(bd));
         sqlite3_close(bd);
         exit(1);
     }
@@ -328,7 +337,13 @@ void cliente_buscar()
     printf("Digite o nome cliente a buscar: ");
     scanf("%s", &nome);
 
-    query = "SELECT id_cliente, nome FROM cliente WHERE nome LIKE '%?%' ORDER BY nome ASC;";
+    retorno = bd_prepara_consulta("SELECT id_cliente, nome FROM cliente WHERE nome LIKE '%?%' ORDER BY nome ASC;");
+
+    if (retorno != 0)
+    {
+        sqlite3_close(bd);
+        exit(1);
+    }
 
     sqlite3_bind_text(statement, 1, nome, -1, SQLITE_STATIC);
 
@@ -347,7 +362,13 @@ void cliente_listar()
 {
     setlocale(LC_ALL, "Portuguese");
 
-    query = "SELECT id_cliente, nome FROM cliente ORDER BY nome ASC;";
+    retorno = bd_prepara_consulta("SELECT id_cliente, nome FROM cliente ORDER BY nome ASC;");
+
+    if (retorno != 0)
+    {
+        sqlite3_close(bd);
+        exit(1);
+    }
 
     printf("Clientes cadastrados:\n");
 
@@ -441,21 +462,12 @@ void pedido_criar()
     // TODO: pegar o valor do item pedido pode começar vazio ou com um item inicial e colocar como total
     // total = quantidade * valor_unitario;
 
-    query =
-        "INSERT INTO pedido(id_cliente, id_func, id_forma_pagto, data_pedido, valor_total_pedido) VALUES (?, ?, ?, ?, ?)";
 
-    retorno = sqlite3_prepare_v3(
-        bd, /* Referência do banco de dados */
-        query, /* Consulta SQL, UTF-8 encoded */
-        -1, /* Tamanho máximo da consulta em bytes. */
-        SQLITE_PREPARE_FROM_DDL | SQLITE_PREPARE_NORMALIZE, /* Zero ou mais flags SQLITE_PREPARE_ */
-        &statement, /* SAIDA: Referencia a statement */
-        NULL /* SAIDA: Ponteiro para a parte nao usada da query */
-    );
+    retorno = bd_prepara_consulta(
+        "INSERT INTO pedido(id_cliente, id_func, id_forma_pagto, data_pedido, valor_total_pedido) VALUES (?, ?, ?, ?, ?)");
 
-    if (retorno != SQLITE_OK)
+    if (retorno != 0)
     {
-        printf("Erro ao preparar a consulta: %s\n", sqlite3_errmsg(bd));
         sqlite3_close(bd);
         exit(1);
     }
