@@ -341,8 +341,7 @@ void cliente_buscar()
 
     if (retorno != 0)
     {
-        sqlite3_close(bd);
-        exit(1);
+        return;
     }
 
     sqlite3_bind_text(statement, 1, nome, -1, SQLITE_STATIC);
@@ -366,8 +365,7 @@ void cliente_listar()
 
     if (retorno != 0)
     {
-        sqlite3_close(bd);
-        exit(1);
+        return;
     }
 
     printf("Clientes cadastrados:\n");
@@ -455,8 +453,7 @@ void pedido_criar()
     if (epoch == -1)
     {
         printf("Erro ao converter data.\n");
-        sqlite3_close(bd);
-        exit(1);
+        return;
     }
 
     // TODO: pegar o valor do item pedido pode começar vazio ou com um item inicial e colocar como total
@@ -485,9 +482,7 @@ void pedido_criar()
     if (retorno != SQLITE_DONE)
     {
         printf("Erro ao criar o pedido: %s\n", sqlite3_errmsg(bd));
-        sqlite3_finalize(statement);
-        sqlite3_close(bd);
-        exit(1);
+        return;
     }
 
     // Pega o ID do pedido, para referência
