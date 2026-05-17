@@ -89,7 +89,7 @@ void bd_criar_tabelas()
 void bd_popular_tabelas()
 {
     // Vamos ler o arquivo SQL num buffer de string
-    char* query = ler_arquivo("./../banco-de-dados/esquema-sql-inserção.sql");
+    char* query = ler_arquivo("./../banco-de-dados/esquema-sql-insercao.sql");
 
     // Executa a query
     retorno = sqlite3_exec(bd, query, NULL, 0, &erro);
@@ -184,7 +184,7 @@ void bd_conectar()
 
     // Aqui nós iniciamos a conexão com o banco de dados
     retorno = sqlite3_open_v2(
-        "file://./../banco-de-dados/codecatcoffee.sqlite",
+        "file://./../banco-de-dados/codecatcoffee2.sqlite",
         &bd,
         SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX | SQLITE_OPEN_PRIVATECACHE,
         "win32"
