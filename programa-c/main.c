@@ -780,7 +780,7 @@ void pedido_adicionar_item(sqlite3_int64 id_pedido)
         {
             printf("A quantidade digitada (%d) excede a quantidade em estoque (%d) do produto %s", quantidade,
                    prod_quantidade_estoque, nome_produto);
-            printf("Deseja mudar a quantidade para %d e continuar? [s/n]");
+            printf("Deseja mudar a quantidade para %d e continuar? [s/n]", prod_quantidade_estoque);
             entrada_string(confirmacao, sizeof(confirmacao));
 
             if (strcmp(confirmacao, "s") != 0)
