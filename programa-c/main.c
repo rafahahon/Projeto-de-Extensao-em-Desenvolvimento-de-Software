@@ -200,7 +200,7 @@ void bd_conectar()
 {
     // Aqui nós iniciamos a conexão com o banco de dados
     retorno = sqlite3_open_v2(
-        "file://./../banco-de-dados/codecatcoffee.sqlite",
+        "file://./../data/codecatcoffee.sqlite",
         &bd,
         SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX | SQLITE_OPEN_PRIVATECACHE,
         "win32"
