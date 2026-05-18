@@ -35,6 +35,134 @@ sqlite3_stmt* statement; // Para armazenar prepared statements
 sqlite3* bd; // Referência ao banco de dados como "bd" para facilitar na hora de chamar
 
 /**
+ *
+ * Pega entrada do usuário e trata como string, colocando o seu conteúdo em variavel.
+ * @param variavel A variável que vai receber a entrada do usuário em stdin
+ * @param tamanho_max O tamanho máximo da string
+ */
+void entrada_string(char* variavel, size_t tamanho_max)
+{
+    char input_buffer[255];
+
+    if (fgets(input_buffer, sizeof(input_buffer), stdin))
+    {
+        // Remove quebra de linha no final
+        input_buffer[strcspn(input_buffer, "\n")] = 0;
+        // Copia seguramente para a nossa variável
+        strncpy(variavel, input_buffer, tamanho_max - 1);
+        // Reforça que a string termine com NULL
+        variavel[tamanho_max - 1] = '\0';
+    }
+}
+
+/**
+ * Pega entrada do usuário e trata como int.
+ * @return Integer capturado pelo input em stdin
+ */
+int entrada_int()
+{
+    char input_buffer[128],
+         *endptr;
+    long temp_var = 0;
+
+    if (fgets(input_buffer, sizeof(input_buffer), stdin))
+    {
+        // strtol converte uma string em long, depois forçamos para int
+        temp_var = strtol(input_buffer, &endptr, 10);
+
+        if (input_buffer == endptr)
+        {
+            printf("Aviso: Valor inválido. Definindo para 0.\n");
+            temp_var = 0;
+        }
+    }
+
+    return (int)temp_var;
+}
+
+/**
+ * Pega entrada do usuário e trata como float.
+ * @return Float capturado pelo input em stdin
+ */
+float entrada_float()
+{
+    char input_buffer[128],
+         *endptr;
+    float temp_var = 0.0f;
+
+    if (fgets(input_buffer, sizeof(input_buffer), stdin))
+    {
+        // strtof converte string para float
+        temp_var = strtof(input_buffer, &endptr);
+
+        // Verificação de erro: se endptr apontar para o início, nenhum número foi encontrado
+        if (input_buffer == endptr)
+        {
+            printf("Aviso: Número digitado inválido. Definindo como 0.0\n");
+            temp_var = 0.0f;
+        }
+    }
+
+    return temp_var;
+}
+
+/**
+ * Pega entrada do usuário e trata como data no formato DD-MM-YYYY.
+ * Caso usuário não forneça uma data, usar a data atual.
+ */
+void entrada_data(int* data)
+{
+    char temp_var[11], *ptr, *endptr;
+    time_t agora = time(NULL);
+
+    // Obtém a data vinda do usuário via stdin
+    entrada_string(temp_var, sizeof(temp_var));
+
+    if (strcmp(temp_var, "\n") == 0) // Se a data for vazia, usar a data de hoje
+    {
+        strftime(temp_var, sizeof temp_var, "%d-%m-%Y", localtime(&agora));
+    }
+
+    ptr = (char*)temp_var;
+
+    // Extrai o DIA
+    long temp_dia = strtol(ptr, &endptr, 10);
+
+    if (ptr == endptr || *endptr != '-')
+    {
+        printf("Erro ao ler o dia ou delimitador '-' ausente.\n");
+        return;
+    }
+
+    data[0] = (int)temp_dia;
+    ptr = endptr + 1; // Avança o ponteiro para pular o hífen '-'
+
+    // Extrai o MÊS
+    long temp_mes = strtol(ptr, &endptr, 10);
+
+    if (ptr == endptr || *endptr != '-')
+    {
+        printf("Erro ao ler o mês ou delimitador '-' ausente.\n");
+        return;
+    }
+
+    data[1] = (int)temp_mes;
+    ptr = endptr + 1; // Avança o ponteiro para pular o segundo hífen '-'
+
+    // Extrai o ANO
+    long temp_ano = strtol(ptr, &endptr, 10);
+
+    // O ano deve terminar com o fim da string ('\0') ou uma nova linha ('\n')
+    if (ptr == endptr || (*endptr != '\0' && *endptr != '\n'))
+    {
+        printf("Erro ao ler o ano ou caracteres extras no fim da string.\n");
+        return;
+    }
+
+    data[2] = (int)temp_ano;
+}
+
+/**
  * Lê um arquivo no sistema de arquivos atual e retorna o seu conteúdo.
  * @param caminho_arquivo O caminho para o arquivo a ser lido.
  * @return O conteúdo do arquivo.
@@ -302,10 +430,10 @@ int bd_prepara_consulta(char* query)
  */
 void cat_prod_buscar()
 {
-    char* nome;
+    char nome[255];
 
     printf("Digite o nome da categoria a buscar: ");
-    scanf("%s", &nome);
+    entrada_string(nome, sizeof(nome));
 
     retorno = bd_prepara_consulta(
         "SELECT id_cat_produto, nome FROM categoria_produto WHERE nome LIKE '%?%' ORDER BY nome ASC;");
@@ -357,7 +485,7 @@ int cat_prod_selecionar()
     while (id_cat_produto == 0)
     {
         printf("Selecione a opção desejada:\n  1) buscar uma categoria\n  2) listar todas\n");
-        scanf("%d", &opcao);
+        opcao = entrada_int();
 
         if (opcao == 1)
         {
@@ -374,7 +502,7 @@ int cat_prod_selecionar()
         }
 
         printf("Qual o ID da categoria você deseja selecionar?\n");
-        scanf("%d", &id_cat_produto);
+        id_cat_produto = entrada_int();
     }
 
     return id_cat_produto;
@@ -385,22 +513,21 @@ int cat_prod_selecionar()
  */
 void produto_cadastrar()
 {
-    char* nome;
+    char nome[255];
     float preco;
     int quantidade, categoria;
 
     // aqui nos pedimos para o usuário o nome do produto
     printf("Nome do produto: ");
-    // aqui o código lê o que foi digitado
-    scanf("%s", &nome);
+    entrada_string(nome, sizeof(nome));
 
     // aqui pedimos o preço
     printf("Preço: ");
-    scanf("%f", &preco);
+    preco = entrada_float();
 
     // aqui pedimos a quantidade
     printf("Quantidade: ");
-    scanf("%d", &quantidade);
+    quantidade = entrada_int();
 
     // aqui pedimos a categoria
     categoria = cat_prod_selecionar();
@@ -438,10 +565,10 @@ void produto_cadastrar()
  */
 void cliente_buscar()
 {
-    char* nome;
+    char nome[255];
 
     printf("Digite o nome do cliente a buscar: ");
-    scanf("%s", &nome);
+    entrada_string(nome, sizeof(nome));
 
     retorno = bd_prepara_consulta("SELECT id_cliente, nome FROM cliente WHERE nome LIKE '%?%' ORDER BY nome ASC;");
 
@@ -492,7 +619,7 @@ int cliente_selecionar()
     while (cliente == 0)
     {
         printf("Selecione a opção desejada:\n  1) buscar um cliente\n  2) listar todos\n");
-        scanf("%d", &opcao);
+        opcao = entrada_int();
 
         if (opcao == 1)
         {
@@ -509,7 +636,7 @@ int cliente_selecionar()
         }
 
         printf("Qual o ID do cliente você deseja selecionar?\n");
-        scanf("%d", &cliente);
+        cliente = entrada_int();
     }
 
     return cliente;
@@ -520,10 +647,10 @@ int cliente_selecionar()
  */
 void produto_buscar()
 {
-    char* nome;
+    char nome[255];
 
     printf("Digite o nome produto a buscar: ");
-    scanf("%s", &nome);
+    entrada_string(nome, sizeof(nome));
 
     retorno = bd_prepara_consulta(
         "SELECT id_produto, nome, preco, quantidade_estoque FROM produto WHERE nome LIKE '%?%' AND quantidade_estoque > 0 ORDER BY nome ASC;");
@@ -577,7 +704,7 @@ int produto_selecionar()
     while (produto == 0)
     {
         printf("Selecione a opção desejada:\n  1) buscar um produto\n  2) listar todos\n");
-        scanf("%d", &opcao);
+        opcao = entrada_int();
 
         if (opcao == 1)
         {
@@ -594,7 +721,7 @@ int produto_selecionar()
         }
 
         printf("Qual o ID do produto você deseja selecionar?\n");
-        scanf("%d", &produto);
+        produto = entrada_int();
     }
 
     return produto;
@@ -606,7 +733,7 @@ int produto_selecionar()
  */
 void pedido_adicionar_item(sqlite3_int64 id_pedido)
 {
-    char confirmacao, *nome_produto;
+    char confirmacao[1], *nome_produto;
     int id_produto = 0, quantidade = 0, prod_quantidade_estoque = 0;
     float preco_produto = 0, total = 0;
 
@@ -647,16 +774,16 @@ void pedido_adicionar_item(sqlite3_int64 id_pedido)
         if (nome_produto == NULL || preco_produto == 0 || prod_quantidade_estoque == 0) continue;
 
         printf("Quantidade: ");
-        scanf("%d", &quantidade);
+        quantidade = entrada_int();
 
         if (quantidade > prod_quantidade_estoque)
         {
             printf("A quantidade digitada (%d) excede a quantidade em estoque (%d) do produto %s", quantidade,
                    prod_quantidade_estoque, nome_produto);
             printf("Deseja mudar a quantidade para %d e continuar? [s/n]");
-            scanf("%s", &confirmacao);
+            entrada_string(confirmacao, sizeof(confirmacao));
 
-            if (confirmacao != 's')
+            if (strcmp(confirmacao, "s") != 0)
             {
                 return;
             }
@@ -740,40 +867,40 @@ void pedido_adicionar_item(sqlite3_int64 id_pedido)
 
         printf("Produto %s adicionado ao pedido %lld! Deseja adicionar outro produto? [s/n]\n", nome_produto,
                id_pedido);
-        scanf("%s", &confirmacao);
+        entrada_string(confirmacao, sizeof(confirmacao));
     }
-    while (confirmacao == 's');
+    while (strcmp(confirmacao, "s") == 0);
 }
 
 void pedido_criar()
 {
-    char data[11], confirmacao;
-    int cliente, dia, mes, ano;
+    char confirmacao[1];
+    int cliente, *data;
     float total = 0;
     struct tm dataHelper = {0};
-    time_t agora = time(NULL);
     sqlite3_int64 id_pedido;
 
     cliente = cliente_selecionar();
 
     printf("Data do pedido (DD-MM-AAAA ou vazio para hoje): ");
-    fgets(data, sizeof(data), stdin);
 
     /**
      * Pra moder mexer com datas em C, precisamos usar a biblioteca de tempo do C.
      * Vamos primeiro fazer o parsing da string enviada e depois separar em dia, mes e ano.
      * Feito isso, precisamos transformar em um objeto time_t compatível com a SQLite.
      */
-    if (strcmp(data, "\n") != 0) // Se a data for vazia, usar a data de hoje
+    entrada_data(data);
+
+    if (data == NULL)
     {
-        strftime(data, sizeof data, "%d-%m-%Y", localtime(&agora));
+        printf("Erro ao obter data.\n");
+        return;
     }
 
     // Separar a data passada e atribuir cada %d para a variável que for passada na ordem
-    sscanf(data, "%d-%d-%d", &dia, &mes, &ano);
-    dataHelper.tm_mday = dia;
-    dataHelper.tm_mon = mes - 1; // Meses vão de 0 a 11, tem que subtrair 1
-    dataHelper.tm_year = ano - 1900; // Precisa subtrair, pq o epoch do C vai de 1900 até hoje
+    dataHelper.tm_mday = data[0];
+    dataHelper.tm_mon = data[1] - 1; // Meses vão de 0 a 11, tem que subtrair 1
+    dataHelper.tm_year = data[2] - 1900; // Precisa subtrair, pq o epoch do C vai de 1900 até hoje
     dataHelper.tm_isdst = -1; // Deixa o sistema arrumar para horario de verão
     time_t epoch = mktime(&dataHelper);
 
@@ -813,9 +940,9 @@ void pedido_criar()
     sqlite3_finalize(statement);
 
     printf("Pedido criado com sucesso! Deseja adicionar um item? [s/n]\n");
-    scanf("%s", &confirmacao);
+    entrada_string(confirmacao, sizeof(confirmacao));
 
-    if (confirmacao == 's')
+    if (strcmp(confirmacao, "s") == 0)
     {
         pedido_adicionar_item(id_pedido);
     }
@@ -901,7 +1028,7 @@ int main()
         printf("3 - Listar pedidos\n");
         printf("4 - Sair\n");
         printf("Escolha: ");
-        scanf("%d", &opcao);
+        opcao = entrada_int();
 
         // TODO: cadastrar clientes
         // TODO: cadastrar funcionarios
