@@ -4,7 +4,13 @@ project(code_cat_coffee C)
 set(CMAKE_C_STANDARD 11)
 
 # Add both main.c and sqlite3.c to the executable
-add_executable(main programa-c/main.c programa-c/sqlite3.c)
+add_executable(main programa-c/main.c programa-c/sqlite3.c
+        programa-c/bd.c
+        programa-c/utilidades.c
+        programa-c/categoria_produto.c
+        programa-c/produto.c
+        programa-c/cliente.c
+        programa-c/pedido.c)
 
 # Link the threading library (required for SQLite)
 find_package(Threads REQUIRED)
