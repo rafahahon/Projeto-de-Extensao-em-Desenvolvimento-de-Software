@@ -79,7 +79,7 @@ void produto_cadastrar()
     // aqui pedimos a categoria
     categoria = cat_prod_selecionar();
 
-    prod_retorno = bd_prepara_consulta("INSERT INTO produto(nome, preco, quantidade, categoria) VALUES (?, ?, ?, ?)");
+    prod_retorno = bd_prepara_consulta("INSERT INTO produto(nome, preco, quantidade_estoque, id_cat_produto) VALUES (?, ?, ?, ?)");
 
     if (prod_retorno != 0)
     {
