@@ -56,7 +56,7 @@ CREATE TABLE gato (
     personalidade VARCHAR(100),
     status_gato ENUM('Disponível', 'Descansando', 'Veterinário') DEFAULT 'Disponível', 
     id_playground INT,
-    FOREIGN KEY (id_playground) REFERENCES Playground(id_playground)
+    FOREIGN KEY (id_playground) REFERENCES playground(id_playground)
 );
 
 -- 6. PRODUTO
@@ -71,14 +71,14 @@ CREATE TABLE produto (
 );
 
 -- 7. RESERVA DE MESA
-CREATE TABLE reserva_Mesa (
+CREATE TABLE reserva_mesa (
     id_reserva INT PRIMARY KEY AUTO_INCREMENT,
     id_cliente INT,
     id_mesa INT,
     inicio_reserva DATETIME,
     fim_reserva DATETIME,
-    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente),
-    FOREIGN KEY (id_mesa) REFERENCES Mesa(id_mesa)
+    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
+    FOREIGN KEY (id_mesa) REFERENCES mesa(id_mesa)
 );
 
 -- 8. SESSÕES DE PLAYGROUND
@@ -89,8 +89,8 @@ CREATE TABLE sessoes_playground (
     hora_entrada DATETIME DEFAULT CURRENT_TIMESTAMP,
     minutos_permanencia INT,
     valor_pago DECIMAL(10,2),
-    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente),
-    FOREIGN KEY (id_playground) REFERENCES Playground(id_playground)
+    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
+    FOREIGN KEY (id_playground) REFERENCES playground(id_playground)
 );
 
 -- 9. PEDIDO (Cabeçalho)
@@ -113,8 +113,8 @@ CREATE TABLE itens_pedido (
     id_produto INT,
     quantidade_pedida INT NOT NULL,
     preco_unitario DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (id_pedido) REFERENCES Pedido(id_pedido),
-    FOREIGN KEY (id_produto) REFERENCES Produto(id_produto)
+    FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido),
+    FOREIGN KEY (id_produto) REFERENCES produto(id_produto)
 );
 
 -- 11. CATEGORIA_PRODUTO (Identificar e individualizar cada produto)
