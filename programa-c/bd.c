@@ -187,7 +187,7 @@ int bd_prepara_consulta(sqlite3* bd, const char* query, sqlite3_stmt** bd_statem
 void bd_verificar_integridade(sqlite3* bd)
 {
     char *query,
-         confirmacao,
+         confirmacao[5],
          *tabelasEsperadas[12] = {
              "cliente", "funcionario", "mesa", "reserva_mesa", "playground", "sessoes_playground", "gato",
              "produto", "categoria_produto", "pedido", "itens_pedido", "forma_pagamento"
@@ -233,18 +233,18 @@ void bd_verificar_integridade(sqlite3* bd)
         {
             printf("Tabela %s não está presente no banco de dados. ", tabelasEsperadas[i]);
             printf("Deseja inicializar as tabelas no banco de dados? [s/n]\n");
-            scanf("%s", &confirmacao);
+            entrada_string(confirmacao, sizeof(confirmacao));
 
-            if (confirmacao == 's')
+            if (strcmp(confirmacao, "s") == 0)
             {
-                bd_criar_tabelas();
+                bd_criar_tabelas(bd);
 
                 printf("Deseja popular as tabelas com dados de exemplo? [s/n]\n");
-                scanf("%s", &confirmacao);
+                entrada_string(confirmacao, sizeof(confirmacao));
 
-                if (confirmacao == 's')
+                if (strcmp(confirmacao, "s") == 0)
                 {
-                    bd_popular_tabelas();
+                    bd_popular_tabelas(bd);
                 }
 
                 break;
