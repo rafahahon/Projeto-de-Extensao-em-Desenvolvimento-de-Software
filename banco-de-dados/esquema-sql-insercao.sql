@@ -16,6 +16,28 @@ INSERT INTO cliente (nome, github_user, email) VALUES
 ('Larissa Gomes', 'lari_gomes_dev', 'larissa.gomes@codecoffee.com'),
 ('Rafael Costa', 'rafa_costa_coder', 'rafael.costa@codecoffee.com');
 
+INSERT INTO forma_pagamento (nome) VALUES
+-- Lista de formas de pagamento
+('PIX'),
+('Cartão Débito'),
+('Cartão Crédito'),
+('Dinheiro');
+
+INSERT INTO categoria_produto (nome) VALUES 
+-- Lista de categoria de produto
+('Doce'),
+('Salgado'),
+('Bebida'),
+('Petisco');
+
+INSERT INTO mesa (numero_mesa, tomada, extra_monitor) VALUES 
+-- Lista de Mesas do Coworking (1: Sim, 0: Não para monitor extra)
+(1, 2, 1), -- Mesa 1 com 2 tomadas e monitor extra
+(2, 4, 1), -- Mesa 2 com 4 tomadas e monitor extra
+(3, 2, 0), -- Mesa 3 com 2 tomadas e sem monitor extra
+(4, 1, 0), -- Mesa 4 com 1 tomada e sem monitor extra
+(5, 4, 1); -- Mesa 5 com 4 tomadas e monitor extra
+
 INSERT INTO funcionario (nome, cargo) VALUES 
 -- Lista de Funcionários
 ('Lara Silva', 'Gerente de Loja'),
@@ -175,18 +197,3 @@ INSERT INTO itens_pedido (id_pedido, id_produto, quantidade_pedida, preco_unitar
 (14, 4, 1, 9.50),
 (15, 20, 2, 4.00), 
 (15, 7, 1, 11.50);
-
-INSERT INTO categoria_produto (nome) VALUES 
--- Lista de categoria de produto
-('Doce'),
-('Salgado'),
-('Bebida'),
-('Petisco');
-
-
-INSERT INTO forma_pagamento (nome) VALUES
--- Lista de formas de pagamento
-('PIX'),
-('Cartão Débito'),
-('Cartão Crédito'),
-('Dinheiro');
