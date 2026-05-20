@@ -25,7 +25,7 @@
  */
 void cliente_buscar(sqlite3* bd)
 {
-    char nome[255];
+    char nome[255], termo_busca[300];
     sqlite3_stmt* statement = NULL;
 
     printf("Digite o nome do cliente a buscar: ");
@@ -42,6 +42,8 @@ void cliente_buscar(sqlite3* bd)
         return;
     }
 
+    // Coloca % para poder pegar parciais
+    sprintf(termo_busca, "%%%s%%", nome);
     // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
     sqlite3_bind_text(statement, 1, termo_busca, -1, SQLITE_STATIC);
 
