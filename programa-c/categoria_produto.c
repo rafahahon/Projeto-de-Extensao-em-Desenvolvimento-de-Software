@@ -19,66 +19,72 @@
 #include "categoria_produto.h"
 #include "utilidades.h"
 
-/*
- * Aqui criamos variáveis em comum para uso na biblioteca
- */
-int cat_prod_retorno; // Para armazenar o cat_prod_retorno das funções chamadas do SQLite
-sqlite3_stmt* cat_prod_statement; // Para armazenar prepared cat_prod_statements
-
 /**
  * Roda uma consulta de busca de categoria de produto e imprime o resultado da busca.
+ * @param bd A referência à conexão do banco de dados.
  */
-void cat_prod_buscar()
+void cat_prod_buscar(sqlite3* bd)
 {
     char nome[255];
+    sqlite3_stmt* statement = NULL;
 
     printf("Digite o nome da categoria a buscar: ");
     entrada_string(nome, sizeof(nome));
 
-    cat_prod_retorno = bd_prepara_consulta(
-        "SELECT id_cat_produto, nome FROM categoria_produto WHERE nome LIKE '%?%' ORDER BY nome ASC;");
+    const int retorno = bd_prepara_consulta(
+        bd,
+        "SELECT id_cat_produto, nome FROM categoria_produto WHERE nome LIKE ? ORDER BY nome ASC;",
+        &statement
+    );
 
-    if (cat_prod_retorno != 0)
+    if (retorno != 0)
     {
         return;
     }
 
     // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
-    sqlite3_bind_text(cat_prod_statement, 1, nome, -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 1, termo_busca, -1, SQLITE_STATIC);
 
     printf("Categorias encontradas:\n");
 
-    bd_imprimir_resultados_tabela(cat_prod_statement);
+    bd_imprimir_resultados_tabela(statement);
 
     // Limpeza pós-execução
-    sqlite3_finalize(cat_prod_statement);
+    sqlite3_finalize(statement);
 }
 
 /**
  * Roda uma consulta de todas as categorias de produto e lista os resultados.
+ * @param bd A referência à conexão do banco de dados.
  */
-void cat_prod_listar()
+void cat_prod_listar(sqlite3* bd)
 {
-    cat_prod_retorno = bd_prepara_consulta("SELECT id_cat_produto, nome FROM categoria_produto ORDER BY nome ASC;");
+    sqlite3_stmt* statement = NULL;
+    const int retorno = bd_prepara_consulta(
+        bd,
+        "SELECT id_cat_produto, nome FROM categoria_produto ORDER BY nome ASC;",
+        &statement
+    );
 
-    if (cat_prod_retorno != 0)
+    if (retorno != 0)
     {
         return;
     }
 
     printf("Categorias cadastradas:\n");
 
-    bd_imprimir_resultados_tabela(cat_prod_statement);
+    bd_imprimir_resultados_tabela(statement);
 
     // Limpeza pós-execução
-    sqlite3_finalize(cat_prod_statement);
+    sqlite3_finalize(statement);
 }
 
 /**
  * Dá ao usuário a opção de buscar ou listar categorias de produto e pede para o usuário selecionar um por ID.
+ * @param bd A referência à conexão do banco de dados.
  * @return ID da categoria de produto selecionada.
  */
-int cat_prod_selecionar()
+int cat_prod_selecionar(sqlite3* bd)
 {
     int id_cat_produto = 0, opcao;
 
@@ -89,11 +95,11 @@ int cat_prod_selecionar()
 
         if (opcao == 1)
         {
-            cat_prod_buscar();
+            cat_prod_buscar(bd);
         }
         else if (opcao == 2)
         {
-            cat_prod_listar();
+            cat_prod_listar(bd);
         }
         else
         {

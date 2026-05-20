@@ -19,18 +19,21 @@
 
 /**
  * Roda uma consulta de busca de clientes e imprime o resultado da busca.
+ * @param bd A referência à conexão do banco de dados.
  */
-void cliente_buscar();
+void cliente_buscar(sqlite3* bd);
 
 /**
  * Roda uma consulta de todos os clientes e lista os resultados.
+ * @param bd A referência à conexão do banco de dados.
  */
-void cliente_listar();
+void cliente_listar(sqlite3* bd);
 
 /**
  * Dá ao usuário a opção de buscar ou listar clientes e pede para o usuário selecionar um por ID.
+ * @param bd A referência à conexão do banco de dados.
  * @return ID do cliente selecionado.
  */
-int cliente_selecionar();
+int cliente_selecionar(sqlite3* bd);
 
 #endif //CODE_CAT_COFFEE_CLIENTE_H

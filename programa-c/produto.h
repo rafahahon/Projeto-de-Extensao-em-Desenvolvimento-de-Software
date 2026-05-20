@@ -19,24 +19,28 @@
 
 /**
  * Roda uma consulta de busca de produtos disponíveis em estoque e imprime o resultado da busca.
+ * @param bd A referência à conexão do banco de dados.
  */
-void produto_buscar();
+void produto_buscar(sqlite3* bd);
 
 /**
  * Cadastra um novo produto no banco de dados.
+ * @param bd A referência à conexão do banco de dados.
  */
-void produto_cadastrar();
+void produto_cadastrar(sqlite3* bd);
 
 /**
  * Roda uma consulta de todos os produtos disponíveis em estoque e lista os resultados.
+ * @param bd A referência à conexão do banco de dados.
  */
-void produto_listar();
+void produto_listar(sqlite3* bd);
 
 /**
  * Dá ao usuário a opção de buscar ou listar produtos disponíveis em estoque e pede para o usuário
  * selecionar um por ID.
+ * @param bd A referência à conexão do banco de dados.
  * @return ID, nome, preço e quantidade em estoque do produto selecionado.
  */
-int produto_selecionar();
+int produto_selecionar(sqlite3* bd);
 
 #endif //CODE_CAT_COFFEE_PRODUTO_H

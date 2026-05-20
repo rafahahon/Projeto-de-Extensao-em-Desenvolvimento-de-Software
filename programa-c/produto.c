@@ -19,50 +19,52 @@
 #include "categoria_produto.h"
 #include "produto.h"
 #include "utilidades.h"
-/*
- * Aqui criamos variáveis em comum para uso na biblioteca
- */
-int prod_retorno; // Para armazenar o prod_retorno das funções chamadas do SQLite
-sqlite3_stmt* prod_statement; // Para armazenar prepared prod_statements
-sqlite3* prod_bd; // Referência ao banco de dados como "prod_bd" para facilitar na hora de chamar
 
 /**
  * Roda uma consulta de busca de produtos disponíveis em estoque e imprime o resultado da busca.
+ * @param bd A referência à conexão do banco de dados.
  */
-void produto_buscar()
+void produto_buscar(sqlite3* bd)
 {
     char nome[255];
+    int retorno;
+    sqlite3_stmt* statement = NULL;
 
     printf("Digite o nome produto a buscar: ");
     entrada_string(nome, sizeof(nome));
 
-    prod_retorno = bd_prepara_consulta(
-        "SELECT id_produto, nome, preco, quantidade_estoque FROM produto WHERE nome LIKE '%?%' AND quantidade_estoque > 0 ORDER BY nome ASC;");
+    retorno = bd_prepara_consulta(
+        bd,
+        "SELECT id_produto, nome, preco, quantidade_estoque FROM produto WHERE nome LIKE ? AND quantidade_estoque > 0 ORDER BY nome ASC;",
+        &statement
+    );
 
-    if (prod_retorno != 0)
+    if (retorno != 0)
     {
         return;
     }
 
     // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
-    sqlite3_bind_text(prod_statement, 1, nome, -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 1, termo_busca, -1, SQLITE_STATIC);
 
     printf("Produtos encontrados:\n");
 
-    bd_imprimir_resultados_tabela(prod_statement);
+    bd_imprimir_resultados_tabela(statement);
 
     // Limpeza pós-execução
-    sqlite3_finalize(prod_statement);
+    sqlite3_finalize(statement);
 }
 
 /**
  * Cadastra um novo produto no banco de dados.
+ * @param bd A referência à conexão do banco de dados.
  */
-void produto_cadastrar()
+void produto_cadastrar(sqlite3* bd)
 {
     char nome[255];
     float preco;
-    int quantidade, categoria;
+    int quantidade, categoria, retorno;
+    sqlite3_stmt* statement = NULL;
 
     // aqui nos pedimos para o usuário o nome do produto
     printf("Nome do produto: ");
@@ -77,63 +79,73 @@ void produto_cadastrar()
     quantidade = entrada_int();
 
     // aqui pedimos a categoria
-    categoria = cat_prod_selecionar();
+    categoria = cat_prod_selecionar(bd);
 
-    prod_retorno = bd_prepara_consulta("INSERT INTO produto(nome, preco, quantidade_estoque, id_cat_produto) VALUES (?, ?, ?, ?)");
+    retorno = bd_prepara_consulta(
+        bd,
+        "INSERT INTO produto(nome, preco, quantidade_estoque, id_cat_produto) VALUES (?, ?, ?, ?)",
+        &statement
+    );
 
-    if (prod_retorno != 0)
+    if (retorno != 0)
     {
         return;
     }
 
     // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
-    sqlite3_bind_text(prod_statement, 1, nome, -1, SQLITE_STATIC);
-    sqlite3_bind_double(prod_statement, 2, preco);
-    sqlite3_bind_int(prod_statement, 3, quantidade);
-    sqlite3_bind_int(prod_statement, 4, categoria);
+    sqlite3_bind_text(statement, 1, nome, -1, SQLITE_STATIC);
+    sqlite3_bind_double(statement, 2, preco);
+    sqlite3_bind_int(statement, 3, quantidade);
+    sqlite3_bind_int(statement, 4, categoria);
 
     // Rodamos a consulta
-    prod_retorno = sqlite3_step(prod_statement);
+    retorno = sqlite3_step(statement);
 
-    if (prod_retorno != SQLITE_DONE)
+    if (retorno != SQLITE_DONE)
     {
-        printf("prod_erro ao cadastrar produto: %s\n", sqlite3_errmsg(prod_bd));
+        printf("prod_erro ao cadastrar produto: %s\n", sqlite3_errmsg(bd));
         return;
     }
 
     // Limpeza pós-execução
-    sqlite3_finalize(prod_statement);
+    sqlite3_finalize(statement);
 
     printf("Produto cadastrado!\n");
 }
 
 /**
  * Roda uma consulta de todos os produtos disponíveis em estoque e lista os resultados.
+ * @param bd A referência à conexão do banco de dados.
  */
-void produto_listar()
+void produto_listar(sqlite3* bd)
 {
-    prod_retorno = bd_prepara_consulta(
-        "SELECT id_produto, nome, preco, quantidade_estoque FROM produto WHERE quantidade_estoque > 0 ORDER BY nome ASC;");
+    sqlite3_stmt* statement = NULL;
+    const int retorno = bd_prepara_consulta(
+        bd,
+        "SELECT id_produto, nome, preco, quantidade_estoque FROM produto WHERE quantidade_estoque > 0 ORDER BY nome ASC;",
+        &statement
+    );
 
-    if (prod_retorno != 0)
+    if (retorno != 0)
     {
         return;
     }
 
     printf("Produtos cadastrados:\n");
 
-    bd_imprimir_resultados_tabela(prod_statement);
+    bd_imprimir_resultados_tabela(statement);
 
     // Limpeza pós-execução
-    sqlite3_finalize(prod_statement);
+    sqlite3_finalize(statement);
 }
 
 /**
  * Dá ao usuário a opção de buscar ou listar produtos disponíveis em estoque e pede para o usuário
  * selecionar um por ID.
+ * @param bd A referência à conexão do banco de dados.
  * @return ID, nome, preço e quantidade em estoque do produto selecionado.
  */
-int produto_selecionar()
+int produto_selecionar(sqlite3* bd)
 {
     int produto = 0, opcao;
 
@@ -144,11 +156,11 @@ int produto_selecionar()
 
         if (opcao == 1)
         {
-            produto_buscar();
+            produto_buscar(bd);
         }
         else if (opcao == 2)
         {
-            produto_listar();
+            produto_listar(bd);
         }
         else
         {

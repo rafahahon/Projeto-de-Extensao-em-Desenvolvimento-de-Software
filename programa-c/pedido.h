@@ -19,18 +19,21 @@
 
 /**
  * Adiciona um produto ao pedido.
+ * @param bd A referência à conexão do banco de dados.
  * @param id_pedido ID do pedido
  */
-void pedido_adicionar_item(sqlite3_int64 id_pedido);
+void pedido_adicionar_item(sqlite3* bd, sqlite3_int64 id_pedido);
 
 /**
  * Cria um pedido no Banco de Dados.
+ * @param bd A referência à conexão do banco de dados.
  */
-void pedido_criar();
+void pedido_criar(sqlite3* bd);
 
 /**
  * Roda uma consulta de todos os clientes e lista os resultados.
+ * @param bd A referência à conexão do banco de dados.
  */
-void pedido_listar();
+void pedido_listar(sqlite3* bd);
 
 #endif //CODE_CAT_COFFEE_PEDIDO_H

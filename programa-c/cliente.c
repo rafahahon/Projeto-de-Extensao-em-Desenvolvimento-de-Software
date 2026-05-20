@@ -19,65 +19,72 @@
 #include "cliente.h"
 #include "utilidades.h"
 
-/*
- * Aqui criamos variáveis em comum para uso na biblioteca
- */
-int cli_retorno; // Para armazenar o cli_retorno das funções chamadas do SQLite
-sqlite3_stmt* cli_statement; // Para armazenar prepared cli_statements
-
 /**
  * Roda uma consulta de busca de clientes e imprime o resultado da busca.
+ * @param bd A referência à conexão do banco de dados.
  */
-void cliente_buscar()
+void cliente_buscar(sqlite3* bd)
 {
     char nome[255];
+    sqlite3_stmt* statement = NULL;
 
     printf("Digite o nome do cliente a buscar: ");
     entrada_string(nome, sizeof(nome));
 
-    cli_retorno = bd_prepara_consulta("SELECT id_cliente, nome FROM cliente WHERE nome LIKE '%?%' ORDER BY nome ASC;");
+    const int retorno = bd_prepara_consulta(
+        bd,
+        "SELECT id_cliente, nome FROM cliente WHERE nome LIKE ? ORDER BY nome ASC;",
+        &statement
+    );
 
-    if (cli_retorno != 0)
+    if (retorno != 0)
     {
         return;
     }
 
     // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
-    sqlite3_bind_text(cli_statement, 1, nome, -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 1, termo_busca, -1, SQLITE_STATIC);
 
     printf("Clientes encontrados:\n");
 
-    bd_imprimir_resultados_tabela(cli_statement);
+    bd_imprimir_resultados_tabela(statement);
 
     // Limpeza pós-execução
-    sqlite3_finalize(cli_statement);
+    sqlite3_finalize(statement);
 }
 
 /**
  * Roda uma consulta de todos os clientes e lista os resultados.
+ * @param bd A referência à conexão do banco de dados.
  */
-void cliente_listar()
+void cliente_listar(sqlite3* bd)
 {
-    cli_retorno = bd_prepara_consulta("SELECT id_cliente, nome FROM cliente ORDER BY nome ASC;");
+    sqlite3_stmt* statement = NULL;
+    const int retorno = bd_prepara_consulta(
+        bd,
+        "SELECT id_cliente, nome FROM cliente ORDER BY nome ASC;",
+        &statement
+    );
 
-    if (cli_retorno != 0)
+    if (retorno != 0)
     {
         return;
     }
 
     printf("Clientes cadastrados:\n");
 
-    bd_imprimir_resultados_tabela(cli_statement);
+    bd_imprimir_resultados_tabela(statement);
 
     // Limpeza pós-execução
-    sqlite3_finalize(cli_statement);
+    sqlite3_finalize(statement);
 }
 
 /**
  * Dá ao usuário a opção de buscar ou listar clientes e pede para o usuário selecionar um por ID.
+ * @param bd A referência à conexão do banco de dados.
  * @return ID do cliente selecionado.
  */
-int cliente_selecionar()
+int cliente_selecionar(sqlite3* bd)
 {
     int cliente = 0, opcao;
 
@@ -88,11 +95,11 @@ int cliente_selecionar()
 
         if (opcao == 1)
         {
-            cliente_buscar();
+            cliente_buscar(bd);
         }
         else if (opcao == 2)
         {
-            cliente_listar();
+            cliente_listar(bd);
         }
         else
         {

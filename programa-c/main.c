@@ -38,6 +38,7 @@ int main()
 #endif
 
     int opcao;
+    sqlite3* bd;
 
     printf("\n\n");
     printf("                         ::-======+.:*                      \n");
@@ -71,7 +72,7 @@ int main()
     printf("                       .:+==-+++++===+:-                    \n");
     printf("\n\n");
 
-    bd_conectar();
+    bd = bd_conectar();
 
     // TODO: login de funcionario?
 
@@ -97,15 +98,15 @@ int main()
         switch (opcao)
         {
         case 1:
-            produto_cadastrar();
+            produto_cadastrar(bd);
             break;
 
         case 2:
-            pedido_criar();
+            pedido_criar(bd);
             break;
 
         case 3:
-            pedido_listar();
+            pedido_listar(bd);
             break;
 
         case 4:
@@ -118,7 +119,8 @@ int main()
     }
     while (opcao != 4);
 
-    bd_limpa_fecha();
+    sqlite3_free(NULL);
+    sqlite3_close(bd);
 
     return 0;
 }
