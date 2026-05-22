@@ -24,7 +24,7 @@
     font-size: 16px;
 }
 
-.contato-container { /*colunas*/
+.contato-colunas { /*colunas*/
     display: flex; /*coloca as colunas lado a lado*/
     justify-content: center; /*centraliza o conjunto todo na tela*/
     align-items: stretch; /*alinha as colunas*/
@@ -64,7 +64,7 @@
     line-height: 1.5;
 }
 
-.icon-box { /*config de tamanho, e fundo dos icons*/
+.icone { /*config de tamanho, e fundo dos icons*/
     background-color: #f28d4f;
     width: 60px;
     height: 60px;
@@ -76,7 +76,7 @@
 }
 
 /*impede que o quadrado amasse em telas menores*/
-.icon-box svg { /*config da imagem dos icons*/
+.icone svg { /*config da imagem dos icons*/
     width: 30px;
     height: 30px;
     stroke: white; /* Cor da linha */
@@ -84,7 +84,7 @@
     stroke-width: 2;
 }
 
-.contato-form { /*config geral dos cards da coluna direita*/
+.formulario { /*config geral dos cards da coluna direita*/
     flex: 1;
     background: white;
     padding: 30px;
@@ -94,19 +94,19 @@
     flex-direction: column;
 }
 
-.contato-form form {
+.formulario form {
     display: flex;
     flex-direction: column;
     flex: 1;
 }
 
-.contato-form h3 {
+.formulario h3 {
     margin-top: 0;
     margin-bottom: 25px;
     color: #634226;
 }
 
-.contato-form label {
+.formulario label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
@@ -114,7 +114,7 @@
     font-size: 14px;
 }
 
-.contato-form input, .contato-form textarea {
+.formulario input, .formulario textarea {
     width: 100%;
     resize: none;
     padding: 12px;
@@ -152,7 +152,7 @@
     background-color: #f5f1e9;
 }
 
-.social-container {
+.redes-sociais {
     display: flex;
     gap: 30px;
     max-width: 1100px;
@@ -160,7 +160,7 @@
     align-items: stretch; /*as duas caixas ficam com a mesma altura*/
 }
 
-.redes-sociais-box { /*config geral da caixa de redes*/
+.card-redes { /*config geral da caixa de redes*/
     flex: 1;
     background-color: #634226;
     padding: 30px;
@@ -169,7 +169,7 @@
     text-align: center;
 }
 
-.redes-grid {
+.colunas-redes {
     display: grid; /*separa os textos em linhas e colunas*/
     grid-template-columns: 1fr 1fr; /*cria duas colunas iguais*/
     gap: 15px;
