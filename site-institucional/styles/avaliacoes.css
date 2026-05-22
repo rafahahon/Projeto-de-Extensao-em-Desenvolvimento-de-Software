@@ -34,25 +34,6 @@ body {
     align-items: center;
 }
 
-.logo-img {
-    height: 55px;
-    border-radius: 50%;
-    border: 2px solid var(--accent-orange);
-    margin-right: 15px;
-}
-
-.brand-text h1 {
-    margin: 0;
-    font-size: 24px;
-    color: var(--accent-orange);
-}
-
-.brand-text p {
-    margin: 0;
-    font-size: 13px;
-    color: #dccbc0;
-}
-
 .menu {
     display: flex;
     gap: 30px;
