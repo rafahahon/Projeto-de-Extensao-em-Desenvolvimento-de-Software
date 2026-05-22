@@ -20,7 +20,7 @@ body {
     font-family: 'Segoe UI', sans-serif;
 }
 
-.navbar {
+.menu {
     background-color: var(--primary-brown);
     display: flex;
     justify-content: space-between;
@@ -29,7 +29,7 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.logo-container {
+.logotipo {
     display: flex;
     align-items: center;
 }
@@ -65,30 +65,30 @@ body {
     font-size: 14px;
 }
 
-.btn-active {
+.filtro-btn-todas {
     background: var(--accent-orange);
     padding: 10px 22px;
     border-radius: 12px;
     color: white !important;
 }
 
-.container {
+.introducao {
     max-width: 1000px;
     margin: 0 auto;
     padding: 50px 20px;
 }
 
-.intro {
+.titulo {
     text-align: center;
     margin-bottom: 40px;
 }
 
-.section-title {
+.secao-titulo {
     font-size: 32px;
     color: var(--primary-brown);
 }
 
-.summary-card, .form-card, .review-card {
+.card1, .formulario, .review-card {
     background: var(--white);
     padding: 30px;
     border-radius: 20px;
@@ -96,49 +96,46 @@ body {
     margin-bottom: 30px;
 }
 
-.stars-display {
+.estrelas-card {
     color: var(--accent-orange);
     font-size: 24px;
     text-align: center;
 }
 
-.rating-value {
+.valor-card {
     font-size: 52px;
     font-weight: 800;
     color: var(--primary-brown);
     text-align: center;
 }
 
-/* ESTILO DAS ESTRELAS CLICÁVEIS */
-.star-rating {
+.avaliacao {
     display: flex;
-    flex-direction: row-reverse; /* Inverte para a lógica de seleção funcionar */
+    flex-direction: row-reverse;
     justify-content: center;
     font-size: 30px;
     margin-bottom: 10px;
 }
 
-.star-rating label {
+.avaliacao label {
     color: #e2d7cf;
     cursor: pointer;
     transition: 0.2s;
 }
-
-/* Quando seleciona ou passa o mouse, as estrelas ficam laranjas */
-.star-rating input:checked ~ label,
-.star-rating label:hover,
-.star-rating label:hover ~ label {
+.avaliacao input:checked ~ label,
+.avaliacao label:hover,
+.avaliacao label:hover ~ label {
     color: var(--accent-orange);
 }
 
-.filter-group {
+.texto-card {
     display: flex;
     justify-content: center;
     gap: 10px;
     margin-top: 20px;
 }
 
-.filter-btn {
+.filtro-btn {
     border: none;
     padding: 8px 18px;
     background: #f7f2ee;
@@ -147,7 +144,7 @@ body {
     cursor: pointer;
 }
 
-.filter-btn.active {
+.filtro-btn-todas {
     background: var(--primary-brown);
     color: white;
 }
@@ -164,7 +161,7 @@ textarea {
     box-sizing: border-box;
 }
 
-.btn-publish {
+.btn-publicar {
     background: var(--accent-orange);
     color: white;
     padding: 12px 24px;
@@ -182,12 +179,12 @@ textarea {
     gap: 20px;
 }
 
-.card-stars {
+.estrelas-card {
     color: var(--accent-orange);
     margin-bottom: 10px;
 }
 
-.author {
+.autor {
     font-weight: 700;
     color: var(--primary-brown);
     display: block;

@@ -4,7 +4,7 @@
 
 /*fundo bege clarinho da imagem*/
 /*MENU NAVBAR*/
-.navbar { /*agrupa links,logos e botões de busca*/
+.menu { /*agrupa links,logos e botões de busca*/
     background-color: #634226; /*cor do fundo, marrom café*/
     display: flex; /*alinhamento*/
     justify-content: space-between; /*distribui o espaço igualmente*/
@@ -15,13 +15,13 @@
 }
 
 /*sombra do botão*/
-.navigation { /*embelezamento*/
+.menu-botoes { /*embelezamento*/
     display: flex;
     align-items: center;
     gap: 25px;
 }
 
-.navigation a {
+.menu-botoes a {
     text-decoration: none;
     color: white;
     font-weight: bold;
@@ -29,7 +29,7 @@
     transition: 0.3s;
 }
 
-.navigation a:hover {
+.menu-botoes a:hover {
     color: #f28d4f;
 }
 

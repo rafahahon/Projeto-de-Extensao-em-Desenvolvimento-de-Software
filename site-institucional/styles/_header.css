@@ -7,26 +7,26 @@ body {
 }
 
 /*LOGO*/
-.logo-container {
+.logotipo {
     display: flex;
     align-items: center; /*alinha o texto e o icon verticalmente pelo centro*/
     gap: 15px;
 }
 
 /*espaço entre a logo e o texto*/
-.logo-icon { /*ajuste de altura e comprimento da logo*/
+.logo-icone { /*ajuste de altura e comprimento da logo*/
     height: 100px;
     width: auto;
 }
 
-.logo-text h1 { /*título da logo*/
+.logo-texto h1 { /*título da logo*/
     margin: 0;
     font-size: 26px;
     color: #f28d4f; /*logo texto*/
     line-height: 1;
 }
 
-.logo-text span { /*utilizada para estilizar pequenas partes de texto ou elementos sem quebrar a linha*/
+.logo-texto span { /*utilizada para estilizar pequenas partes de texto ou elementos sem quebrar a linha*/
     font-size: 13px;
     color: #e0e0e0;
 }
