@@ -30,7 +30,7 @@
 }
 
 .menu-botoes a:hover {
-    color: #f28d4f;
+    color: #e67e3c;
 }
 
 /*BOTÕES*/
@@ -47,8 +47,8 @@
 }
 
 .btn-home:active, .btn-cardapio:active, .btn-avaliacoes:active, .btn-contato:active, .btn-empresa:active { /*efeito quando apertar o botão*/
-    background-color: #e67e3c;
-    color: #ffffff;
+    background-color: #f28d4f;
+    color: white;
     border-radius: 12px;
     box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.2); /*sombra*/
     transform: translateY(0px);

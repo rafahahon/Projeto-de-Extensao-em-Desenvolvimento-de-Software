@@ -2,6 +2,15 @@
 @import "_menu.css";
 @import "_footer.css";
 
+:root {
+    --primary-brown: #634226;
+    --accent-orange: #e67e3c;
+    --bg-cream: #fdfaf7;
+    --text-coffee: #5d4a3e;
+    --text-light: #9e8d82;
+    --white: #ffffff;
+    --shadow: rgba(74, 52, 39, 0.06);
+}
 /* Reset e configurações básicas */
 * {
     margin: 0;
@@ -17,56 +26,7 @@ body {
     background-color: #FFF9F5;
 }
 
-/* Header */
-.header {
-    background-color: #6B4423;
-    padding: 1.5rem 1.5rem;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.header-container {
-    max-width: 72rem;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.back-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.back-button:hover {
-    color: #FF8C42;
-}
-
-.arrow-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-}
-
-.header-title {
-    font-size: 1.875rem;
-    color: white;
-    font-weight: 500;
-}
-
-@media (min-width: 768px) {
-    .header-title {
-        font-size: 2.25rem;
-    }
-}
-
-/* History Section */
-.history-section {
+.secao-historia {
     padding: 5rem 1.5rem;
     background-color: white;
 }
@@ -76,7 +36,7 @@ body {
     margin: 0 auto;
 }
 
-.section-title {
+.titulo{
     font-size: 2.5rem;
     text-align: center;
     margin-bottom: 1rem;
@@ -85,12 +45,12 @@ body {
 }
 
 @media (min-width: 768px) {
-    .section-title {
+    .titulo {
         font-size: 3.5rem;
     }
 }
 
-.section-subtitle {
+.subtitulo {
     text-align: center;
     color: #8B6F47;
     margin-bottom: 4rem;
@@ -101,16 +61,16 @@ body {
 }
 
 /* História em Texto */
-.history-text-box {
+.texto {
     background-color: #FFF9F5;
     padding: 3rem;
     border-radius: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 4rem;
-    border-left: 5px solid #FF8C42;
+    border-left: 5px solid #e67e3c;
 }
 
-.history-paragraph {
+.paragrafo {
     color: #6B4423;
     font-size: 1.25rem;
     line-height: 2;
@@ -118,12 +78,12 @@ body {
     text-align: justify;
 }
 
-.history-paragraph:last-child {
+.paragrafo:last-child {
     margin-bottom: 0;
 }
 
 /* Mission Box */
-.mission-box {
+.missao-caixa {
     margin-top: 4rem;
     background-color: #F5E6D3;
     padding: 2.5rem;
@@ -131,14 +91,14 @@ body {
     text-align: center;
 }
 
-.mission-title {
+.missao-titulo {
     font-size: 2rem;
     color: #6B4423;
     margin-bottom: 1.5rem;
     font-weight: 500;
 }
 
-.mission-text {
+.missao-texto {
     font-size: 1.125rem;
     color: #8B6F47;
     max-width: 48rem;
@@ -147,19 +107,19 @@ body {
 }
 
 /* Values Grid */
-.values-grid {
+.valores {
     margin-top: 3rem;
     display: grid;
     gap: 1.5rem;
 }
 
 @media (min-width: 768px) {
-    .values-grid {
+    .valores {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-.value-card {
+.valores-card {
     background-color: white;
     padding: 1.5rem;
     border-radius: 1rem;
@@ -167,14 +127,14 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.value-title {
+.valores-titulo {
     font-size: 1.25rem;
     color: #6B4423;
     margin-bottom: 0.75rem;
     font-weight: 500;
 }
 
-.value-text {
+.valores-texto {
     color: #8B6F47;
     font-size: 0.875rem;
 }

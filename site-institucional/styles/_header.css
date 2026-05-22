@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /*fontes*/
-    background-color: #f5f1e9;
+    background-color: white;
 }
 
 /*LOGO*/
@@ -22,11 +22,11 @@ body {
 .logo-texto h1 { /*título da logo*/
     margin: 0;
     font-size: 26px;
-    color: #f28d4f; /*logo texto*/
+    color: #e67e3c; /*logo texto*/
     line-height: 1;
 }
 
 .logo-texto span { /*utilizada para estilizar pequenas partes de texto ou elementos sem quebrar a linha*/
     font-size: 13px;
-    color: #e0e0e0;
+    color: white;
 }

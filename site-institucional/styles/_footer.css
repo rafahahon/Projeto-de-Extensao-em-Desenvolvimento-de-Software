@@ -1,7 +1,7 @@
 /*RODAPÉ*/
 .rodape-principal {
-    background-color: #613C26;
-    color: #E2E2E2;
+    background-color: #634226;
+    color: white;
     padding: 60px 20px;
     text-align: center;
 }
@@ -96,7 +96,7 @@
 .icone-rede-social {
     width: 24px;
     height: 24px;
-    fill: #E2E2E2;
+    fill: white;
 }
 
 .copyright {

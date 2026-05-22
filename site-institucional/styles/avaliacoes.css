@@ -11,6 +11,12 @@
     --white: #ffffff;
     --shadow: rgba(74, 52, 39, 0.06);
 }
+/* Reset e configurações básicas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
@@ -18,15 +24,6 @@ body {
     background-color: var(--bg-cream);
     color: var(--text-coffee);
     font-family: 'Segoe UI', sans-serif;
-}
-
-.menu {
-    background-color: var(--primary-brown);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 8%;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .logotipo {
