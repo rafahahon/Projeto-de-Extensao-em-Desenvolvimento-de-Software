@@ -59,6 +59,6 @@ char* ler_arquivo(const char* caminho_arquivo);
  * @param obrigatorio 1 para obrigatória, 0 para opcional.
  * @return Booleano se a variável passou pela validação ou não.
  */
-int valida_string(const char* variavel, const int tamanho_min, const int obrigatorio);
+int valida_string(const char* variavel, int tamanho_min, int obrigatorio);
 
 #endif //CODE_CAT_COFFEE_UTILIDADES_H

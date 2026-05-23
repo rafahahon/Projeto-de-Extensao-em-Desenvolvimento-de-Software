@@ -65,7 +65,7 @@ sqlite3_int64 cat_prod_cadastrar(sqlite3* bd)
 {
     char nome[255];
     int retorno;
-    sqlite3_int64 id_cat_pedido;
+    sqlite3_int64 id_cat_produto;
     sqlite3_stmt* statement = NULL;
 
     printf("Digite o nome da categoria de produto:\n");
@@ -101,15 +101,15 @@ sqlite3_int64 cat_prod_cadastrar(sqlite3* bd)
         return 0;
     }
 
-    // Pega o ID do pedido, para referência
-    id_cat_pedido = sqlite3_last_insert_rowid(bd);
+    // Pega o ID da categoria de produto, para referência
+    id_cat_produto = sqlite3_last_insert_rowid(bd);
 
     // Limpeza pós-execução
     sqlite3_finalize(statement);
 
     printf("Categoria de Produto cadastrada!\n");
 
-    return id_cat_pedido;
+    return id_cat_produto;
 }
 
 /**

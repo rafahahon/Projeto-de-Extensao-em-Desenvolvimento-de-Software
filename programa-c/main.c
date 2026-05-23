@@ -22,7 +22,7 @@
 #include "produto.h"
 #include "utilidades.h"
 
-// Para poder rodar os printf em Português corretamente
+// Para poder rodar os printf em português corretamente
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -31,7 +31,7 @@ int main()
 {
     setlocale(LC_ALL, "pt_BR.UTF-8");
 
-    // Para poder usar o encoding e o idioma Português no terminal do Windows
+    // Para poder usar o encoding e o idioma português no terminal do Windows
 #ifdef _WIN32
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);

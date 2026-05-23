@@ -40,7 +40,7 @@ void entrada_data(int* data)
     ptr = (char*)temp_var;
 
     // Extrai o DIA
-    long temp_dia = strtol(ptr, &endptr, 10);
+    const long temp_dia = strtol(ptr, &endptr, 10);
 
     if (ptr == endptr || *endptr != '-')
     {
@@ -52,7 +52,7 @@ void entrada_data(int* data)
     ptr = endptr + 1; // Avança o ponteiro para pular o hífen '-'
 
     // Extrai o MÊS
-    long temp_mes = strtol(ptr, &endptr, 10);
+    const long temp_mes = strtol(ptr, &endptr, 10);
 
     if (ptr == endptr || *endptr != '-')
     {
@@ -64,7 +64,7 @@ void entrada_data(int* data)
     ptr = endptr + 1; // Avança o ponteiro para pular o segundo hífen '-'
 
     // Extrai o ANO
-    long temp_ano = strtol(ptr, &endptr, 10);
+    const long temp_ano = strtol(ptr, &endptr, 10);
 
     // O ano deve terminar com o fim da string ('\0') ou uma nova linha ('\n')
     if (ptr == endptr || (*endptr != '\0' && *endptr != '\n'))
@@ -133,7 +133,7 @@ int entrada_int()
  * @param variavel A variável que vai receber a entrada do usuário em stdin
  * @param tamanho_max O tamanho máximo da string
  */
-void entrada_string(char* variavel, size_t tamanho_max)
+void entrada_string(char* variavel, const size_t tamanho_max)
 {
     char input_buffer[255];
 
