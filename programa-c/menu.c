@@ -19,9 +19,11 @@
 #include "categoria_produto.h"
 #include "forma_pagamento.h"
 #include "funcionario.h"
+#include "gato.h"
 #include "menu.h"
 #include "mesa.h"
 #include "pedido.h"
+#include "playground.h"
 #include "produto.h"
 #include "reserva_mesa.h"
 #include "utilidades.h"
@@ -434,35 +436,35 @@ void menu_playground(sqlite3* bd)
         switch (opcao)
         {
         case 1:
-            // TODO: criar playground
+            playground_cadastrar(bd);
             break;
 
         case 2:
-            // TODO: editar playground
+            playground_editar(bd);
             break;
 
         case 3:
-            // TODO: buscar playground
+            playground_buscar(bd);
             break;
 
         case 4:
-            // TODO: listar playgrounds
+            playground_listar(bd);
             break;
 
         case 5:
-            // TODO: criar gato
+            gato_cadastrar(bd);
             break;
 
         case 6:
-            // TODO: editar gato
+            gato_editar(bd);
             break;
 
         case 7:
-            // TODO: buscar gato
+            gato_buscar(bd);
             break;
 
         case 8:
-            // TODO: listar gatos
+            gato_listar(bd);
             break;
 
         case 9:

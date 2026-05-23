@@ -10,9 +10,11 @@ add_executable(main programa-c/main.c programa-c/sqlite3.c
         programa-c/cliente.c
         programa-c/forma_pagamento.c
         programa-c/funcionario.c
+        programa-c/gato.c
         programa-c/menu.c
         programa-c/mesa.c
         programa-c/pedido.c
+        programa-c/playground.c
         programa-c/produto.c
         programa-c/reserva_mesa.c
         programa-c/utilidades.c)
