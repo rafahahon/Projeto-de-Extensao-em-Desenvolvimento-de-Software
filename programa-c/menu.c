@@ -359,11 +359,11 @@ void menu_pedido(sqlite3* bd)
             break;
 
         case 2:
-            // TODO: editar pedido
+            pedido_editar(bd);
             break;
 
         case 3:
-            // TODO: buscar pedido
+            pedido_buscar_por_cliente(bd);
             break;
 
         case 4:
