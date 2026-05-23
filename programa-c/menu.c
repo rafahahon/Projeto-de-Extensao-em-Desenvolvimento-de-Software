@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include "cliente.h"
 #include "categoria_produto.h"
+#include "forma_pagamento.h"
 #include "menu.h"
 #include "pedido.h"
 #include "produto.h"
@@ -291,7 +292,7 @@ void menu_outros(sqlite3* bd)
             break;
 
         case 5:
-            // TODO: criar forma de pagamento
+            forma_pagto_cadastrar(bd);
             break;
 
         case 6:
@@ -299,11 +300,11 @@ void menu_outros(sqlite3* bd)
             break;
 
         case 7:
-            // TODO: buscar forma de pagamento
+            forma_pagto_buscar(bd);
             break;
 
         case 8:
-            // TODO: listar forma de pagamento
+            forma_pagto_listar(bd);
             break;
 
         case 0:
