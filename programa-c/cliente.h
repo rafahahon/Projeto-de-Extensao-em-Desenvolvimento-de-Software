@@ -17,6 +17,8 @@
 #ifndef CODE_CAT_COFFEE_CLIENTE_H
 #define CODE_CAT_COFFEE_CLIENTE_H
 
+#include "sqlite3.h"
+
 /**
  * Roda uma consulta de busca de clientes e imprime o resultado da busca.
  * @param bd A referência à conexão do banco de dados.

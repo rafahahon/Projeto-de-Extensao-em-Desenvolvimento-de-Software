@@ -17,6 +17,8 @@
 #ifndef CODE_CAT_COFFEE_PEDIDO_H
 #define CODE_CAT_COFFEE_PEDIDO_H
 
+#include "sqlite3.h"
+
 /**
  * Adiciona um produto ao pedido.
  * @param bd A referência à conexão do banco de dados.
