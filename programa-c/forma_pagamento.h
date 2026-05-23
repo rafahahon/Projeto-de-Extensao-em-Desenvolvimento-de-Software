@@ -33,6 +33,12 @@ void forma_pagto_buscar(sqlite3* bd);
 sqlite3_int64 forma_pagto_cadastrar(sqlite3* bd);
 
 /**
+ * Edita uma forma de pagamento existente.
+ * @param bd A referência à conexão do banco de dados.
+ */
+void forma_pagto_editar(sqlite3* bd);
+
+/**
  * Roda uma consulta de todas as formas de pagamento e lista os resultados.
  * @param bd A referência à conexão do banco de dados.
  */

@@ -129,7 +129,7 @@ void menu_cliente(sqlite3* bd)
             break;
 
         case 2:
-            // TODO: editar cliente
+            cliente_editar(bd);
             break;
 
         case 3:
@@ -296,7 +296,7 @@ void menu_outros(sqlite3* bd)
             break;
 
         case 6:
-            // TODO: editar forma de pagamento
+            forma_pagto_editar(bd);
             break;
 
         case 7:
@@ -529,7 +529,7 @@ void menu_produto(sqlite3* bd)
             break;
 
         case 2:
-            // TODO: editar produto
+            produto_editar(bd);
             break;
 
         case 3:
@@ -545,7 +545,7 @@ void menu_produto(sqlite3* bd)
             break;
 
         case 6:
-            // TODO: editar categoria de produto
+            cat_prod_editar(bd);
             break;
 
         case 7:

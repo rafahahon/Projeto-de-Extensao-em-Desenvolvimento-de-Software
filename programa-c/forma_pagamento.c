@@ -113,6 +113,71 @@ sqlite3_int64 forma_pagto_cadastrar(sqlite3* bd)
 }
 
 /**
+ * Edita uma forma de pagamento existente.
+ * @param bd A referência à conexão do banco de dados.
+ */
+void forma_pagto_editar(sqlite3* bd)
+{
+    char nome[255];
+    int retorno;
+    sqlite3_int64 id_forma_pagto = 0;
+    sqlite3_stmt* statement = NULL;
+
+    id_forma_pagto = forma_pagto_selecionar(bd);
+
+    if (id_forma_pagto == 0)
+    {
+        printf("Nenhuma forma de pagamento selecionada! Cancelando edição.\n");
+        return;
+    }
+
+    printf("Digite o novo nome da forma de pagamento ou enter para pular:\n");
+    entrada_string(nome, sizeof(nome));
+
+    if (strlen(nome) == 0)
+    {
+        printf("Nome não fornecido, cancelando edição.\n");
+        return;
+    }
+
+    while (valida_string(nome, 3, 1) <= 0)
+    {
+        printf("Nome não pode ser vazio ou menor que 3 letras, digite um nome válido:\n");
+        entrada_string(nome, sizeof(nome));
+    }
+
+    retorno = bd_prepara_consulta(
+        bd,
+        "UPDATE forma_pagamento SET nome = ? WHERE id_forma_pagto = ?;",
+        &statement
+    );
+
+    if (retorno != 0)
+    {
+        printf("Erro ao atualizar forma de pagamento: %s\n", sqlite3_errmsg(bd));
+        return;
+    }
+
+    // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
+    sqlite3_bind_text(statement, 1, nome, -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int64(statement, 2, id_forma_pagto);
+
+    // Rodamos a consulta
+    retorno = sqlite3_step(statement);
+
+    if (retorno != SQLITE_DONE)
+    {
+        printf("Erro ao atualizar forma de pagamento: %s\n", sqlite3_errmsg(bd));
+        return;
+    }
+
+    // Limpeza pós-execução
+    sqlite3_finalize(statement);
+
+    printf("Forma de pagamento atualizada com sucesso!\n");
+}
+
+/**
  * Roda uma consulta de todas as formas de pagamento e lista os resultados.
  * @param bd A referência à conexão do banco de dados.
  */

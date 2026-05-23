@@ -33,6 +33,12 @@ void produto_buscar(sqlite3* bd);
 sqlite3_int64 produto_cadastrar(sqlite3* bd);
 
 /**
+ * Edita um produto existente.
+ * @param bd A referência à conexão do banco de dados.
+ */
+void produto_editar(sqlite3* bd);
+
+/**
  * Roda uma consulta de todos os produtos disponíveis em estoque e lista os resultados.
  * @param bd A referência à conexão do banco de dados.
  */

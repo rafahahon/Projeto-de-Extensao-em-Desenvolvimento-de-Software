@@ -11,7 +11,7 @@
  * | Victor Nunes Garcia             | 3026101023 |
  * ================================================
  *
- * Biblioteca Code Cat Coffee - Módulo Categoria de Produtos
+ * Biblioteca Code Cat Coffee - Módulo Categorias de Produto
  */
 
 #ifndef CODE_CAT_COFFEE_CATEGORIA_PRODUTO_H
@@ -31,6 +31,12 @@ void cat_prod_buscar(sqlite3* bd);
  * @return O ID da categoria de produto se sucesso, 0 se falha ou erro.
  */
 sqlite3_int64 cat_prod_cadastrar(sqlite3* bd);
+
+/**
+ * Edita uma categoria de produto existente.
+ * @param bd A referência à conexão do banco de dados.
+ */
+void cat_prod_editar(sqlite3* bd);
 
 /**
  * Roda uma consulta de todas as categorias de produto e lista os resultados.

@@ -121,6 +121,118 @@ sqlite3_int64 cliente_cadastrar(sqlite3* bd)
 }
 
 /**
+ * Edita um cliente existente.
+ * @param bd A referência à conexão do banco de dados.
+ */
+void cliente_editar(sqlite3* bd)
+{
+    char nome[255], email[255], github[255], query[1024];
+    int retorno, tem_campo_anterior, indice_bind;
+    sqlite3_int64 id_cliente = 0;
+    sqlite3_stmt* statement = NULL;
+
+    id_cliente = cliente_selecionar(bd);
+
+    if (id_cliente == 0)
+    {
+        printf("Nenhum cliente selecionado! Cancelando edição.\n");
+        return;
+    }
+
+    printf("Digite o novo nome do cliente ou enter para pular:\n");
+    entrada_string(nome, sizeof(nome));
+
+    while (strlen(nome) > 0 && valida_string(nome, 3, 1) <= 0)
+    {
+        printf("Nome não pode ser vazio ou menor que 3 letras, digite um nome válido:\n");
+        entrada_string(nome, sizeof(nome));
+    }
+
+    printf("Digite o novo email do cliente ou enter para pular:\n");
+    entrada_string(email, sizeof(email));
+
+    printf("Digite o novo usuário GitHub do cliente ou enter para pular:\n");
+    entrada_string(github, sizeof(github));
+
+    // Verifica se o usuário simplesmente apertou enter em tudo
+    if (strlen(nome) == 0 && strlen(email) == 0 && strlen(github) == 0)
+    {
+        printf("Nenhum dado fornecido, edição cancelada.\n");
+        return;
+    }
+
+    // Construção dinâmica da query
+    strcpy(query, "UPDATE cliente SET ");
+    tem_campo_anterior = 0;
+
+    if (strlen(nome) > 0)
+    {
+        strcat(query, "nome = ?");
+        tem_campo_anterior = 1;
+    }
+
+    if (strlen(email) > 0)
+    {
+        if (tem_campo_anterior) strcat(query, ", ");
+        strcat(query, "email = ?");
+        tem_campo_anterior = 1;
+    }
+
+    if (strlen(github) > 0)
+    {
+        if (tem_campo_anterior) strcat(query, ", ");
+        strcat(query, "github_user = ?");
+    }
+
+    // Adiciona a condição final
+    strcat(query, " WHERE id_cliente = ?;");
+
+    retorno = bd_prepara_consulta(bd, query, &statement);
+
+    if (retorno != 0)
+    {
+        printf("Erro ao atualizar cliente: %s\n", sqlite3_errmsg(bd));
+        return;
+    }
+
+    // Vamos iniciar o índice em 1 e entao incrementando conforme executamos cada bind
+    indice_bind = 1;
+
+    // Usamos SQLITE_TRANSIENT, pois as variáveis são arrays locais que serão destruídas
+    if (strlen(nome) > 0)
+    {
+        sqlite3_bind_text(statement, indice_bind++, nome, -1, SQLITE_TRANSIENT);
+    }
+
+    if (strlen(email) > 0)
+    {
+        sqlite3_bind_text(statement, indice_bind++, email, -1, SQLITE_TRANSIENT);
+    }
+
+    if (strlen(github) > 0)
+    {
+        sqlite3_bind_text(statement, indice_bind++, github, -1, SQLITE_TRANSIENT);
+    }
+
+    // O ID será sempre o último indice_bind disponível
+    sqlite3_bind_int64(statement, indice_bind, id_cliente);
+
+    // Rodamos a consulta
+    retorno = sqlite3_step(statement);
+
+    if (retorno != SQLITE_DONE)
+    {
+        printf("Erro ao atualizar cliente: %s\n", sqlite3_errmsg(bd));
+        return;
+    }
+
+    // Limpeza pós-execução
+    sqlite3_finalize(statement);
+
+    printf("Cliente atualizado com sucesso!\n");
+}
+
+/**
  * Roda uma consulta de todos os clientes e lista os resultados.
  * @param bd A referência à conexão do banco de dados.
  */

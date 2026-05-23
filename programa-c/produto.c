@@ -143,6 +143,148 @@ sqlite3_int64 produto_cadastrar(sqlite3* bd)
 }
 
 /**
+ * Edita um produto existente.
+ * @param bd A referência à conexão do banco de dados.
+ */
+void produto_editar(sqlite3* bd)
+{
+    char nome[255], query[1024];
+    float preco;
+    int quantidade, categoria, retorno, tem_campo_anterior, indice_bind;
+    sqlite3_int64 id_produto = 0;
+    sqlite3_stmt* statement = NULL;
+
+    id_produto = produto_selecionar(bd);
+
+    if (id_produto == 0)
+    {
+        printf("Nenhum produto selecionado! Cancelando edição.\n");
+        return;
+    }
+
+    printf("Digite o novo nome do produto ou enter para pular:\n");
+    entrada_string(nome, sizeof(nome));
+
+    while (strlen(nome) > 0 && valida_string(nome, 3, 1) <= 0)
+    {
+        printf("Nome não pode ser vazio ou menor que 3 letras, digite um nome válido:\n");
+        entrada_string(nome, sizeof(nome));
+    }
+
+    // aqui pedimos o preço
+    printf("Ditige o novo preço unitário ou enter para pular: ");
+    preco = entrada_float();
+
+    while (preco != -1.0f && preco <= 0)
+    {
+        printf("Preço precisa ser maior que zero, digite um preço válido:\n");
+        preco = entrada_float();
+    }
+
+    // aqui pedimos a quantidade
+    printf("Digite a nova quantidade em estoque ou enter para pular: ");
+    quantidade = entrada_int();
+
+    while (quantidade < -1)
+    {
+        printf("Quantidade precisa ser maior ou igual a zero, digite uma quantidade válida:\n");
+        quantidade = entrada_int();
+    }
+
+    // aqui pedimos a categoria
+    categoria = cat_prod_selecionar(bd);
+
+    // Verifica se o usuário simplesmente apertou enter em tudo
+    if (strlen(nome) == 0 && preco == -1.0f && quantidade == -1 && categoria == 0)
+    {
+        printf("Nenhum dado fornecido, edição cancelada.\n");
+        return;
+    }
+
+    // Construção dinâmica da query
+    strcpy(query, "UPDATE produto SET ");
+    tem_campo_anterior = 0;
+
+    if (strlen(nome) > 0)
+    {
+        strcat(query, "nome = ?");
+        tem_campo_anterior = 1;
+    }
+
+    if (preco >= 0.0f)
+    {
+        if (tem_campo_anterior) strcat(query, ", ");
+        strcat(query, "preco = ?");
+        tem_campo_anterior = 1;
+    }
+
+    if (quantidade > -1)
+    {
+        if (tem_campo_anterior) strcat(query, ", ");
+        strcat(query, "quantidade_estoque = ?");
+        tem_campo_anterior = 1;
+    }
+
+    if (categoria > 0)
+    {
+        if (tem_campo_anterior) strcat(query, ", ");
+        strcat(query, "id_cat_produto = ?");
+    }
+
+    // Adiciona a condição final
+    strcat(query, " WHERE id_produto = ?;");
+
+    retorno = bd_prepara_consulta(bd, query, &statement);
+
+    if (retorno != 0)
+    {
+        printf("Erro ao atualizar produto: %s\n", sqlite3_errmsg(bd));
+        return;
+    }
+
+    // Vamos iniciar o índice em 1 e entao incrementando conforme executamos cada bind
+    indice_bind = 1;
+
+    // Usamos SQLITE_TRANSIENT, pois as variáveis são arrays locais que serão destruídas
+    if (strlen(nome) > 0)
+    {
+        sqlite3_bind_text(statement, indice_bind++, nome, -1, SQLITE_TRANSIENT);
+    }
+
+    if (preco >= 0.0f)
+    {
+        sqlite3_bind_double(statement, indice_bind++, preco);
+    }
+
+    if (quantidade >= 0)
+    {
+        sqlite3_bind_int(statement, indice_bind++, quantidade);
+    }
+
+    if (categoria > 0)
+    {
+        sqlite3_bind_int(statement, indice_bind++, categoria);
+    }
+
+    // O ID será sempre o último indice_bind disponível
+    sqlite3_bind_int64(statement, indice_bind, id_produto);
+
+    // Rodamos a consulta
+    retorno = sqlite3_step(statement);
+
+    if (retorno != SQLITE_DONE)
+    {
+        printf("Erro ao atualizar produto: %s\n", sqlite3_errmsg(bd));
+        return;
+    }
+
+    // Limpeza pós-execução
+    sqlite3_finalize(statement);
+
+    printf("Produto atualizado com sucesso!\n");
+}
+
+/**
  * Roda uma consulta de todos os produtos disponíveis em estoque e lista os resultados.
  * @param bd A referência à conexão do banco de dados.
  */
