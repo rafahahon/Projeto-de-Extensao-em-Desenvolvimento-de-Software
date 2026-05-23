@@ -18,6 +18,7 @@
 #include "cliente.h"
 #include "categoria_produto.h"
 #include "forma_pagamento.h"
+#include "funcionario.h"
 #include "menu.h"
 #include "pedido.h"
 #include "produto.h"
@@ -276,19 +277,19 @@ void menu_outros(sqlite3* bd)
         switch (opcao)
         {
         case 1:
-            // TODO: criar funcionario
+            funcionario_cadastrar(bd);
             break;
 
         case 2:
-            // TODO: editar funcionario
+            funcionario_editar(bd);
             break;
 
         case 3:
-            // TODO: buscar funcionario
+            funcionario_buscar(bd);
             break;
 
         case 4:
-            // TODO: listar funcionarios
+            funcionario_listar(bd);
             break;
 
         case 5:
