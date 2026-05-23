@@ -46,7 +46,7 @@ void cliente_buscar(sqlite3* bd)
     // Coloca % para poder pegar parciais
     sprintf(termo_busca, "%%%s%%", nome);
     // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
-    sqlite3_bind_text(statement, 1, termo_busca, -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 1, termo_busca, -1, SQLITE_TRANSIENT);
 
     printf("Clientes encontrados:\n");
 
@@ -96,9 +96,9 @@ sqlite3_int64 cliente_cadastrar(sqlite3* bd)
     }
 
     // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
-    sqlite3_bind_text(statement, 1, nome, -1, SQLITE_STATIC);
-    sqlite3_bind_text(statement, 2, email, -1, SQLITE_STATIC);
-    sqlite3_bind_text(statement, 3, github, -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 1, nome, -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(statement, 2, email, -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(statement, 3, github, -1, SQLITE_TRANSIENT);
 
     // Rodamos a consulta
     retorno = sqlite3_step(statement);

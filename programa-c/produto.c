@@ -48,7 +48,7 @@ void produto_buscar(sqlite3* bd)
     // Coloca % para poder pegar parciais
     sprintf(termo_busca, "%%%s%%", nome);
     // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
-    sqlite3_bind_text(statement, 1, termo_busca, -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 1, termo_busca, -1, SQLITE_TRANSIENT);
 
     printf("Produtos encontrados:\n");
 
@@ -117,7 +117,7 @@ sqlite3_int64 produto_cadastrar(sqlite3* bd)
     }
 
     // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
-    sqlite3_bind_text(statement, 1, nome, -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 1, nome, -1, SQLITE_TRANSIENT);
     sqlite3_bind_double(statement, 2, preco);
     sqlite3_bind_int(statement, 3, quantidade);
     sqlite3_bind_int(statement, 4, categoria);
