@@ -20,6 +20,7 @@
 #include "forma_pagamento.h"
 #include "funcionario.h"
 #include "menu.h"
+#include "mesa.h"
 #include "pedido.h"
 #include "produto.h"
 #include "utilidades.h"
@@ -194,19 +195,19 @@ void menu_mesa(sqlite3* bd)
         switch (opcao)
         {
         case 1:
-            // TODO: criar mesa
+            mesa_cadastrar(bd);
             break;
 
         case 2:
-            // TODO: editar mesa
+            mesa_editar(bd);
             break;
 
         case 3:
-            // TODO: buscar mesa
+            mesa_buscar(bd);
             break;
 
         case 4:
-            // TODO: listar mesas
+            mesa_listar(bd);
             break;
 
         case 5:

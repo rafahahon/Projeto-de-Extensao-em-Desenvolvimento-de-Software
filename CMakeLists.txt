@@ -13,6 +13,7 @@ add_executable(main programa-c/main.c programa-c/sqlite3.c
         programa-c/pedido.c
         programa-c/produto.c
         programa-c/menu.c
+        programa-c/mesa.c
         programa-c/utilidades.c)
 
 # Link the threading library (required for SQLite)
