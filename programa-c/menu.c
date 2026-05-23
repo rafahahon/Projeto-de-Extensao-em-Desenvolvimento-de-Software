@@ -23,6 +23,7 @@
 #include "mesa.h"
 #include "pedido.h"
 #include "produto.h"
+#include "reserva_mesa.h"
 #include "utilidades.h"
 
 /**
@@ -167,7 +168,8 @@ void menu_mesa(sqlite3* bd)
         "Listar Mesas",
         "Nova Reserva de Mesa",
         "Alterar Reserva de Mesa",
-        "Buscar Reserva de Mesas",
+        "Buscar Reserva de Mesas por Nome de Cliente",
+        "Buscar Reserva de Mesas por Número de Mesa",
         "Listar Reserva de Mesas"
     };
     // Descobre a quantidade de itens dividindo o tamanho total da array
@@ -211,19 +213,23 @@ void menu_mesa(sqlite3* bd)
             break;
 
         case 5:
-            // TODO: criar reserva de mesa
+            reserva_mesa_cadastrar(bd);
             break;
 
         case 6:
-            // TODO: editar reserva de mesa
+            reserva_mesa_editar(bd);
             break;
 
         case 7:
-            // TODO: buscar reserva de mesa
+            reserva_mesa_buscar_por_cliente(bd);
             break;
 
         case 8:
-            // TODO: listar reserva de mesas
+            reserva_mesa_buscar_por_mesa(bd);
+            break;
+
+        case 9:
+            reserva_mesa_listar(bd);
             break;
 
         case 0:
