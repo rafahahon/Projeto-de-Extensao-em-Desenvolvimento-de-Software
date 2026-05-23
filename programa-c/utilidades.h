@@ -22,6 +22,7 @@
 /**
  * Pega entrada do usuário e trata como data no formato DD-MM-YYYY.
  * Caso usuário não forneça uma data, usar a data atual.
+ * @param data A variável que vai receber a entrada do usuário em stdin.
  */
 void entrada_data(int* data);
 

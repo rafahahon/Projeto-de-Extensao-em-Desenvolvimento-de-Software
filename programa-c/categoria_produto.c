@@ -11,7 +11,7 @@
  * | Victor Nunes Garcia             | 3026101023 |
  * ================================================
  *
- * Biblioteca Code Cat Coffee - Módulo Categoria de Produtos
+ * Biblioteca Code Cat Coffee - Módulo Categorias de Produto
  */
 
 #include <stdio.h>
@@ -110,6 +110,71 @@ sqlite3_int64 cat_prod_cadastrar(sqlite3* bd)
     printf("Categoria de Produto cadastrada!\n");
 
     return id_cat_produto;
+}
+
+/**
+ * Edita uma categoria de produto existente.
+ * @param bd A referência à conexão do banco de dados.
+ */
+void cat_prod_editar(sqlite3* bd)
+{
+    char nome[255];
+    int retorno;
+    sqlite3_int64 id_cat_produto = 0;
+    sqlite3_stmt* statement = NULL;
+
+    id_cat_produto = cat_prod_selecionar(bd);
+
+    if (id_cat_produto == 0)
+    {
+        printf("Nenhuma categoria de produto selecionada! Cancelando edição.\n");
+        return;
+    }
+
+    printf("Digite o novo nome da categoria ou enter para pular:\n");
+    entrada_string(nome, sizeof(nome));
+
+    if (strlen(nome) == 0)
+    {
+        printf("Nome não fornecido, cancelando edição.\n");
+        return;
+    }
+
+    while (valida_string(nome, 3, 1) <= 0)
+    {
+        printf("Nome não pode ser vazio ou menor que 3 letras, digite um nome válido:\n");
+        entrada_string(nome, sizeof(nome));
+    }
+
+    retorno = bd_prepara_consulta(
+        bd,
+        "UPDATE categoria_produto SET nome = ? WHERE id_cat_produto = ?;",
+        &statement
+    );
+
+    if (retorno != 0)
+    {
+        printf("Erro ao atualizar categoria de produto: %s\n", sqlite3_errmsg(bd));
+        return;
+    }
+
+    // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
+    sqlite3_bind_text(statement, 1, nome, -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int64(statement, 2, id_cat_produto);
+
+    // Rodamos a consulta
+    retorno = sqlite3_step(statement);
+
+    if (retorno != SQLITE_DONE)
+    {
+        printf("Erro ao atualizar categoria de produto: %s\n", sqlite3_errmsg(bd));
+        return;
+    }
+
+    // Limpeza pós-execução
+    sqlite3_finalize(statement);
+
+    printf("Categoria de produto atualizada com sucesso!\n");
 }
 
 /**

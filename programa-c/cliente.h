@@ -33,6 +33,12 @@ void cliente_buscar(sqlite3* bd);
 sqlite3_int64 cliente_cadastrar(sqlite3* bd);
 
 /**
+ * Edita um cliente existente.
+ * @param bd A referência à conexão do banco de dados.
+ */
+void cliente_editar(sqlite3* bd);
+
+/**
  * Roda uma consulta de todos os clientes e lista os resultados.
  * @param bd A referência à conexão do banco de dados.
  */

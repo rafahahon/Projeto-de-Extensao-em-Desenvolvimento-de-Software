@@ -23,6 +23,7 @@
 /**
  * Pega entrada do usuário e trata como data no formato DD-MM-YYYY.
  * Caso usuário não forneça uma data, usar a data atual.
+ * @param data A variável que vai receber a entrada do usuário em stdin.
  */
 void entrada_data(int* data)
 {
@@ -88,6 +89,15 @@ float entrada_float()
 
     if (fgets(input_buffer, sizeof(input_buffer), stdin))
     {
+        // Remove o \n antes de medir o tamanho
+        input_buffer[strcspn(input_buffer, "\n")] = 0;
+
+        // Se usuário não digitar nada, retornar −1.0f
+        if (strlen(input_buffer) == 0)
+        {
+            return -1.0f;
+        }
+
         // strtof converte string para float
         temp_var = strtof(input_buffer, &endptr);
 
@@ -114,6 +124,15 @@ int entrada_int()
 
     if (fgets(input_buffer, sizeof(input_buffer), stdin))
     {
+        // Remove o \n antes de medir o tamanho
+        input_buffer[strcspn(input_buffer, "\n")] = 0;
+
+        // Se usuário não digitar nada, retornar −1
+        if (strlen(input_buffer) == 0)
+        {
+            return -1;
+        }
+
         // strtol converte uma string em long, depois forçamos para int
         temp_var = strtol(input_buffer, &endptr, 10);
 
