@@ -109,7 +109,7 @@ sqlite3_int64 cliente_cadastrar(sqlite3* bd)
         return 0;
     }
 
-    // Pega o ID do pedido, para referência
+    // Pega o ID do cliente, para referência
     id_cliente = sqlite3_last_insert_rowid(bd);
 
     // Limpeza pós-execução
