@@ -1,0 +1,445 @@
+/* --- Variáveis de Cor e Novas Fontes --- */
+:root {
+    --header-bg: #4A3424; /* Marrom escuro */
+    --primary: #E27B42; /* Laranja/Terracota */
+    --primary-hover: #C56633; 
+    --body-bg: #FFFBF5; /* Fundo bem suave */
+    --secondary-bg: #FAEDDF; /* Pêssego suave para cartões */
+    --text-dark: #3E2723; /* Marrom escuro para texto */
+    --text-light: #795548; /* Marrom claro para parágrafos */
+    
+    /* Fontes atualizadas para ficarem mais bonitas e modernas */
+    --font-title: 'Montserrat', sans-serif;
+    --font-text: 'Quicksand', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--body-bg);
+    color: var(--text-dark);
+    font-family: var(--font-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Botões (Soft UI) --- */
+.btn {
+    background-color: var(--primary);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-family: var(--font-title);
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(226, 123, 66, 0.3); /* Sombra suave */
+}
+
+.btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(226, 123, 66, 0.4);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--text-dark);
+    border: 2px solid var(--text-dark);
+    box-shadow: none;
+}
+
+.btn-outline:hover {
+    background-color: var(--text-dark);
+    color: white;
+    box-shadow: 0 6px 20px rgba(62, 39, 35, 0.2);
+}
+
+/* --- Cabeçalho Marrom (Baseado na sua imagem) --- */
+.header {
+    background-color: var(--header-bg);
+    padding: 15px 0;
+    color: white;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-image {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-title {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.logo-subtitle {
+    font-size: 0.9rem;
+    color: white;
+    font-weight: 500;
+    margin-top: 5px;
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+}
+
+.nav-links a {
+    color: white;
+    font-weight: 700;
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary);
+}
+
+/* --- Hero Section --- */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 0 100px;
+    gap: 40px;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 550px;
+}
+
+.hero-title {
+    font-family: var(--font-title);
+    font-size: 4rem;
+    line-height: 1.15;
+    margin-bottom: 25px;
+    color: var(--text-dark);
+}
+
+.hero-text {
+    font-size: 1.25rem;
+    color: var(--text-light);
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 30px;
+    object-fit: cover;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08); /* Sombra suave */
+}
+
+/* --- Features Section --- */
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 80px 0;
+    margin-bottom: 80px;
+    text-align: center;
+    background-color: white;
+    border-radius: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03); /* Soft UI Box */
+}
+
+.feature-item {
+    padding: 30px 40px;
+}
+
+.feature-item:nth-child(2) {
+    border-left: 2px dashed var(--secondary-bg);
+    border-right: 2px dashed var(--secondary-bg);
+}
+
+.feature-item h3 {
+    font-family: var(--font-title);
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.feature-item p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* --- History Section --- */
+.history-section {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    margin-bottom: 120px;
+}
+
+.history-image img {
+    width: 100%;
+    border-radius: 200px 200px 30px 30px;
+    max-width: 450px;
+    object-fit: cover;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.history-content {
+    flex: 1;
+}
+
+.section-title {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    margin-bottom: 25px;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+
+.section-paragraph {
+    color: var(--text-light);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* --- Missão e Valores --- */
+.mission-values-container {
+    background-color: var(--secondary-bg);
+    padding: 80px 60px;
+    border-radius: 40px;
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+.mission-title {
+    font-family: var(--font-title);
+    font-size: 2.8rem;
+    margin-bottom: 25px;
+    color: var(--text-dark);
+}
+
+.mission-text {
+    color: var(--text-light);
+    font-size: 1.25rem;
+    font-weight: 500;
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.value-card {
+    background: white;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(74, 52, 36, 0.05); /* Soft UI Box */
+    transition: transform 0.3s;
+}
+
+.value-card:hover {
+    transform: translateY(-8px);
+}
+
+.value-title {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.value-card p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   NOVO RODAPÉ (Exatamente como a imagem)
+   ========================================================================== */
+.footer {
+    background-color: var(--header-bg);
+    padding: 60px 0 40px;
+    color: white;
+}
+
+/* Topo do Rodapé: Redes Sociais */
+.footer-social {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.footer-social p {
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--primary);
+}
+
+/* Divisórias do Rodapé */
+.footer-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 0 auto 40px auto;
+    width: 100%;
+}
+
+/* Meio do Rodapé: Contatos */
+.footer-contacts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.contact-col i {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.contact-col h4 {
+    font-family: var(--font-title);
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.contact-col p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+}
+
+/* Fundo do Rodapé: Horários e Copyright */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 20px;
+}
+
+.footer-hours h4 {
+    font-family: var(--font-title);
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.footer-hours ul {
+    list-style: none;
+}
+
+.footer-hours li {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 8px;
+    display: flex;
+    gap: 15px;
+}
+
+.footer-hours span {
+    display: inline-block;
+    width: 130px;
+}
+
+.footer-copy {
+    text-align: right;
+}
+
+.dev-love {
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+}
+
+.copy-text {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* --- Responsividade --- */
+@media (max-width: 992px) {
+    .hero, .history-section { flex-direction: column; text-align: center; }
+    .hero-content, .history-content { max-width: 100%; }
+    .hero-image, .history-image { justify-content: center; margin-top: 40px; }
+    .nav-links { display: none; }
+    .features, .values-grid { grid-template-columns: 1fr; gap: 40px; }
+    .feature-item:nth-child(2) { border: none; }
+    .hero-title { font-size: 3rem; }
+    .section-title { font-size: 2.2rem; }
+    
+    .footer-contacts { grid-template-columns: 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; text-align: center; gap: 30px; align-items: center; }
+    .footer-hours span { width: auto; }
+    .footer-hours li { justify-content: center; }
+    .footer-copy { text-align: center; }
+}
