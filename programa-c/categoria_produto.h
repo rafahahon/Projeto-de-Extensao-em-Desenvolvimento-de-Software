@@ -24,6 +24,13 @@
 void cat_prod_buscar(sqlite3* bd);
 
 /**
+ * Cadastra uma nova categoria de produto.
+ * @param bd A referência à conexão do banco de dados.
+ * @return O ID da categoria de produto se sucesso, 0 se falha ou erro.
+ */
+sqlite3_int64 cat_prod_cadastrar(sqlite3* bd);
+
+/**
  * Roda uma consulta de todas as categorias de produto e lista os resultados.
  * @param bd A referência à conexão do banco de dados.
  */

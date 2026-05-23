@@ -190,3 +190,27 @@ char* ler_arquivo(const char* caminho_arquivo)
 
     return conteudo;
 }
+
+/**
+ * Valida uma variável string.
+ * @param variavel A variável string a ser validada.
+ * @param tamanho_min O tamanho mínimo da variável string.
+ * @param obrigatorio 1 para obrigatória, 0 para opcional.
+ * @return Booleano se a variável passou pela validação ou não.
+ */
+int valida_string(const char* variavel, const int tamanho_min, const int obrigatorio)
+{
+    // Se não for obrigatória, não precisamos validar o tamanho mínimo
+    if (obrigatorio == 0)
+    {
+        return 1;
+    }
+
+    // Se o tamanho da string for maior ou igual ao mínimo, retorna como verdadeiro
+    if (strlen(variavel) >= tamanho_min)
+    {
+        return 1;
+    }
+
+    return 0;
+}

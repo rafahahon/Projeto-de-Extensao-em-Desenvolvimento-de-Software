@@ -24,6 +24,13 @@
 void cliente_buscar(sqlite3* bd);
 
 /**
+ * Cadastra um novo cliente.
+ * @param bd A referência à conexão do banco de dados.
+ * @return O ID do cliente se sucesso, 0 se falha ou erro.
+ */
+sqlite3_int64 cliente_cadastrar(sqlite3* bd);
+
+/**
  * Roda uma consulta de todos os clientes e lista os resultados.
  * @param bd A referência à conexão do banco de dados.
  */

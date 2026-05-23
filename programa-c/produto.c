@@ -15,6 +15,7 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 #include "bd.h"
 #include "categoria_produto.h"
 #include "produto.h"
@@ -60,25 +61,45 @@ void produto_buscar(sqlite3* bd)
 /**
  * Cadastra um novo produto no banco de dados.
  * @param bd A referência à conexão do banco de dados.
+ * @return O ID do cliente se sucesso, 0 se falha ou erro.
  */
-void produto_cadastrar(sqlite3* bd)
+sqlite3_int64 produto_cadastrar(sqlite3* bd)
 {
     char nome[255];
     float preco;
     int quantidade, categoria, retorno;
+    sqlite3_int64 id_produto;
     sqlite3_stmt* statement = NULL;
 
     // aqui nos pedimos para o usuário o nome do produto
     printf("Nome do produto: ");
     entrada_string(nome, sizeof(nome));
 
+    while (valida_string(nome, 3, 1) <= 0)
+    {
+        printf("Nome não pode ser vazio ou menor que 3 letras, digite um nome válido:\n");
+        entrada_string(nome, sizeof(nome));
+    }
+
     // aqui pedimos o preço
-    printf("Preço: ");
+    printf("Preço unitário: ");
     preco = entrada_float();
 
+    while (preco <= 0)
+    {
+        printf("Preço precisa ser maior que zero, digite um preço válido:\n");
+        preco = entrada_float();
+    }
+
     // aqui pedimos a quantidade
-    printf("Quantidade: ");
+    printf("Quantidade em estoque: ");
     quantidade = entrada_int();
+
+    while (quantidade <= 0)
+    {
+        printf("Quantidade precisa ser maior que zero, digite uma quantidade válida:\n");
+        quantidade = entrada_int();
+    }
 
     // aqui pedimos a categoria
     categoria = cat_prod_selecionar(bd);
@@ -91,7 +112,8 @@ void produto_cadastrar(sqlite3* bd)
 
     if (retorno != 0)
     {
-        return;
+        printf("Erro ao cadastrar produto: %s\n", sqlite3_errmsg(bd));
+        return 0;
     }
 
     // Aqui adicionamos os valores de cada ? na consulta preparada, de um modo seguro
@@ -105,14 +127,19 @@ void produto_cadastrar(sqlite3* bd)
 
     if (retorno != SQLITE_DONE)
     {
-        printf("prod_erro ao cadastrar produto: %s\n", sqlite3_errmsg(bd));
-        return;
+        printf("Erro ao cadastrar produto: %s\n", sqlite3_errmsg(bd));
+        return 0;
     }
+
+    // Pega o ID do pedido, para referência
+    id_produto = sqlite3_last_insert_rowid(bd);
 
     // Limpeza pós-execução
     sqlite3_finalize(statement);
 
     printf("Produto cadastrado!\n");
+
+    return id_produto;
 }
 
 /**
@@ -149,25 +176,40 @@ void produto_listar(sqlite3* bd)
  */
 int produto_selecionar(sqlite3* bd)
 {
+    char confirmacao[5];
     int produto = 0, opcao;
+    sqlite3_int64 id_novo_produto = 0;
 
     while (produto == 0)
     {
         printf("Selecione a opção desejada:\n  1) buscar um produto\n  2) listar todos\n");
         opcao = entrada_int();
 
-        if (opcao == 1)
+        switch (opcao)
         {
+        case 1:
             produto_buscar(bd);
-        }
-        else if (opcao == 2)
-        {
+            break;
+        case 2:
             produto_listar(bd);
-        }
-        else
-        {
+            break;
+        case 3:
+            id_novo_produto = produto_cadastrar(bd);
+            break;
+        default:
             printf("Opção inválida!\n");
             continue;
+        }
+
+        if (id_novo_produto > 0)
+        {
+            printf("Deseja selecionar este produto criado? [s/n]\n");
+            entrada_string(confirmacao, sizeof(confirmacao));
+
+            if (strcmp(confirmacao, "s") == 0)
+            {
+                return (int)id_novo_produto;
+            }
         }
 
         printf("Qual o ID do produto você deseja selecionar?\n");

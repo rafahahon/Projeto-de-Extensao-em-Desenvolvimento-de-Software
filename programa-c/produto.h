@@ -26,8 +26,9 @@ void produto_buscar(sqlite3* bd);
 /**
  * Cadastra um novo produto no banco de dados.
  * @param bd A referência à conexão do banco de dados.
+ * @return O ID do produto se sucesso, 0 se falha ou erro.
  */
-void produto_cadastrar(sqlite3* bd);
+sqlite3_int64 produto_cadastrar(sqlite3* bd);
 
 /**
  * Roda uma consulta de todos os produtos disponíveis em estoque e lista os resultados.

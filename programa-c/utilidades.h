@@ -52,4 +52,13 @@ void entrada_string(char* variavel, size_t tamanho_max);
  */
 char* ler_arquivo(const char* caminho_arquivo);
 
+/**
+ * Valida uma variável string.
+ * @param variavel A variável string a ser validada.
+ * @param tamanho_min O tamanho mínimo da variável string.
+ * @param obrigatorio 1 para obrigatória, 0 para opcional.
+ * @return Booleano se a variável passou pela validação ou não.
+ */
+int valida_string(const char* variavel, const int tamanho_min, const int obrigatorio);
+
 #endif //CODE_CAT_COFFEE_UTILIDADES_H
