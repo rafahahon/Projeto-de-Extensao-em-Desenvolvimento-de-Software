@@ -79,7 +79,7 @@ sqlite3_int64 cat_prod_cadastrar(sqlite3* bd)
 
     retorno = bd_prepara_consulta(
         bd,
-        "INSERT INTO categoria_produto(nome) VALUES (?)",
+        "INSERT INTO categoria_produto(nome) VALUES (?);",
         &statement
     );
 

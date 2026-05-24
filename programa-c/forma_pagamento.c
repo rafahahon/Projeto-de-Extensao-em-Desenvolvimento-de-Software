@@ -79,7 +79,7 @@ sqlite3_int64 forma_pagto_cadastrar(sqlite3* bd)
 
     retorno = bd_prepara_consulta(
         bd,
-        "INSERT INTO forma_pagamento(nome) VALUES (?)",
+        "INSERT INTO forma_pagamento(nome) VALUES (?);",
         &statement
     );
 

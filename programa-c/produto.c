@@ -106,7 +106,7 @@ sqlite3_int64 produto_cadastrar(sqlite3* bd)
 
     retorno = bd_prepara_consulta(
         bd,
-        "INSERT INTO produto(nome, preco, quantidade_estoque, id_cat_produto) VALUES (?, ?, ?, ?)",
+        "INSERT INTO produto(nome, preco, quantidade_estoque, id_cat_produto) VALUES (?, ?, ?, ?);",
         &statement
     );
 

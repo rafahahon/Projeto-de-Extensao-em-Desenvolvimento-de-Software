@@ -88,7 +88,7 @@ sqlite3_int64 funcionario_cadastrar(sqlite3* bd)
 
     retorno = bd_prepara_consulta(
         bd,
-        "INSERT INTO funcionario(nome, cargo) VALUES (?, ?)",
+        "INSERT INTO funcionario(nome, cargo) VALUES (?, ?);",
         &statement
     );
 

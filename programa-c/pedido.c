@@ -260,7 +260,7 @@ sqlite3_int64 pedido_criar(sqlite3* bd)
 
     retorno = bd_prepara_consulta(
         bd,
-        "INSERT INTO pedido(id_cliente, id_func, id_forma_pagto, data_pedido, valor_total_pedido) VALUES (?, ?, ?, ?, ?)",
+        "INSERT INTO pedido(id_cliente, id_func, id_forma_pagto, data_pedido, valor_total_pedido) VALUES (?, ?, ?, ?, ?);",
         &statement
     );
 

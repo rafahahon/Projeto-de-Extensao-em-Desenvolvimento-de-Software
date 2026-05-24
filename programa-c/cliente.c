@@ -85,7 +85,7 @@ sqlite3_int64 cliente_cadastrar(sqlite3* bd)
 
     retorno = bd_prepara_consulta(
         bd,
-        "INSERT INTO cliente(nome, email, github_user) VALUES (?, ?, ?)",
+        "INSERT INTO cliente(nome, email, github_user) VALUES (?, ?, ?);",
         &statement
     );
 
