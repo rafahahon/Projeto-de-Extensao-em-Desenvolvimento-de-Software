@@ -1,32 +1,30 @@
-/*CONFIGURAÇÕES GERAIS*/
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /*fontes*/
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
     background-color: #fdfaf7;
 }
 
 /*LOGO*/
 .logotipo {
     display: flex;
-    align-items: center; /*alinha o texto e o icon verticalmente pelo centro*/
+    align-items: center; 
     gap: 15px;
 }
 
-/*espaço entre a logo e o texto*/
-.logo-icone { /*ajuste de altura e comprimento da logo*/
+.logo-icone { 
     height: 100px;
     width: auto;
 }
 
-.logo-texto h1 { /*título da logo*/
+.logo-texto h1 { 
     margin: 0;
     font-size: 26px;
-    color: #e67e3c; /*logo texto*/
+    color: #e67e3c; 
     line-height: 1;
 }
 
-.logo-texto span { /*utilizada para estilizar pequenas partes de texto ou elementos sem quebrar a linha*/
+.logo-texto span { 
     font-size: 13px;
     color: white;
 }
