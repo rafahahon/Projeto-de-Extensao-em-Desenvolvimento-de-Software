@@ -16,7 +16,8 @@
  * Banco de dados para o controle de pedidos, reservas, etc. com base no MySQL e adaptado para as restrições do SQLite.
  */
 
-PRAGMA foreign_keys = ON;
+PRAGMA
+foreign_keys = ON;
 
 -- CLIENTE
 CREATE TABLE cliente
@@ -44,6 +45,18 @@ CREATE TABLE mesa
     extra_monitor NUMERIC DEFAULT 0
 );
 
+-- RESERVA DE MESA
+CREATE TABLE reserva_mesa
+(
+    id_reserva     INTEGER PRIMARY KEY,
+    id_cliente     INTEGER,
+    id_mesa        INTEGER,
+    inicio_reserva INTEGER,
+    fim_reserva    INTEGER,
+    FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente),
+    FOREIGN KEY (id_mesa) REFERENCES mesa (id_mesa)
+);
+
 -- PLAYGROUND
 CREATE TABLE playground
 (
@@ -64,37 +77,6 @@ CREATE TABLE gato
     FOREIGN KEY (id_playground) REFERENCES playground (id_playground)
 );
 
--- PRODUTO
-CREATE TABLE produto
-(
-    id_produto         INTEGER PRIMARY KEY,
-    nome               TEXT    NOT NULL,
-    descricao          TEXT,
-    preco              NUMERIC NOT NULL,
-    quantidade_estoque INTEGER DEFAULT 0,
-    id_cat_produto     INTEGER NOT NULL,
-    FOREIGN KEY (id_cat_produto) REFERENCES categoria_produto (id_cat_produto)
-);
-
--- CATEGORIAS DOS PRODUTOS
-CREATE TABLE categoria_produto
-(
-    id_cat_produto INTEGER PRIMARY KEY,
-    nome           TEXT NOT NULL
-);
-
--- RESERVA DE MESA
-CREATE TABLE reserva_mesa
-(
-    id_reserva     INTEGER PRIMARY KEY,
-    id_cliente     INTEGER,
-    id_mesa        INTEGER,
-    inicio_reserva INTEGER,
-    fim_reserva    INTEGER,
-    FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente),
-    FOREIGN KEY (id_mesa) REFERENCES mesa (id_mesa)
-);
-
 -- SESSOES DE PLAYGROUND PRA BRINCAR COM OS GATINHOS
 CREATE TABLE sessoes_playground
 (
@@ -106,6 +88,13 @@ CREATE TABLE sessoes_playground
     valor_pago          NUMERIC,
     FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente),
     FOREIGN KEY (id_playground) REFERENCES playground (id_playground)
+);
+
+-- FORMAS DE PAGAMENTO DO PEDIDO
+CREATE TABLE forma_pagamento
+(
+    id_forma_pagto INTEGER PRIMARY KEY,
+    nome           TEXT NOT NULL
 );
 
 -- PEDIDO (Cabeçalho)
@@ -122,11 +111,23 @@ CREATE TABLE pedido
     FOREIGN KEY (id_forma_pagto) REFERENCES forma_pagamento (id_forma_pagto)
 );
 
--- FORMAS DE PAGAMENTO DO PEDIDO
-CREATE TABLE forma_pagamento
+-- CATEGORIAS DOS PRODUTOS
+CREATE TABLE categoria_produto
 (
-    id_forma_pagto INTEGER PRIMARY KEY,
+    id_cat_produto INTEGER PRIMARY KEY,
     nome           TEXT NOT NULL
+);
+
+-- PRODUTO
+CREATE TABLE produto
+(
+    id_produto         INTEGER PRIMARY KEY,
+    nome               TEXT    NOT NULL,
+    descricao          TEXT,
+    preco              NUMERIC NOT NULL,
+    quantidade_estoque INTEGER DEFAULT 0,
+    id_cat_produto     INTEGER NOT NULL,
+    FOREIGN KEY (id_cat_produto) REFERENCES categoria_produto (id_cat_produto)
 );
 
 -- ITENS_PEDIDO (Detalhes)
