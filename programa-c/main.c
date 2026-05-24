@@ -17,12 +17,10 @@
 #include <locale.h>
 #include <stdio.h>
 #include "bd.h"
-#include "categoria_produto.h"
-#include "pedido.h"
-#include "produto.h"
+#include "menu.h"
 #include "utilidades.h"
 
-// Para poder rodar os printf em Português corretamente
+// Para poder rodar os printf em português corretamente
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -31,94 +29,93 @@ int main()
 {
     setlocale(LC_ALL, "pt_BR.UTF-8");
 
-    // Para poder usar o encoding e o idioma Português no terminal do Windows
+    // Para poder usar o encoding e o idioma português no terminal do Windows
 #ifdef _WIN32
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
 #endif
 
+    // Aqui declaramos as opções do Menu Principal, a primeira sempre deve ser o voltar/sair
+    const char* menu_principal[] = {
+        "Sair",
+        "Pedidos",
+        "Clientes",
+        "Produtos",
+        "Mesas",
+        "Playground",
+        // "Relatórios",
+        "Outros"
+    };
+    // Descobre a quantidade de itens dividindo o tamanho total da array
+    // pelo tamanho de um único item (para não precisar colocar o número fixo no for)
+    const int quantidade_itens_menu = sizeof(menu_principal) / sizeof(menu_principal[0]);
     int opcao;
+    sqlite3* bd;
 
-    printf("\n\n");
-    printf("                         ::-======+.:*                      \n");
-    printf("                    :=======%%==:%%%%=======.+                         ███   ███  ████  █████\n");
-    printf("                 .=====-===%%@%%==%%===%%====-===                      █     █   █ █   █ █\n");
-    printf("              .===%%====%%%%%%===========%%@=%%==%%===:                   █     █   █ █   █ ████\n");
-    printf("            :=====%%==%%====%%%%#######%%%%====%%%%=%%=%%==:                 █     █   █ █   █ █\n");
-    printf("           :==%%==%%====%%##-%%#########:*##%%======-%%==                 ███   ███  ████  █████\n");
-    printf("          :=%%%%-=%%===####.+==.:...:#-=*#####==:-=%%===.       \n");
-    printf("         .=%%===#==%%#####%%:+++*+-++++=*######%%==#%%%%=%%=.      \n");
-    printf("        :========#######.++-=++++*.*++.#######==%%=====              ███   ███  █████\n");
-    printf("        ==%%==@==%%#######++++.+:.+.++.+=#######%%==*==%%=:            █     █   █   █\n");
-    printf("       :=======@########..+..%%%%:%%.:.+-.##.#####*=======            █     █████   █\n");
-    printf("       .===+===%%#######=#.=%%%%%%%%%%%%%%%%+=:####.####%%===+===:           █     █   █   █\n");
-    printf("       :++%%%%++=%%########.+-=#%%####+=+-:%%*-*%%:##%%=+%%%%%%+=.            ███  █   █   █\n");
-    printf("       :+++%%%%+-%%#################.%%+++.#%%#%%#:+:%%=+%%%%=+=:    \n");
-    printf("       :=++++++=#:################%%%%*+=%%#.%%##:#=++++++=     \n");
-    printf(
-        "        =++++++-%%#*#+##.%%##*%%.:###%%%%+*++*+-+.#%%-++++++:             ███   ███  █████ █████ █████ █████ \n");
-    printf(
-        "        -=++++++-%%.###############:%%++=::.@##%%=+=@%%++:             █     █   █ █     █     █     █    \n");
-    printf(
-        "         .=++@%%-++=++#############%%: :* +=++=++%%+@++=              █     █   █ ████  ████  ████  ████  \n");
-    printf(
-        "          +=++#%%%%++=:*++++#.:.-=+##*+:=+++=-+++%%%%++.               █     █   █ █     █     █     █  \n");
-    printf(
-        "            :=++-+*=++==+++++++++===+++==+++=+%%++=:                 ███   ███  █     █     █████ █████ \n");
-    printf("              .=++#++=%%+++=====+=-===+++%%%%@%%=++=:           \n");
-    printf("                :=++++++++%%%%%%+=-+@%%%%+++%%-++++=:             \n");
-    printf("                   :==++++++@=%%+=+*++++++=+:                \n");
-    printf("                       .:+==-+++++===+:-                    \n");
-    printf("\n\n");
+    imprime_logo_ccc();
 
-    bd_conectar();
+    bd = bd_conectar();
 
-    // TODO: login de funcionario?
+    // TODO: login de funcionario
+    // TODO: menu por funcionario via permissoes
 
     do
     {
         printf("\n\n");
-        printf("        ▓   ▓ ▓▓▓▓▓ ▓   ▓ ▓   ▓    ▓▓▓▓  ▓▓▓▓  ▓▓▓ ▓   ▓  ▓▓▓  ▓▓▓ ▓▓▓▓   ▓▓▓  ▓\n");
-        printf("        ▓▓ ▓▓ ▓     ▓▓  ▓ ▓   ▓    ▓   ▓ ▓   ▓  ▓  ▓▓  ▓ ▓      ▓  ▓   ▓ ▓   ▓ ▓\n");
-        printf("        ▓ ▓ ▓ ▓▓▓▓  ▓ ▓ ▓ ▓   ▓    ▓▓▓▓  ▓▓▓▓   ▓  ▓ ▓ ▓ ▓      ▓  ▓▓▓▓  ▓▓▓▓▓ ▓\n");
-        printf("        ▓   ▓ ▓     ▓  ▓▓ ▓   ▓    ▓     ▓  ▓   ▓  ▓  ▓▓ ▓      ▓  ▓     ▓   ▓ ▓\n");
-        printf("        ▓   ▓ ▓▓▓▓▓ ▓   ▓  ▓▓▓     ▓     ▓   ▓ ▓▓▓ ▓   ▓  ▓▓▓  ▓▓▓ ▓     ▓   ▓ ▓▓▓▓▓\n");
+        imprime_linha_separadora();
         printf("\n");
-        printf("1 - Cadastrar produto\n");
-        printf("2 - Cadastrar pedidos\n");
-        printf("3 - Listar pedidos\n");
-        printf("4 - Sair\n");
+        printf("   ▓   ▓ ▓▓▓▓▓ ▓   ▓ ▓   ▓    ▓▓▓▓  ▓▓▓▓  ▓▓▓ ▓   ▓  ▓▓▓  ▓▓▓ ▓▓▓▓   ▓▓▓  ▓\n");
+        printf("   ▓▓ ▓▓ ▓     ▓▓  ▓ ▓   ▓    ▓   ▓ ▓   ▓  ▓  ▓▓  ▓ ▓      ▓  ▓   ▓ ▓   ▓ ▓\n");
+        printf("   ▓ ▓ ▓ ▓▓▓▓  ▓ ▓ ▓ ▓   ▓    ▓▓▓▓  ▓▓▓▓   ▓  ▓ ▓ ▓ ▓      ▓  ▓▓▓▓  ▓▓▓▓▓ ▓\n");
+        printf("   ▓   ▓ ▓     ▓  ▓▓ ▓   ▓    ▓     ▓  ▓   ▓  ▓  ▓▓ ▓      ▓  ▓     ▓   ▓ ▓\n");
+        printf("   ▓   ▓ ▓▓▓▓▓ ▓   ▓  ▓▓▓     ▓     ▓   ▓ ▓▓▓ ▓   ▓  ▓▓▓  ▓▓▓ ▓     ▓   ▓ ▓▓▓▓▓\n");
+        imprime_linha_separadora();
+        imprime_opcoes(menu_principal, quantidade_itens_menu);
         printf("Escolha: ");
         opcao = entrada_int();
-
-        // TODO: cadastrar clientes
-        // TODO: cadastrar funcionarios
 
         switch (opcao)
         {
         case 1:
-            produto_cadastrar();
+            menu_pedido(bd);
             break;
 
         case 2:
-            pedido_criar();
+            menu_cliente(bd);
             break;
 
         case 3:
-            pedido_listar();
+            menu_produto(bd);
             break;
 
         case 4:
-            printf("Tchau tchau!\n");
+            menu_mesa(bd);
+            break;
+
+        case 5:
+            menu_playground(bd);
+            break;
+
+        case 6:
+        //     menu_relatorio(bd);
+        //     break;
+        //
+        // case 7:
+            menu_outros(bd);
+            break;
+
+        case 0:
+            printf("\n\nTchau tchau!\n");
             break;
 
         default:
             printf("Opção inválida.\n");
         }
     }
-    while (opcao != 4);
+    while (opcao != 0);
 
-    bd_limpa_fecha();
+    sqlite3_free(NULL);
+    sqlite3_close(bd);
 
     return 0;
 }

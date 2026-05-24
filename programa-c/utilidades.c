@@ -21,8 +21,32 @@
 #include "utilidades.h"
 
 /**
+ * Conta a quantidade real de caracteres visíveis em uma string UTF-8.
+ * Ignora os bytes de continuação dos acentos.
+ * @param texto O texto em UTF-8 a ter os caracteres visualmente contados.
+ * @return O tamanho de caracteres visuais no texto.
+ */
+int tamanho_visual_utf8(const char* texto)
+{
+    int tamanho = 0;
+
+    while (*texto)
+    {
+        // Se os dois primeiros bits não forem '10' (0x80), é o início de um caractere visual
+        if ((*texto & 0xC0) != 0x80)
+        {
+            tamanho++;
+        }
+        texto++;
+    }
+
+    return tamanho;
+}
+
+/**
  * Pega entrada do usuário e trata como data no formato DD-MM-YYYY.
  * Caso usuário não forneça uma data, usar a data atual.
+ * @param data A variável que vai receber a entrada do usuário em stdin.
  */
 void entrada_data(int* data)
 {
@@ -40,7 +64,7 @@ void entrada_data(int* data)
     ptr = (char*)temp_var;
 
     // Extrai o DIA
-    long temp_dia = strtol(ptr, &endptr, 10);
+    const long temp_dia = strtol(ptr, &endptr, 10);
 
     if (ptr == endptr || *endptr != '-')
     {
@@ -52,7 +76,7 @@ void entrada_data(int* data)
     ptr = endptr + 1; // Avança o ponteiro para pular o hífen '-'
 
     // Extrai o MÊS
-    long temp_mes = strtol(ptr, &endptr, 10);
+    const long temp_mes = strtol(ptr, &endptr, 10);
 
     if (ptr == endptr || *endptr != '-')
     {
@@ -64,7 +88,7 @@ void entrada_data(int* data)
     ptr = endptr + 1; // Avança o ponteiro para pular o segundo hífen '-'
 
     // Extrai o ANO
-    long temp_ano = strtol(ptr, &endptr, 10);
+    const long temp_ano = strtol(ptr, &endptr, 10);
 
     // O ano deve terminar com o fim da string ('\0') ou uma nova linha ('\n')
     if (ptr == endptr || (*endptr != '\0' && *endptr != '\n'))
@@ -88,6 +112,15 @@ float entrada_float()
 
     if (fgets(input_buffer, sizeof(input_buffer), stdin))
     {
+        // Remove o \n antes de medir o tamanho
+        input_buffer[strcspn(input_buffer, "\n")] = 0;
+
+        // Se usuário não digitar nada, retornar −1.0f
+        if (strlen(input_buffer) == 0)
+        {
+            return -1.0f;
+        }
+
         // strtof converte string para float
         temp_var = strtof(input_buffer, &endptr);
 
@@ -114,6 +147,15 @@ int entrada_int()
 
     if (fgets(input_buffer, sizeof(input_buffer), stdin))
     {
+        // Remove o \n antes de medir o tamanho
+        input_buffer[strcspn(input_buffer, "\n")] = 0;
+
+        // Se usuário não digitar nada, retornar −1
+        if (strlen(input_buffer) == 0)
+        {
+            return -1;
+        }
+
         // strtol converte uma string em long, depois forçamos para int
         temp_var = strtol(input_buffer, &endptr, 10);
 
@@ -133,7 +175,7 @@ int entrada_int()
  * @param variavel A variável que vai receber a entrada do usuário em stdin
  * @param tamanho_max O tamanho máximo da string
  */
-void entrada_string(char* variavel, size_t tamanho_max)
+void entrada_string(char* variavel, const size_t tamanho_max)
 {
     char input_buffer[255];
 
@@ -189,4 +231,28 @@ char* ler_arquivo(const char* caminho_arquivo)
     fclose(arquivo);
 
     return conteudo;
+}
+
+/**
+ * Valida uma variável string.
+ * @param variavel A variável string a ser validada.
+ * @param tamanho_min O tamanho mínimo da variável string.
+ * @param obrigatorio 1 para obrigatória, 0 para opcional.
+ * @return Booleano se a variável passou pela validação ou não.
+ */
+int valida_string(const char* variavel, const int tamanho_min, const int obrigatorio)
+{
+    // Se não for obrigatória, não precisamos validar o tamanho mínimo
+    if (obrigatorio == 0)
+    {
+        return 1;
+    }
+
+    // Se o tamanho da string for maior ou igual ao mínimo, retorna como verdadeiro
+    if (strlen(variavel) >= tamanho_min)
+    {
+        return 1;
+    }
+
+    return 0;
 }

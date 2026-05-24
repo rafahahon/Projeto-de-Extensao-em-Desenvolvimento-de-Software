@@ -1,5 +1,5 @@
 /**
- *              **Grupo HttpCats**
+*              **Grupo HttpCats**
  * ================================================
  * | Nome                            | RA         |
  * ================================================
@@ -11,44 +11,44 @@
  * | Victor Nunes Garcia             | 3026101023 |
  * ================================================
  *
- * Biblioteca Code Cat Coffee - Módulo Clientes
+ * Biblioteca Code Cat Coffee - Módulo Funcionários
  */
 
-#ifndef CODE_CAT_COFFEE_CLIENTE_H
-#define CODE_CAT_COFFEE_CLIENTE_H
+#ifndef CODE_CAT_COFFEE_FUNCIONARIO_H
+#define CODE_CAT_COFFEE_FUNCIONARIO_H
 
 #include "sqlite3.h"
 
 /**
- * Roda uma consulta de busca de clientes e imprime o resultado da busca.
+ * Roda uma consulta de busca de funcionário e imprime o resultado da busca.
  * @param bd A referência à conexão do banco de dados.
  */
-void cliente_buscar(sqlite3* bd);
+void funcionario_buscar(sqlite3* bd);
 
 /**
- * Cadastra um novo cliente.
+ * Cadastra uma nova funcionário.
  * @param bd A referência à conexão do banco de dados.
- * @return O ID do cliente se sucesso, 0 se falha ou erro.
+ * @return O ID da funcionário se sucesso, 0 se falha ou erro.
  */
-sqlite3_int64 cliente_cadastrar(sqlite3* bd);
+sqlite3_int64 funcionario_cadastrar(sqlite3* bd);
 
 /**
- * Edita um cliente existente.
+ * Edita um funcionário existente.
  * @param bd A referência à conexão do banco de dados.
  */
-void cliente_editar(sqlite3* bd);
+void funcionario_editar(sqlite3* bd);
 
 /**
- * Roda uma consulta de todos os clientes e lista os resultados.
+ * Roda uma consulta de todos os funcionários e lista os resultados.
  * @param bd A referência à conexão do banco de dados.
  */
-void cliente_listar(sqlite3* bd);
+void funcionario_listar(sqlite3* bd);
 
 /**
- * Dá ao usuário a opção de buscar ou listar clientes e pede para o usuário selecionar um por ID.
+ * Dá ao usuário a opção de buscar ou listar funcionários e pede para o usuário selecionar um por ID.
  * @param bd A referência à conexão do banco de dados.
- * @return ID do cliente selecionado.
+ * @return ID do funcionário selecionado.
  */
-int cliente_selecionar(sqlite3* bd);
+int funcionario_selecionar(sqlite3* bd);
 
-#endif //CODE_CAT_COFFEE_CLIENTE_H
+#endif //CODE_CAT_COFFEE_FUNCIONARIO_H

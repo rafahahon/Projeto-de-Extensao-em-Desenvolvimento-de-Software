@@ -1,5 +1,5 @@
 /**
- *              **Grupo HttpCats**
+*              **Grupo HttpCats**
  * ================================================
  * | Nome                            | RA         |
  * ================================================
@@ -11,44 +11,44 @@
  * | Victor Nunes Garcia             | 3026101023 |
  * ================================================
  *
- * Biblioteca Code Cat Coffee - Módulo Clientes
+ * Biblioteca Code Cat Coffee - Módulo Gatos
  */
 
-#ifndef CODE_CAT_COFFEE_CLIENTE_H
-#define CODE_CAT_COFFEE_CLIENTE_H
+#ifndef CODE_CAT_COFFEE_GATO_H
+#define CODE_CAT_COFFEE_GATO_H
 
 #include "sqlite3.h"
 
 /**
- * Roda uma consulta de busca de clientes e imprime o resultado da busca.
+ * Roda uma consulta de busca de gatos e imprime o resultado da busca.
  * @param bd A referência à conexão do banco de dados.
  */
-void cliente_buscar(sqlite3* bd);
+void gato_buscar(sqlite3* bd);
 
 /**
- * Cadastra um novo cliente.
+ * Cadastra um novo gato.
  * @param bd A referência à conexão do banco de dados.
- * @return O ID do cliente se sucesso, 0 se falha ou erro.
+ * @return O ID do gato se sucesso, 0 se falha ou erro.
  */
-sqlite3_int64 cliente_cadastrar(sqlite3* bd);
+sqlite3_int64 gato_cadastrar(sqlite3* bd);
 
 /**
- * Edita um cliente existente.
+ * Edita um gato existente.
  * @param bd A referência à conexão do banco de dados.
  */
-void cliente_editar(sqlite3* bd);
+void gato_editar(sqlite3* bd);
 
 /**
- * Roda uma consulta de todos os clientes e lista os resultados.
+ * Roda uma consulta de todos os gatos e lista os resultados.
  * @param bd A referência à conexão do banco de dados.
  */
-void cliente_listar(sqlite3* bd);
+void gato_listar(sqlite3* bd);
 
 /**
- * Dá ao usuário a opção de buscar ou listar clientes e pede para o usuário selecionar um por ID.
+ * Dá ao usuário a opção de buscar ou listar gatos e pede para o usuário selecionar um por ID.
  * @param bd A referência à conexão do banco de dados.
- * @return ID do cliente selecionado.
+ * @return ID do gato selecionado.
  */
-int cliente_selecionar(sqlite3* bd);
+int gato_selecionar(sqlite3* bd);
 
-#endif //CODE_CAT_COFFEE_CLIENTE_H
+#endif //CODE_CAT_COFFEE_GATO_H

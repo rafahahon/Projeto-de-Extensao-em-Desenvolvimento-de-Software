@@ -18,7 +18,7 @@ Projeto do grupo **HttpCats** para o primeiro semestre do curso de Sistemas de I
 Temos 3 pastas, uma para cada tarefa designada:
 
 - `banco-de-dados`: contendo o arquivo SQL e o arquivo SQLite com o banco de dados de exemplo.
-- `programa-c`: programa de controle de pedidos usando o banco da dados em SQLite.
+- `programa-c`: programa de controle de pedidos usando o banco de dados em SQLite.
 - `site-institucional`: site em HTML/CSS/JS sobre a Code Cat Coffee.
 
 ### Banco de Dados
@@ -30,3 +30,15 @@ O DER está dentro da pasta com toda a estrutura das tabelas usadas no programa 
 ### Site Institucional
 
 Temos o site institucional com X páginas, feito em HTML5 e CSS3. 
+
+### Programa em C
+
+Temos um programa em C para coordenar e executar as atividades diárias do café. Através dele, podemos gerenciar cadastros de funcionários, clientes, mesas, gatos, entre outros.
+
+Para poder executar o programa em sua máquina:
+
+1. Abra o terminal do Power Shell ou Linha de Comando do Windows;
+2. Navegue até a pasta raiz deste projeto;
+3. Execute o seguinte comando: `.\bin\codecatcoffee-v$VERSAO.exe`, onde `$VERSAO` é a versão atual do programa;
+4. Siga os passos para inicializar o banco de dados na máquina local;
+5. Navegue pelo menu e bom trabalho!

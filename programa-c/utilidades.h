@@ -20,8 +20,17 @@
 #include <corecrt.h>
 
 /**
+ * Conta a quantidade real de caracteres visíveis em uma string UTF-8.
+ * Ignora os bytes de continuação dos acentos.
+ * @param texto O texto em UTF-8 a ter os caracteres visualmente contados.
+ * @return O tamanho de caracteres visuais no texto.
+ */
+int tamanho_visual_utf8(const char* texto);
+
+/**
  * Pega entrada do usuário e trata como data no formato DD-MM-YYYY.
  * Caso usuário não forneça uma data, usar a data atual.
+ * @param data A variável que vai receber a entrada do usuário em stdin.
  */
 void entrada_data(int* data);
 
@@ -51,5 +60,14 @@ void entrada_string(char* variavel, size_t tamanho_max);
  * @return O conteúdo do arquivo.
  */
 char* ler_arquivo(const char* caminho_arquivo);
+
+/**
+ * Valida uma variável string.
+ * @param variavel A variável string a ser validada.
+ * @param tamanho_min O tamanho mínimo da variável string.
+ * @param obrigatorio 1 para obrigatória, 0 para opcional.
+ * @return Booleano se a variável passou pela validação ou não.
+ */
+int valida_string(const char* variavel, int tamanho_min, int obrigatorio);
 
 #endif //CODE_CAT_COFFEE_UTILIDADES_H
