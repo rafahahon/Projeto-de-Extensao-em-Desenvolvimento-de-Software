@@ -32,7 +32,7 @@ sqlite3* bd_conectar()
     int bd_retorno = sqlite3_open_v2(
         "file://./../data/codecatcoffee.sqlite",
         &bd,
-        SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX | SQLITE_OPEN_PRIVATECACHE | SQLITE_OPEN_URI,
+        SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX | SQLITE_OPEN_PRIVATECACHE,
         "win32"
     );
 
