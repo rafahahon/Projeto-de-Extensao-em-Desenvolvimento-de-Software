@@ -26,6 +26,7 @@
 #include "playground.h"
 #include "produto.h"
 #include "reserva_mesa.h"
+#include "sessao_playground.h"
 #include "utilidades.h"
 
 /**
@@ -409,7 +410,8 @@ void menu_playground(sqlite3* bd)
         "Listar Gatos",
         "Nova Sessão de Playground",
         "Alterar Sessão de Playground",
-        "Buscar Sessão de Playground",
+        "Buscar Sessão de Playground por Cliente",
+        "Buscar Sessão de Playground por Playground",
         "Listar Sessões de Playground"
     };
     // Descobre a quantidade de itens dividindo o tamanho total da array
@@ -468,19 +470,23 @@ void menu_playground(sqlite3* bd)
             break;
 
         case 9:
-            // TODO: criar sessao de playground
+            sessao_play_cadastrar(bd);
             break;
 
         case 10:
-            // TODO: editar sessao de playground
+            sessao_play_editar(bd);
             break;
 
         case 11:
-            // TODO: buscar sessao de playground
+            sessao_play_buscar_por_cliente(bd);
             break;
 
         case 12:
-            // TODO: listar sessoes de playground
+            sessao_play_buscar_por_playground(bd);
+            break;
+
+        case 13:
+            sessao_play_listar(bd);
             break;
 
         case 0:
