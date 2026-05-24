@@ -79,54 +79,115 @@ void bd_criar_tabelas(sqlite3* bd)
 }
 
 /**
+ * Imprime um texto e preenche com espaços até atingir a largura visual desejada.
+ * @param texto O texto a ser impresso
+ * @param largura_desejada A largura da coluna desejada
+ */
+void bd_imprimir_celula_alinhada(const char* texto, const int largura_desejada)
+{
+    const char* texto_final = texto ? texto : "NULL";
+
+    // Imprime o texto normalmente
+    printf("%s", texto_final);
+
+    // Calcula quantos espaços faltam baseados no tamanho visual (e não em bytes)
+    int espacos_faltando = largura_desejada - tamanho_visual_utf8(texto_final);
+
+    // Imprime os espaços
+    for (int i = 0; i < espacos_faltando; i++)
+    {
+        printf(" ");
+    }
+}
+
+/**
  * Roda uma consulta select e imprime os nomes das colunas e cada linha no resultado.
  * @param bd_statement A consulta preparada (prepared statement)
  */
 void bd_imprimir_resultados_tabela(sqlite3_stmt* bd_statement)
 {
+    const int total_col = sqlite3_column_count(bd_statement);
     int i,
-        total_col = sqlite3_column_count(bd_statement),
-        rc = sqlite3_step(bd_statement);
+        resultado = sqlite3_step(bd_statement);
+    int* larguras;
 
-    if (rc == SQLITE_DONE)
+    if (resultado == SQLITE_DONE)
     {
         printf("Nenhum resultado encontrado.\n");
         return;
     }
 
-    // 1. Mostra o cabeçalho
+    // Alocamos um array para guardar o tamanho máximo de cada coluna
+    larguras = (int*)malloc(total_col * sizeof(int));
+
+    // Iniciamos as larguras baseadas no nome do cabeçalho da coluna
+    for (i = 0; i < total_col; i++)
+    {
+        larguras[i] = tamanho_visual_utf8(sqlite3_column_name(bd_statement, i));
+    }
+
+    // Varremos os dados para ver se alguma linha tem um texto maior que o cabeçalho
+    do
+    {
+        for (i = 0; i < total_col; i++)
+        {
+            const char* valor = (const char*)sqlite3_column_text(bd_statement, i);
+            const int tam_valor = valor ? tamanho_visual_utf8(valor) : 4; // 4 é o tamanho da palavra "NULL"
+
+            if (tam_valor > larguras[i])
+            {
+                larguras[i] = tam_valor;
+            }
+        }
+
+        resultado = sqlite3_step(bd_statement);
+    }
+    while (resultado == SQLITE_ROW);
+
+    // Volta a consulta para o estado inicial para lê-la novamente
+    sqlite3_reset(bd_statement);
+
+    // Mostra o cabeçalho
     printf("\n");
 
     for (i = 0; i < total_col; i++)
     {
-        // %-15s é: string, alinhada a esquerda (COMUNISTA!!), 15 caracteres de largura
-        printf("%-15s | ", sqlite3_column_name(bd_statement, i));
+        bd_imprimir_celula_alinhada(sqlite3_column_name(bd_statement, i), larguras[i]);
+        printf(" | ");
     }
 
     printf("\n");
 
-    // 2. Separador de linhas/colunas
+    // Separador (Gera os tracinhos)
     for (i = 0; i < total_col; i++)
     {
-        printf("----------------|");
+        for (int j = 0; j < larguras[i]; j++)
+        {
+            printf("-");
+        }
+
+        printf("-| ");
     }
 
     printf("\n");
 
-    // 3. Mostra as linhas
-    while (rc == SQLITE_ROW)
+    // Linhas de dados
+    while (sqlite3_step(bd_statement) == SQLITE_ROW)
     {
         for (i = 0; i < total_col; i++)
         {
             const char* val = (const char*)sqlite3_column_text(bd_statement, i);
-            printf("%-15s | ", val ? val : "NULL");
+            bd_imprimir_celula_alinhada(val, larguras[i]);
+            printf(" | ");
         }
 
         printf("\n");
-        rc = sqlite3_step(bd_statement);
     }
 
     printf("\n");
+
+    // Limpeza de memória do array que alocamos
+    free(larguras);
 }
 
 /**

@@ -21,6 +21,29 @@
 #include "utilidades.h"
 
 /**
+ * Conta a quantidade real de caracteres visíveis em uma string UTF-8.
+ * Ignora os bytes de continuação dos acentos.
+ * @param texto O texto em UTF-8 a ter os caracteres visualmente contados.
+ * @return O tamanho de caracteres visuais no texto.
+ */
+int tamanho_visual_utf8(const char* texto)
+{
+    int tamanho = 0;
+
+    while (*texto)
+    {
+        // Se os dois primeiros bits não forem '10' (0x80), é o início de um caractere visual
+        if ((*texto & 0xC0) != 0x80)
+        {
+            tamanho++;
+        }
+        texto++;
+    }
+
+    return tamanho;
+}
+
+/**
  * Pega entrada do usuário e trata como data no formato DD-MM-YYYY.
  * Caso usuário não forneça uma data, usar a data atual.
  * @param data A variável que vai receber a entrada do usuário em stdin.

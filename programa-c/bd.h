@@ -32,6 +32,13 @@ sqlite3* bd_conectar();
 void bd_criar_tabelas(sqlite3* bd);
 
 /**
+ * Imprime um texto e preenche com espaços até atingir a largura visual desejada.
+ * @param texto O texto a ser impresso
+ * @param largura_desejada A largura da coluna desejada
+ */
+void bd_imprimir_celula_alinhada(const char* texto, int largura_desejada);
+
+/**
  * Roda uma consulta select e imprime os nomes das colunas e cada linha no resultado.
  * @param bd_statement A consulta preparada (prepared statement)
  */
