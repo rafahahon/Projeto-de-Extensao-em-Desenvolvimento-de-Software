@@ -11,43 +11,18 @@
     --white: #ffffff;
     --shadow: rgba(74, 52, 39, 0.06);
 }
-/* Reset e configurações básicas */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-cream);
-    color: var(--text-coffee);
-    font-family: 'Segoe UI', sans-serif;
-}
-
-.logotipo {
-    display: flex;
-    align-items: center;
-}
-
-.menu {
-    display: flex;
-    gap: 30px;
-}
-
-.menu a {
-    text-decoration: none;
-    color: #f5ece5;
-    font-weight: 600;
-    font-size: 14px;
-}
-
 .filtro-btn-todas {
     background: var(--accent-orange);
     padding: 10px 22px;
     border-radius: 12px;
-    color: white !important;
+    color: var(--white) !important;
 }
 
 .introducao {
@@ -96,7 +71,7 @@ body {
 }
 
 .avaliacao label {
-    color: #e2d7cf;
+    color: var(--text-light);
     cursor: pointer;
     transition: 0.2s;
 }
@@ -116,7 +91,7 @@ body {
 .filtro-btn {
     border: none;
     padding: 8px 18px;
-    background: #f7f2ee;
+    background: var(--bg-cream);
     border-radius: 50px;
     font-weight: 600;
     cursor: pointer;
@@ -130,7 +105,7 @@ body {
 textarea {
     width: 100%;
     height: 90px;
-    border: 2px solid #f0e9e4;
+    border: 2px solid var(--accent-orange);
     border-radius: 12px;
     padding: 12px;
     margin: 15px 0;
@@ -141,7 +116,7 @@ textarea {
 
 .btn-publicar {
     background: var(--accent-orange);
-    color: white;
+    color: var(--white);
     padding: 12px 24px;
     border-radius: 10px;
     font-weight: 700;

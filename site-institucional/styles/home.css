@@ -10,19 +10,12 @@
     --text-light: #9e8d82;
     --white: #ffffff;
     --shadow: rgba(74, 52, 39, 0.06);
+
 }
-/* Reset e configurações básicas */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    background-color:#fdfaf7;
-    color: var(--text-dark);
-    line-height: 1.6;
-    overflow-x: hidden;
 }
 
 .container {
@@ -31,10 +24,9 @@ body {
     padding: 0 20px;
 }
 
-/* --- Botões (Soft UI) --- */
 .btn-cardapio2 {
-    background-color: #e67e3c;
-    color: white;
+    background-color: var(--accent-orange);
+    color: var(--white);
     padding: 14px 32px;
     border-radius: 50px;
     font-weight: 700;
@@ -45,80 +37,15 @@ body {
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(226, 123, 66, 0.3); /* Sombra suave */
+    box-shadow: var(--shadow);
 }
 
 .btn-cardapio2:hover {
-    background-color: #f28d4f;
+    background-color: var(--accent-orange);
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(226, 123, 66, 0.4);
+    box-shadow: 0 4px 15px rgba(226, 123, 66, 0.3);
 }
 
-/* --- Cabeçalho Marrom (Baseado na sua imagem) --- */
-.header {
-    background-color: var(--header-bg);
-    padding: 15px 0;
-    color: white;
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.logo-image {
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-}
-
-.logo-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.logo-title {
-    font-family: var(--font-title);
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--primary);
-    line-height: 1;
-}
-
-.logo-subtitle {
-    font-size: 0.9rem;
-    color: white;
-    font-weight: 500;
-    margin-top: 5px;
-    letter-spacing: 0.5px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 35px;
-}
-
-.nav-links a {
-    color: white;
-    font-weight: 700;
-    font-family: var(--font-title);
-    text-transform: uppercase;
-    font-size: 0.95rem;
-    letter-spacing: 1px;
-}
-
-.nav-links a:hover, .nav-links a.active {
-    color: var(--primary);
-}
-
-/* --- Hero Section --- */
 .hero {
     display: flex;
     align-items: center;
@@ -133,11 +60,10 @@ body {
 }
 
 .titulo-principal {
-    font-family: var(--font-title);
     font-size: 4rem;
     line-height: 1.15;
     margin-bottom: 25px;
-    color: #634226;
+    color: var(--primary-brown);
 }
 
 .texto-principal {
@@ -158,17 +84,16 @@ body {
     max-width: 500px;
     border-radius: 30px;
     object-fit: cover;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08); /* Sombra suave */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08); 
 }
 
-/* --- Features Section --- */
 .features {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding: 80px 0;
     margin-bottom: 80px;
     text-align: center;
-    background-color: white;
+    background-color: var(--white);
     border-radius: 40px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.03); /* Soft UI Box */
 }
@@ -178,13 +103,12 @@ body {
 }
 
 .principal-itens:nth-child(2) {
-    border-left: 2px dashed var(--secondary-bg);
-    border-right: 2px dashed var(--secondary-bg);
+    border-left: 2px dashed var(--shadow);
+    border-right: 2px dashed var(--shadow);
 }
 
 .principal-itens h3 {
-    font-family: var(--font-title);
-    color: #634226;
+    color: var(--primary-brown);
     margin-bottom: 15px;
     font-size: 1.4rem;
 }
@@ -195,7 +119,6 @@ body {
     font-weight: 500;
 }
 
-/* --- History Section --- */
 .history-section {
     display: flex;
     align-items: center;
@@ -216,10 +139,9 @@ body {
 }
 
 .subtitulo-historia {
-    font-family: var(--font-title);
     font-size: 3rem;
     margin-bottom: 25px;
-    color: #634226;
+    color: var(--primary-brown);
     line-height: 1.2;
 }
 
@@ -230,9 +152,8 @@ body {
     font-weight: 500;
 }
 
-/* --- Missão e Valores --- */
 .missao {
-    background-color: white;
+    background-color: var(--white);
     padding: 80px 60px;
     border-radius: 40px;
     margin-bottom: 100px;
@@ -240,10 +161,9 @@ body {
 }
 
 .missao-titulo {
-    font-family: var(--font-title);
     font-size: 2.8rem;
     margin-bottom: 25px;
-    color: #634226;
+    color: var(--primary-brown);
 }
 
 .missao-texto {
@@ -261,7 +181,7 @@ body {
 }
 
 .card-valores {
-    background: #FFF9F5;
+    background: var(--bg-cream);
     padding: 40px;
     border-radius: 30px;
     box-shadow: 0 10px 30px rgba(74, 52, 36, 0.05); /* Soft UI Box */
@@ -273,9 +193,8 @@ body {
 }
 
 .valor-titulo {
-    font-family: var(--font-title);
     font-size: 1.5rem;
-    color: #634226;
+    color: var(--primary-brown);
     margin-bottom: 15px;
 }
 
@@ -284,15 +203,10 @@ body {
     font-size: 1.1rem;
     font-weight: 500;
 }
-
-
-
-/* --- Responsividade --- */
 @media (max-width: 992px) {
     .hero, .history-section { flex-direction: column; text-align: center; }
     .conteudo-principal, .conteudo-historia { max-width: 100%; }
     .imagem-principal, .imagem-historia { justify-content: center; margin-top: 40px; }
-    .nav-links { display: none; }
     .features, .values-grid { grid-template-columns: 1fr; gap: 40px; }
     .principal-itens:nth-child(2) { border: none; }
     .titulo-principal { font-size: 3rem; }

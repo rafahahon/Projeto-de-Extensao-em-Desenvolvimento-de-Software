@@ -8,9 +8,7 @@
     <meta name="copyright" content="CODE CAT COFFEE"/> <!--copyright-->
     <link rel="stylesheet" href="styles/avaliacoes.css">
 </head>
-
 <body>
-
 <!--MENU-->
 <header class="menu">
     <div class="logotipo">
@@ -28,13 +26,12 @@
         <a href="contato.html" class="btn-contato">CONTATO</a>
     </nav>
 </header>
-
+<!--INÍCIO DA PÁGINA-->
 <main class="introducao">
     <section class="titulo">
         <h2 class="secao-titulo">Avaliações</h2>
         <p class="secao-subtitulo">O que nossos clientes dizem sobre nós</p>
     </section>
-
     <section class="card1">
         <div class="estrelas-card">★★★★★</div>
         <div class="valor-card">5.0</div>
@@ -44,10 +41,8 @@
             <button class="filtro-btn">4 Estrelas</button>
         </div>
     </section>
-
     <section class="formulario">
         <h3>Deixe sua avaliação</h3>
-
         <div class="avaliacao">
             <input type="radio" name="estrelas" id="estrela5" hidden><label for="estrela5">★</label>
             <input type="radio" name="estrelas" id="estrela4" hidden><label for="estrela4">★</label>
@@ -55,18 +50,15 @@
             <input type="radio" name="estrelas" id="estrela2" hidden><label for="estrela2">★</label>
             <input type="radio" name="estrelas" id="estrela1" hidden><label for="estrela1">★</label>
         </div>
-
         <textarea placeholder="Conte-nos como foi sua experiência..."></textarea>
         <button class="btn-publicar">Publicar Avaliação</button>
     </section>
-
     <div class="reviews-grid">
         <article class="review-card">
             <div class="estrelas-card">★★★★★</div>
             <p>"Lugar perfeito para trabalhar! O WiFi é rápido e o café é excelente."</p>
             <span class="autor">Ana Silva</span>
         </article>
-
         <article class="review-card">
             <div class="estrelas-card">★★★★☆</div>
             <p>"Ambiente muito legal, os gatos são super mansos e carinhosos."</p>
@@ -74,13 +66,12 @@
         </article>
     </div>
 </main>
-
 <!--RODAPÉ-->
 <footer class="rodape-principal">
     <div class="secao-redes-sociais">
         <h3 class="titulo-redes">Siga-nos nas redes sociais</h3>
         <ul class="lista-redes">
-            <li> <!--sempre deve estar em <ul>, é onde coloca os itens da lista-->
+            <li> 
                 <a aria-label="Instagram">
                     <svg class="icone-rede-social" viewBox="0 0 24 24">
                         <path
@@ -147,7 +138,7 @@
             </svg>
 
             <h3 class="titulo-contato">Email</h3>
-            <ul class="lista-contato"> <!--tag para lista não ordenada-->
+            <ul class="lista-contato"> 
                 <li>contato@codecatcoffee.com.br</li>
                 <li>reservas@codecatcoffee.com.br</li>
             </ul>
@@ -159,7 +150,7 @@
             <h3 class="titulo-horario">Horário de Funcionamento</h3>
             <table class="tabela-horario">
                 <tbody>
-                <tr> <!--uma linha inteira de uma tabela-->
+                <tr>
                     <td class="coluna-dias">Segunda à Sexta:</td>
                     <td class="coluna-horas">08:00 - 22:00</td>
                 </tr>
