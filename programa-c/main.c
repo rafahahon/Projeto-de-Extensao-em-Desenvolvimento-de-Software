@@ -43,7 +43,7 @@ int main()
         "Produtos",
         "Mesas",
         "Playground",
-        "Relatórios",
+        // "Relatórios",
         "Outros"
     };
     // Descobre a quantidade de itens dividindo o tamanho total da array
@@ -97,10 +97,10 @@ int main()
             break;
 
         case 6:
-            menu_relatorio(bd);
-            break;
-
-        case 7:
+        //     menu_relatorio(bd);
+        //     break;
+        //
+        // case 7:
             menu_outros(bd);
             break;
 
