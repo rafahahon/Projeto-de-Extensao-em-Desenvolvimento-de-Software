@@ -51,7 +51,7 @@ int tamanho_visual_utf8(const char* texto)
 void entrada_data(int* data)
 {
     char temp_var[11], *ptr, *endptr;
-    time_t agora = time(NULL);
+    const time_t agora = time(NULL);
 
     // Obtém a data vinda do usuário via stdin
     entrada_string(temp_var, sizeof(temp_var));
@@ -199,6 +199,7 @@ char* ler_arquivo(const char* caminho_arquivo)
 {
     printf("Lendo arquivo %s\n", caminho_arquivo);
     char* conteudo;
+    size_t bytes_lidos;
     // Aqui abrimos o arquivo para leitura
     FILE* arquivo = fopen(caminho_arquivo, "rb");
 
@@ -223,7 +224,7 @@ char* ler_arquivo(const char* caminho_arquivo)
     }
 
     // Aqui colocamos o conteúdo de cada linha do arquivo dentro da variável conteudo
-    size_t bytes_lidos = fread(conteudo, 1, tam_arquivo, arquivo);
+    bytes_lidos = fread(conteudo, 1, tam_arquivo, arquivo);
     conteudo[bytes_lidos] = '\0'; // Finaliza a string com um null
 
     // Fechando o arquivo para liberar memória

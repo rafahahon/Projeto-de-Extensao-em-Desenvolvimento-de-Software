@@ -29,7 +29,7 @@
  * @param bd A referência à conexão do banco de dados.
  * @param id_pedido ID do pedido
  */
-void pedido_adicionar_item(sqlite3* bd, sqlite3_int64 id_pedido)
+void pedido_adicionar_item(sqlite3* bd, const sqlite3_int64 id_pedido)
 {
     char confirmacao[5], nome_produto[255];
     int id_produto = 0, quantidade = 0, prod_quantidade_estoque = 0, retorno;
@@ -230,8 +230,9 @@ sqlite3_int64 pedido_criar(sqlite3* bd)
 {
     char confirmacao[5];
     int cliente, *data, retorno;
-    float total = 0;
+    const float total = 0;
     struct tm dataHelper = {0};
+    time_t epoch;
     sqlite3_int64 id_pedido, id_forma_pagto;
     sqlite3_stmt* statement = NULL;
 
@@ -253,7 +254,7 @@ sqlite3_int64 pedido_criar(sqlite3* bd)
     dataHelper.tm_mon = data[1] - 1; // Meses vão de 0 a 11, tem que subtrair 1
     dataHelper.tm_year = data[2] - 1900; // Precisa subtrair, pq o epoch do C vai de 1900 até hoje
     dataHelper.tm_isdst = -1; // Deixa o sistema arrumar para horario de verão
-    time_t epoch = mktime(&dataHelper);
+    epoch = mktime(&dataHelper);
 
     if (epoch == -1)
     {

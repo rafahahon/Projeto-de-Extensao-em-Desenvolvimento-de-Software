@@ -206,7 +206,6 @@ void sessao_play_editar(sqlite3* bd)
     {
         if (tem_campo_anterior) strcat(query, ", ");
         strcat(query, "valor_pago = ?");
-        tem_campo_anterior = 1;
     }
 
     // Adiciona a condição final

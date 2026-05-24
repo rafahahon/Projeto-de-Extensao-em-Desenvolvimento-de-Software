@@ -29,7 +29,7 @@ sqlite3* bd_conectar()
 {
     sqlite3* bd = NULL;
     // Aqui nós iniciamos a conexão com o banco de dados
-    int bd_retorno = sqlite3_open_v2(
+    const int bd_retorno = sqlite3_open_v2(
         "file://./../data/codecatcoffee.sqlite",
         &bd,
         SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX | SQLITE_OPEN_PRIVATECACHE,
@@ -60,12 +60,12 @@ sqlite3* bd_conectar()
 void bd_criar_tabelas(sqlite3* bd)
 {
     printf("Criando tabelas...\n");
+    const char* query = ler_arquivo("file://./../banco-de-dados/esquema-sqlite.sql");
     // Vamos ler o arquivo SQL num buffer de string
-    char *query = ler_arquivo("file://./../banco-de-dados/esquema-sqlite.sql"),
-         *bd_erro;
+    char* bd_erro;
 
     // Executa a query
-    int bd_retorno = sqlite3_exec(bd, query, NULL, 0, &bd_erro);
+    const int bd_retorno = sqlite3_exec(bd, query, NULL, 0, &bd_erro);
 
     if (bd_retorno != SQLITE_OK)
     {
@@ -91,7 +91,7 @@ void bd_imprimir_celula_alinhada(const char* texto, const int largura_desejada)
     printf("%s", texto_final);
 
     // Calcula quantos espaços faltam baseados no tamanho visual (e não em bytes)
-    int espacos_faltando = largura_desejada - tamanho_visual_utf8(texto_final);
+    const int espacos_faltando = largura_desejada - tamanho_visual_utf8(texto_final);
 
     // Imprime os espaços
     for (int i = 0; i < espacos_faltando; i++)
@@ -197,12 +197,12 @@ void bd_imprimir_resultados_tabela(sqlite3_stmt* bd_statement)
 void bd_popular_tabelas(sqlite3* bd)
 {
     printf("Populando tabelas...\n");
+    const char* query = ler_arquivo("file://./../banco-de-dados/esquema-sql-insercao.sql");
     // Vamos ler o arquivo SQL num buffer de string
-    char *query = ler_arquivo("file://./../banco-de-dados/esquema-sql-insercao.sql"),
-         *bd_erro;
+    char* bd_erro;
 
     // Executa a query
-    int bd_retorno = sqlite3_exec(bd, query, NULL, 0, &bd_erro);
+    const int bd_retorno = sqlite3_exec(bd, query, NULL, 0, &bd_erro);
 
     if (bd_retorno != SQLITE_OK)
     {
@@ -223,7 +223,7 @@ void bd_popular_tabelas(sqlite3* bd)
  */
 int bd_prepara_consulta(sqlite3* bd, const char* query, sqlite3_stmt** bd_statement)
 {
-    int bd_retorno = sqlite3_prepare_v3(
+    const int bd_retorno = sqlite3_prepare_v3(
         bd, /* Referência do banco de dados */
         query, /* Consulta SQL, UTF-8 encoded */
         -1, /* Tamanho máximo da consulta em bytes. */
