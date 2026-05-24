@@ -7,7 +7,6 @@
  * | Ana Santos Nascimento           | 3036101499 |
  * | Breno Fessel Da Paz             | 3026104340 |
  * | Gabrielli Minhano Barbosa       | 3026103592 |
- * | Pedro Junior da Silva Soares    | 3026104213 |
  * | Rafael Baptista de Almeida      | 3026103546 |
  * | Rafaella Pinto Hahon            | 3026102787 |
  * | Victor Nunes Garcia             | 3026101023 |
@@ -15,10 +14,22 @@
  *
  * Banco de dados em MySQL para o controle de pedidos, reservas, etc.
  */
-CREATE DATABASE IF NOT EXISTS code_cat_coffee;
-USE code_cat_coffee;
+CREATE DATABASE IF NOT EXISTS CodeCatCoffee;
+USE CodeCatCoffee;
 
--- 1. CLIENTE
+-- 1. CATEGORIA_PRODUTO 
+CREATE TABLE categoria_produto (
+    id_cat_produto INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- 2. FORMA_PAGAMENTO 
+CREATE TABLE forma_pagamento (
+    id_forma_pagto INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- 3. CLIENTE
 CREATE TABLE cliente (
     id_cliente INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
@@ -26,14 +37,14 @@ CREATE TABLE cliente (
     email VARCHAR(100) UNIQUE
 );
 
--- 2. FUNCIONÁRIO
+-- 4. FUNCIONÁRIO
 CREATE TABLE funcionario (
     id_fun INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     cargo VARCHAR(100) NOT NULL
 );
 
--- 3. MESA (Fundamental para o Coworking)
+-- 5. MESA 
 CREATE TABLE mesa (
     id_mesa INT PRIMARY KEY AUTO_INCREMENT,
     numero_mesa INT NOT NULL UNIQUE,
@@ -41,7 +52,7 @@ CREATE TABLE mesa (
     extra_monitor TINYINT(1) DEFAULT 0
 );
 
--- 4. PLAYGROUND
+-- 6. PLAYGROUND
 CREATE TABLE playground (
     id_playground INT PRIMARY KEY AUTO_INCREMENT,
     nome_setor VARCHAR(50) NOT NULL, 
@@ -49,7 +60,7 @@ CREATE TABLE playground (
     capacidade_clientes INT
 );
 
--- 5. GATO
+-- 7. GATO
 CREATE TABLE gato (
     id_gato INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
@@ -59,17 +70,18 @@ CREATE TABLE gato (
     FOREIGN KEY (id_playground) REFERENCES playground(id_playground)
 );
 
--- 6. PRODUTO
+-- 8. PRODUTO
 CREATE TABLE produto (
     id_produto INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     descricao TEXT, 
     preco DECIMAL(10,2) NOT NULL,
     quantidade_estoque INT DEFAULT 0,
-    categoria ENUM('Doce', 'Salgado', 'Bebida', 'Petisco') NOT NULL
+    id_categoria INT,
+    FOREIGN KEY (id_categoria) REFERENCES categoria_produto(id_cat_produto)
 );
 
--- 7. RESERVA DE MESA
+-- 9. RESERVA DE MESA
 CREATE TABLE reserva_mesa (
     id_reserva INT PRIMARY KEY AUTO_INCREMENT,
     id_cliente INT,
@@ -80,7 +92,7 @@ CREATE TABLE reserva_mesa (
     FOREIGN KEY (id_mesa) REFERENCES mesa(id_mesa)
 );
 
--- 8. SESSÕES DE PLAYGROUND
+-- 10. SESSÕES DE PLAYGROUND
 CREATE TABLE sessoes_playground (
     id_sessao INT PRIMARY KEY AUTO_INCREMENT,
     id_cliente INT,
@@ -92,19 +104,20 @@ CREATE TABLE sessoes_playground (
     FOREIGN KEY (id_playground) REFERENCES playground(id_playground)
 );
 
--- 9. PEDIDO (Cabeçalho)
+-- 11. PEDIDO (Ajustado id_forma_pagto para bater com o insert)
 CREATE TABLE pedido (
     id_pedido INT PRIMARY KEY AUTO_INCREMENT,
     id_cliente INT,
     id_fun INT, 
     valor_total_pedido DECIMAL(10,2),
-    forma_pagamento ENUM('PIX', 'Cartão Débito', 'Cartão Crédito', 'Dinheiro'),
+    id_forma_pagto INT, 
     data_pedido DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
-    FOREIGN KEY (id_fun) REFERENCES funcionario(id_fun)
+    FOREIGN KEY (id_fun) REFERENCES funcionario(id_fun),
+    FOREIGN KEY (id_forma_pagto) REFERENCES forma_pagamento(id_forma_pagto)
 );
 
--- 10. ITENS_PEDIDO (Detalhes)
+-- 12. ITENS_PEDIDO
 CREATE TABLE itens_pedido (
     id_item INT PRIMARY KEY AUTO_INCREMENT,
     id_pedido INT,
