@@ -56,7 +56,7 @@ void entrada_data(int* data)
     // Obtém a data vinda do usuário via stdin
     entrada_string(temp_var, sizeof(temp_var));
 
-    if (strcmp(temp_var, "\n") == 0) // Se a data for vazia, usar a data de hoje
+    if (strlen(temp_var) == 0) // Se a data for vazia, usar a data de hoje
     {
         strftime(temp_var, sizeof temp_var, "%d-%m-%Y", localtime(&agora));
     }
@@ -205,7 +205,6 @@ char* ler_arquivo(const char* caminho_arquivo)
     if (arquivo == NULL)
     {
         printf("Não foi possível abrir o arquivo.\n");
-        fclose(arquivo);
         exit(1);
     }
 
