@@ -218,18 +218,17 @@ void mesa_editar(sqlite3* bd)
     // Vamos iniciar o índice em 1 e entao incrementando conforme executamos cada bind
     indice_bind = 1;
 
-    // Usamos SQLITE_TRANSIENT, pois as variáveis são arrays locais que serão destruídas
     if (numero_mesa > 0)
     {
         sqlite3_bind_int(statement, indice_bind++, numero_mesa);
     }
 
-    if (tomadas >= 0)
+    if (tomadas > -1)
     {
         sqlite3_bind_int(statement, indice_bind++, tomadas);
     }
 
-    if (monitores_extra >= 0)
+    if (monitores_extra > -1)
     {
         sqlite3_bind_int(statement, indice_bind++, monitores_extra);
     }
