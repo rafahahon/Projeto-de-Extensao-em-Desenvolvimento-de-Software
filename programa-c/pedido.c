@@ -31,7 +31,7 @@
  */
 void pedido_adicionar_item(sqlite3* bd, sqlite3_int64 id_pedido)
 {
-    char confirmacao[5], *nome_produto;
+    char confirmacao[5], nome_produto[255];
     int id_produto = 0, quantidade = 0, prod_quantidade_estoque = 0, retorno;
     float preco_produto = 0, total = 0;
     sqlite3_stmt* statement = NULL;
@@ -66,7 +66,10 @@ void pedido_adicionar_item(sqlite3* bd, sqlite3_int64 id_pedido)
         while (sqlite3_step(statement) == SQLITE_ROW)
         {
             // Coluna 0 é o 'nome' da nossa consulta SELECT
-            nome_produto = (char*)sqlite3_column_text(statement, 0);
+            const char* nome_temporario = (const char*)sqlite3_column_text(statement, 0);
+            if (nome_temporario) {
+                strncpy(nome_produto, nome_temporario, sizeof(nome_produto) - 1);
+            }
             preco_produto = (float)sqlite3_column_double(statement, 1);
             prod_quantidade_estoque = sqlite3_column_int(statement, 2);
         }
@@ -74,7 +77,7 @@ void pedido_adicionar_item(sqlite3* bd, sqlite3_int64 id_pedido)
         sqlite3_finalize(statement);
 
         // Verificação de segurança
-        if (nome_produto == NULL || preco_produto == 0 || prod_quantidade_estoque == 0) continue;
+        if (strlen(nome_produto) == 0 || preco_produto == 0 || prod_quantidade_estoque == 0) continue;
 
         printf("Quantidade: ");
         quantidade = entrada_int();
