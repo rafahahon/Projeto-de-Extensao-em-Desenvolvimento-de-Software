@@ -2,282 +2,299 @@
 @import "_menu.css";
 @import "_footer.css";
 
-.banner {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/gato_banner.png');
-    background-size: cover; /*cobrir o banner todo*/
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    flex-flow: column;
-    justify-content: center; /*Centraliza horizontalmente*/
-    align-items: center; /*Centraliza verticalmente*/
-    text-align: center;
-    color: white;
+:root {
+    --primary-brown: #634226;
+    --accent-orange: #e67e3c;
+    --bg-cream: #fdfaf7;
+    --text-coffee: #5d4a3e;
+    --text-light: #9e8d82;
+    --white: #ffffff;
+    --shadow: rgba(74, 52, 39, 0.06);
 }
-.banner-content {
-    display:flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.banner-title {
-    font-size: 4rem;
+/* Reset e configurações básicas */
+* {
     margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.banner-subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 30px;
-    font-weight: 300;
-}
-
-.icon-code { /*incon de <> */
-    font-size: 4rem;
-    color: #e67e3c;
-}
-.icon-coffee { /*incon de <> */
-    font-size: 4rem;
-    color: #e67e3c;
-}
-
-.welcome-section {
-    background-color: #FFF3E0;
-    padding: 60px 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+body {
+    background-color:#fdfaf7;
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
 .container {
-    max-width: 1000px; 
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-.welcome-title {
-    color: #634226;
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 40px;
+/* --- Botões (Soft UI) --- */
+.btn-cardapio2 {
+    background-color: #e67e3c;
+    color: white;
+    padding: 14px 32px;
+    border-radius: 50px;
     font-weight: 700;
-}
-.about-card {
-    background-color: white;
-    padding: 30px 60px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.about-card p {
-    color: #634226;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin: 0;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(226, 123, 66, 0.3); /* Sombra suave */
 }
 
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+.btn-cardapio2:hover {
+    background-color: #f28d4f;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(226, 123, 66, 0.4);
 }
 
-.feature-card {
-    background-color: white;
-    padding: 25px 15px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
+/* --- Cabeçalho Marrom (Baseado na sua imagem) --- */
+.header {
+    background-color: var(--header-bg);
+    padding: 15px 0;
+    color: white;
 }
 
-.feature-card:hover {
-    transform: translateY(-5px);
-}
-
-.feature-title {
-    color: #634226;
-    font-size: 1.2rem;
-    margin: 0 0 8px 0;
-    font-weight: 600;
-}
-
-.feature-text {
-    color: #8d6e63;
-    font-size: 0.95rem;
-    margin: 0;
-}
-
-@media (max-width: 768px) {
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .welcome-title {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-    .about-card {
-        padding: 20px;
-    }
-}
-
-.menu-section {
-    background-color: white;
-    padding: 60px 0;
-}
-
-.menu-section .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.menu-title {
-    color: #634226;
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.menu-subtitle {
-    color: #8d6e63;
-    font-size: 1.1rem;
-    text-align: center;
-    margin-bottom: 50px;
-    font-weight: 300;
-}
-
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-.menu-card {
-    background-color: #FFF3E0;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
-}
-
-.menu-card:hover {
-    transform: translateY(-5px);
-}
-.gato-section {
-    background-color: #FFF3E0;
-    padding: 60px 0;
-}
-
-.gato-section .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.gato-title {
-    color: #634226;
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.gato-subtitle {
-    color: #8d6e63;
-    font-size: 1.1rem;
-    text-align: center;
-    margin-bottom: 50px;
-    font-weight: 300;
-}
-
-.gato-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-.gato-card {
-    background-color: white;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
-}
-
-.gato-card:hover {
-    transform: translateY(-5px);
-}
-
-
-
-
-
-
-.card-image-wrapper {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-}
-
-.card-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.card-details {
-    padding: 20px;
-}
-
-.card-header {
+.header-container {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-image {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-title {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.logo-subtitle {
+    font-size: 0.9rem;
+    color: white;
+    font-weight: 500;
+    margin-top: 5px;
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+}
+
+.nav-links a {
+    color: white;
+    font-weight: 700;
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary);
+}
+
+/* --- Hero Section --- */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 0 100px;
+    gap: 40px;
+}
+
+.conteudo-principal {
+    flex: 1;
+    max-width: 550px;
+}
+
+.titulo-principal {
+    font-family: var(--font-title);
+    font-size: 4rem;
+    line-height: 1.15;
+    margin-bottom: 25px;
+    color: #634226;
+}
+
+.texto-principal {
+    font-size: 1.25rem;
+    color: var(--text-light);
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+
+.imagem-principal {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.imagem-principal img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 30px;
+    object-fit: cover;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08); /* Sombra suave */
+}
+
+/* --- Features Section --- */
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 80px 0;
+    margin-bottom: 80px;
+    text-align: center;
+    background-color: white;
+    border-radius: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03); /* Soft UI Box */
+}
+
+.principal-itens {
+    padding: 30px 40px;
+}
+
+.principal-itens:nth-child(2) {
+    border-left: 2px dashed var(--secondary-bg);
+    border-right: 2px dashed var(--secondary-bg);
+}
+
+.principal-itens h3 {
+    font-family: var(--font-title);
+    color: #634226;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.principal-itens p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* --- History Section --- */
+.history-section {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    margin-bottom: 120px;
+}
+
+.imagem-historia img {
+    width: 100%;
+    border-radius: 200px 200px 30px 30px;
+    max-width: 450px;
+    object-fit: cover;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.conteudo-historia {
+    flex: 1;
+}
+
+.subtitulo-historia {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    margin-bottom: 25px;
+    color: #634226;
+    line-height: 1.2;
+}
+
+.paragrafo-historia {
+    color: var(--text-light);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* --- Missão e Valores --- */
+.missao {
+    background-color: white;
+    padding: 80px 60px;
+    border-radius: 40px;
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+.missao-titulo {
+    font-family: var(--font-title);
+    font-size: 2.8rem;
+    margin-bottom: 25px;
+    color: #634226;
+}
+
+.missao-texto {
+    color: var(--text-light);
+    font-size: 1.25rem;
+    font-weight: 500;
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+}
+
+.valores {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.card-valores {
+    background: #FFF9F5;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(74, 52, 36, 0.05); /* Soft UI Box */
+    transition: transform 0.3s;
+}
+
+.card-valores:hover {
+    transform: translateY(-8px);
+}
+
+.valor-titulo {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    color: #634226;
     margin-bottom: 15px;
 }
 
-.item-name {
-    color: #634226;
-    font-size: 1.3rem;
-    margin: 0;
-    font-weight: 600;
-}
-
-.item-price {
-    color: #ff9f43;
+.card-valores p {
+    color: var(--text-light);
     font-size: 1.1rem;
-    font-weight: bold;
+    font-weight: 500;
 }
 
-.item-description {
-    color: #8d6e63;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin: 0;
-}
 
-@media (max-width: 900px) {
-    .menu-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-}
 
-@media (max-width: 600px) {
-    .menu-grid {
-        grid-template-columns: 1fr;
-    }
-    .menu-title {
-        font-size: 2rem;
-    }
+/* --- Responsividade --- */
+@media (max-width: 992px) {
+    .hero, .history-section { flex-direction: column; text-align: center; }
+    .conteudo-principal, .conteudo-historia { max-width: 100%; }
+    .imagem-principal, .imagem-historia { justify-content: center; margin-top: 40px; }
+    .nav-links { display: none; }
+    .features, .values-grid { grid-template-columns: 1fr; gap: 40px; }
+    .principal-itens:nth-child(2) { border: none; }
+    .titulo-principal { font-size: 3rem; }
+    .subtitulo-historia { font-size: 2.2rem; }
 }
