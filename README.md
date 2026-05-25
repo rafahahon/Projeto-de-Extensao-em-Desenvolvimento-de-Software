@@ -23,13 +23,19 @@ Temos 3 pastas, uma para cada tarefa designada:
 
 ### Banco de Dados
 
-Temos um arquivo compatível com MySQL e outro compatível com SQLite.
+Temos um arquivo compatível com MySQL e outro compatível com SQLite para criar as tabelas. Também temos um arquivo para inserções de dados de exemplo.
 
 O DER está dentro da pasta com toda a estrutura das tabelas usadas no programa em C.
 
 ### Site Institucional
 
-Temos o site institucional com X páginas, feito em HTML5 e CSS3. 
+Temos o site institucional com 5 páginas, feito em HTML5 e CSS3. São elas:
+
+- Home/Página Inicial: Introdução da Empresa e seu modelo de negócio
+- Sobre Nós: Uma história da empresa e a missão dela
+- Cardápio: Listagem de produtos e dos gatos disponíveis na Cafeteria. Somente para visualização.
+- Avaliações: Página onde você pode avaliar a empresa e também ver as avaliações.
+- Contato: Página com dados de contato da empresa e um formulário de contato onde você pode enviar mensagem.
 
 ### Programa em C
 
