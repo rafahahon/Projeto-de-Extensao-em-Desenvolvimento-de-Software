@@ -1,3 +1,18 @@
+/**
+ *              **Grupo HttpCats**
+ * ================================================
+ * | Nome                            | RA         |
+ * ================================================
+ * | Ana Santos Nascimento           | 3036101499 |
+ * | Breno Fessel Da Paz             | 3026104340 |
+ * | Gabrielli Minhano Barbosa       | 3026103592 |
+ * | Rafael Baptista de Almeida      | 3026103546 |
+ * | Rafaella Pinto Hahon            | 3026102787 |
+ * | Victor Nunes Garcia             | 3026101023 |
+ * ================================================
+ *
+ * Inserção de dados de exemplo em todas as tabelas do Bando de Dados.
+ */
 INSERT INTO cliente (nome, github_user, email)
 VALUES
 -- Lista de Clientes
