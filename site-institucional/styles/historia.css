@@ -1,0 +1,89 @@
+@import "_layout.css";
+
+.secao-historia {
+    padding: 5rem 1.5rem;
+}
+
+.container {
+    max-width: 72rem;
+    margin: 0 auto;
+}
+
+.texto {
+    margin-bottom: 4rem;
+    padding: 3rem;
+    border-left: 5px solid var(--destaque-laranja);
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--fundo-branco);
+
+    p {
+        margin-bottom: 1.5rem;
+        color: var(--texto-cafe);
+        font-size: 1.25rem;
+        line-height: 2;
+        text-align: justify;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+
+.missao-caixa {
+    margin-top: 4rem;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    background-color: var(--fundo-creme);
+    text-align: center;
+
+    .missao-titulo {
+        margin-bottom: 1.5rem;
+        color: var(--fundo-marrom);
+        font-size: 2rem;
+        font-weight: 500;
+    }
+
+    p {
+        max-width: 48rem;
+        margin: 0 auto;
+        color: var(--texto-cafe);
+        font-size: 1.125rem;
+        line-height: 1.8;
+    }
+
+}
+
+.valores {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 3rem;
+
+    .valores-card {
+        padding: 1.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: var(--branco);
+        text-align: center;
+
+        .valores-titulo {
+            margin-bottom: 0.75rem;
+            color: var(--fundo-marrom);
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        p {
+            color: var(--texto-cafe);
+            font-size: 0.875rem;
+        }
+    }
+}
+
+
+@media (min-width: 768px) {
+    .valores {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

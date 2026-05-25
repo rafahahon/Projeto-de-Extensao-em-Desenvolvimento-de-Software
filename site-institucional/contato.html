@@ -1,183 +1,167 @@
 <!DOCTYPE html>
-<html lang="pt-br"> <!--linguagem pt-br da pag-->
-
+<html lang="pt-BR"> <!--linguagem pt-br da pag-->
 <head>
-    <meta charset="utf-8"/> <!--para caracteres especiais-->
-    <title>CODE CAT COFFEE 😻</title> <!--título na aba-->
+    <meta charset="utf-8"> <!--para caracteres especiais-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="copyright" content="CODE CAT COFFEE"/> <!--copyright-->
-    <link rel="stylesheet" type="text/css" href="styles/contato.css"/> <!--endereço do css-->
+    <title>Contato - Code Cat Coffee</title> <!--título na aba-->
+    <link rel="stylesheet" type="text/css" href="styles/contato.css"> <!--endereço do css-->
 </head>
-
 <body>
-<!--MENU-->
-<header class="navbar">
-    <div class="logo-container">
-        <img src="images/logo.png" alt="Code Cat Coffee - Code, Cats, Coffee e Wellbeing" class="logo-icon">
-        <!--endereço do icon-->
-        <div class="logo-text">
-            <h1>CODE CAT COFFEE</h1>
+<!--HEADER E MENU-->
+<header class="menu">
+    <div class="logotipo">
+        <img src="images/logo.png" alt="Code Cat Coffee - Código, Gatos, Felinos e Bem-estar" width="100" height="100"
+             class="logo-icone">
+        <div class="logo-texto">
+            <h1>Code Cat Coffee</h1>
             <span>Café • Códigos • Felinos</span>
         </div>
     </div>
-    <nav class="navigation"> <!--botões do menu-->
-        <a href="home.html" class="btn-home">HOME</a>
-        <a href="produtos.html" class="btn-cardapio">CARDÁPIO</a>
-        <a href="avaliacoes.html" class="btn-avaliacoes">AVALIAÇÕES</a>
-        <a href="contato.html" class="btn-contato">CONTATO</a>
+    <nav>
+        <ul class="menu-botoes">
+            <li><a href="home.html" class="btn-home">Home</a></li>
+            <li><a href="historia.html" class="btn-empresa">Sobre Nós</a></li>
+            <li><a href="produtos.html" class="btn-cardapio">Cardápio</a></li>
+            <li><a href="avaliacoes.html" class="btn-avaliacoes">Avaliações</a></li>
+            <li><a href="contato.html" class="btn-contato ativo">Contato</a></li>
+        </ul>
     </nav>
 </header>
-<!--SEÇÕES DA PÁGINA-->
-<section class="secao-contato">
-    <div class="titulo-secao">
-        <h2>Entre em Contato</h2>
-        <p>Estamos prontos para receber você! 😻</p>
-    </div>
-    <div class="contato-container"> <!--dentro das colunas-->
-        <div class="contato-info">
-            <div class="card">
-                <div class="icon-box">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                </div>
-                <div>
-                    <h3>Endereço</h3>
-                    <p>Av. Professor Luiz Ignácio Anhaia Mello, 1363<br>Bairro Vila Prudente<br>São Paulo - SP,
-                        03155-000</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="icon-box">
-                    <svg viewBox="0 0 24 24">
-                        <path
-                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-2.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                        </path>
-                    </svg>
-                </div>
-                <div>
-                    <h3>Telefone</h3>
-                    <p>(11) 2633-9000<br>(11) 90000-2633</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="icon-box">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                        </path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                </div>
-                <div class="card-content">
-                    <h3>E-mail</h3>
-                    <p>contato@codecatscoffee.com.br<br>reservas@codecatscoffee.com.br</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="icon-box">
-                    <svg viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                    </svg>
-                </div>
-                <div class="card-content">
-                    <tr>
-                        <p>
-                            <td class="coluna-dias">Segunda a Sexta:</td>
-                            <td class="coluna-horas">08:00 - 22:00</td>
-                        </p>
-                    </tr>
-                    <tr>
-                        <p>
-                            <td class="coluna-dias">Sábado:</td>
-                            <td class="coluna-horas">09:00 - 23:00</td>
-                        </p>
-                    </tr>
-                    <tr>
-                        <p>
-                            <td class="coluna-dias">Domingo:</td>
-                            <td class="coluna-horas">10:00 - 20:00</td>
-                        </p>
-                    </tr>
-                </div>
+<!--INÍCIO DA PÁGINA-->
+<main class="contato">
+    <hgroup class="titulo-topo">
+        <h2 class="conteudo">
+            <span class="icone-codigo">();</span>
+            <span class="titulo">Entre em Contato</span>
+            <span class="icone-cafe">✉️</span>
+        </h2>
+        <p class="subtitulo">Estamos prontos para receber você! 😻</p>
+    </hgroup>
+    <section class="secao-contato">
+        <div class="contato-colunas">
+            <ul class="contato-info">
+                <li class="cartao">
+                    <div class="icone">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3>Endereço</h3>
+                        <p>Av. Professor Luiz Ignácio Anhaia Mello, 1363<br>Bairro Vila Prudente<br>São Paulo–SP,
+                            03155-000</p>
+                    </div>
+                </li>
+                <li class="cartao">
+                    <div class="icone">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-2.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3>Telefone</h3>
+                        <p>(11) 2633-9000<br>(11) 90000-2633</p>
+                    </div>
+                </li>
+                <li class="cartao">
+                    <div class="icone">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </div>
+                    <div class="conteudo-cartao">
+                        <h3>E-mail</h3>
+                        <p>contato@codecatcoffee.com.br<br>reservas@codecatcoffee.com.br</p>
+                    </div>
+                </li>
+                <li class="cartao">
+                    <div class="icone">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <div class="conteudo-cartao">
+                        <p>Segunda a sexta: 09:00 - 22:00</p>
+                        <p>Sábado: 09:00 - 23:00</p>
+                        <p>Domingo: 10:00 - 20:00</p>
+                    </div>
+                </li>
+            </ul>
+            <div class="formulario">
+                <h3>Envie uma Mensagem</h3>
+                <form>
+                    <label for="contato-nome">Nome</label>
+                    <input name="nome" id="contato-nome" type="text" placeholder="Seu nome">
+                    <label for="contato-email">E-mail</label>
+                    <input name="email" id="contato-email" type="email" placeholder="seu@email.com">
+                    <label for="contato-msg">Mensagem</label>
+                    <textarea name="mensagem" id="contato-msg" rows="5"
+                              placeholder="Escreva sua mensagem..."></textarea>
+                    <button type="submit" class="btn-enviar">Enviar Mensagem</button>
+                </form>
             </div>
         </div>
-        <!--ENVIAR MENSAGEM! VER SE O PESSOAL VAI QUERER!!-->
-        <div class="contato-form">
-            <h3>Envie uma Mensagem</h3>
-            <form>
-                <label>Nome</label>
-                <input type="text" placeholder="Seu nome">
-                <label>E-mail</label>
-                <input type="email" placeholder="seu@email.com">
-                <label>Mensagem</label>
-                <textarea rows="5" placeholder="Escreva sua mensagem..."></textarea>
-                <button type="submit" class="btn-enviar">Enviar Mensagem</button>
-            </form>
-        </div> <!--FINAL DO ENVIAR MENSAGEM-->
-    </div>
-</section>
-<section class="secao-social">
-    <div class="social-container">
-        <div class="redes-sociais-box">
+    </section>
+    <section class="secao-social">
+        <div class="redes-sociais">
             <h3>Nossas Redes Sociais</h3>
-            <div class="redes-grid">
-                <div class="social-card">
+            <ul class="colunas-redes">
+                <li class="rede-social">
                     <svg viewBox="0 0 24 24" class="social-icon">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                     </svg>
                     <div>
                         <strong>Instagram</strong>
-                        <span>@codecatscoffee</span>
+                        <span>@codecatcoffee</span>
                     </div>
-                </div>
-                <div class="social-card">
+                </li>
+                <li class="rede-social">
                     <svg viewBox="0 0 24 24" class="social-icon">
-                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
                     </svg>
                     <div>
                         <strong>Facebook</strong>
-                        <span>/codecatscoffee</span>
+                        <span>/codecatcoffee</span>
                     </div>
-                </div>
-                <div class="social-card">
+                </li>
+                <li class="rede-social">
                     <svg viewBox="0 0 24 24" class="social-icon">
                         <path
-                                d="M4 4l11.733 16h4.267l-11.733-16h-4.267zm0 16l6.765-7.733m13.235-8.267l-6.765 7.733m6.765-7.733h-4.267l-13.235 16h4.267l13.235-16z">
-                        </path>
-                        s
+                                d="M4 4l11.733 16h4.267l-11.733-16h-4.267zm0 16l6.765-7.733m13.235-8.267l-6.765 7.733m6.765-7.733h-4.267l-13.235 16h4.267l13.235-16z"/>
                     </svg>
                     <div>
                         <strong>Twitter</strong>
-                        <span>@codecatscoffee</span>
+                        <span>@codecatcoffee</span>
                     </div>
-                </div>
-                <div class="social-card">
+                </li>
+                <li class="rede-social">
                     <svg viewBox="0 0 24 24" class="social-icon">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                        </path>
-                        <rect x="2" y="9" width="4" height="12"></rect>
-                        <circle cx="4" cy="4" r="2"></circle>
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
                     </svg>
                     <div>
                         <strong>LinkedIn</strong>
-                        <span>/codecatscoffee</span>
+                        <span>/codecatcoffee</span>
                     </div>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
-    </div>
-</section>
+    </section>
+</main>
 <!--RODAPÉ-->
 <footer class="rodape-principal">
     <div class="secao-redes-sociais">
-        <h3 class="titulo-redes">Siga-nos nas redes sociais</h3>
+        <h3>Siga-nos nas redes sociais</h3>
         <ul class="lista-redes">
-            <li> <!--sempre deve estar em <ul>, é onde coloca os itens da lista-->
-                <a href="#" aria-label="Instagram"> <!--eu não entendi como funciona o svg do chat que fez-->
+            <li>
+                <a aria-label="Instagram">
                     <svg class="icone-rede-social" viewBox="0 0 24 24">
                         <path
                                 d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
@@ -185,7 +169,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" aria-label="Facebook">
+                <a aria-label="Facebook">
                     <svg class="icone-rede-social" viewBox="0 0 24 24">
                         <path
                                 d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.14h-3v4h3v12h5v-12h3.85l.42-4z"/>
@@ -193,15 +177,16 @@
                 </a>
             </li>
             <li>
-                <a href="#" aria-label="Twitter">
-                    <svg class="icone-rede-social" viewBox="0 0 24 24">
+                <a aria-label="Twitter">
+                    <svg viewBox="0 0 24 24" class="icone-rede-social">
                         <path
-                                d="M23.95 4.57a10 10 0 01-2.82.77 4.96 4.96 0 002.16-2.72 9.9 9.9 0 01-3.13 1.2 4.93 4.93 0 00-8.39 4.49A14 14 0 011.64 3.16 4.93 4.93 0 003.17 9.74 4.9 4.9 0 01.94 9.13v.06a4.93 4.93 0 003.95 4.83 4.9 4.9 0 01-2.23.08 4.93 4.93 0 004.6 3.42A9.9 9.9 0 010 19.54a13.94 13.94 0 007.55 2.21c9.06 0 14-7.5 14-14 0-.21 0-.42-.01-.63A10 10 0 0024 4.59z"/>
+                                d="M4 4l11.733 16h4.267l-11.733-16h-4.267zm0 16l6.765-7.733m13.235-8.267l-6.765 7.733m6.765-7.733h-4.267l-13.235 16h4.267l13.235-16z">
+                        </path>
                     </svg>
                 </a>
             </li>
             <li>
-                <a href="#" aria-label="LinkedIn">
+                <a aria-label="LinkedIn">
                     <svg class="icone-rede-social" viewBox="0 0 24 24">
                         <path
                                 d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.27 20h-3.46v-10h3.46v10zm-1.73-11.25a2 2 0 11.01-4 2 2 0 01-.01 4zm13 11.25h-3.46v-5.46c0-1.3-.02-2.98-1.82-2.98-1.82 0-2.1 1.42-2.1 2.88v5.56h-3.46v-10h3.32v1.37h.05c.46-.87 1.58-1.78 3.24-1.78 3.47 0 4.11 2.28 4.11 5.25v5.16z"/>
@@ -210,25 +195,29 @@
             </li>
         </ul>
     </div>
-    <div class="rodape-linha"></div>
+    <hr>
     <div class="grade-contato">
         <div class="coluna-contato">
-            <img class="icone-contato"
-                 src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/map-pin.svg"
-                 alt="Ícone de Mapa">
-            <h3 class="titulo-contato">Endereço</h3>
-            <p class="texto-contato">Av. Professor Luiz Ignácio Anhaia Mello, 1363</p>
-            <p class="texto-contato">Bairro Vila Prudente</p>
-            <p class="texto-contato">São Paulo - SP</p>
-            <p class="texto-contato">CEP: 03155-000</p>
+            <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                 class="icone-contato">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                      fill="#FF5722"/>
+            </svg>
+            <h3>Endereço</h3>
+            <p>Av. Professor Luiz Ignácio Anhaia Mello, 1363</p>
+            <p>Bairro Vila Prudente</p>
+            <p>São Paulo–SP</p>
+            <p>CEP: 03155-000</p>
         </div>
         <div class="coluna-contato">
-            <img class="icone-contato"
-                 src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/phone.svg"
-                 alt="Ícone de Telefone">
-            <h3 class="titulo-contato">Telefone</h3>
-            <p class="texto-contato">(11) 2633-9000</p>
-            <p class="texto-contato">WhatsApp:(11) 90000-2633</p>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="#FF5722" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class="icone-contato">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2a19.79 19.79 0 0 1-8.63-3.07a19.5 19.5 0 0 1-6-6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72a12.06 12.06 0 0 0 .57 2.22a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.91-1.91a2 2 0 0 1 2.11-.45a12.06 12.06 0 0 0 2.22.57A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <h3>Telefone</h3>
+            <p>(11) 2633-9000</p>
+            <p>WhatsApp:(11) 90000-2633</p>
         </div>
         <div class="coluna-contato">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -238,40 +227,39 @@
                 <rect x="2" y="4" width="20" height="16" rx="2"/>
             </svg>
 
-            <h3 class="titulo-contato">Email</h3>
-            <ul class="lista-contato"> <!--tag para lista não ordenada-->
-                <li><a href="mailto:contato@codecats.com">contato@codecatscoffee.com.br</a></li>
-                <li><a href="mailto:eventos@codecats.com">reservas@codecatscoffee.com.br</a></li>
+            <h3>Email</h3>
+            <ul class="lista-contato">
+                <li>contato@codecatcoffee.com.br</li>
+                <li>reservas@codecatcoffee.com.br</li>
             </ul>
         </div>
     </div>
-    <div class="rodape-linha"></div>
+    <hr>
     <div class="copyright">
         <div class="secao-horario">
-            <h3 class="titulo-horario">Horário de Funcionamento</h3>
+            <h3>Horário de Funcionamento</h3>
             <table class="tabela-horario">
                 <tbody>
-                <tr> <!--uma linha inteira de uma tabela-->
-                    <td class="coluna-dias">Segunda à Sexta:</td>
-                    <td class="coluna-horas">09:00 - 22:00</td>
+                <tr>
+                    <td>Segunda a sexta:</td>
+                    <td>08:00 - 22:00</td>
                 </tr>
                 <tr>
-                    <td class="coluna-dias">Sábado:</td>
-                    <td class="coluna-horas">09:00 - 23:00</td>
+                    <td>Sábado:</td>
+                    <td>09:00 - 23:00</td>
                 </tr>
                 <tr>
-                    <td class="coluna-dias">Domingo:</td>
-                    <td class="coluna-horas">10:00 - 20:00</td>
+                    <td>Domingo:</td>
+                    <td>10:00 - 20:00</td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <div class="cabecalho-rodape">
-            <p class="titulo-rodape">Desenvolvido com ❤️ e muitos ronronares<span class="icone-gato">😸</span></p>
-            <p class="subtitulo-rodape">© 2026 Code Cat Coffee. Todos os direitos reservados.</p>
+        <div class="creditos">
+            <p>Desenvolvido com ❤️ e muitos ronronares <span class="icone-gato">😸</span></p>
+            <p>© 2026 Code Cat Coffee. Todos os direitos reservados.</p>
         </div>
     </div>
 </footer>
 </body>
-
 </html>
