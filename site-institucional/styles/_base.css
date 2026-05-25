@@ -1,0 +1,53 @@
+/**
+ * RESET GLOBAL
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--fundo-gelo);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/**
+ * BANNER DO TOPO DE CADA PÁGINA
+ */
+.titulo-topo {
+    padding: 60px 20px;
+    background-color: var(--fundo-marrom);
+    color: var(--branco);
+    font-family: sans-serif;
+    text-align: center;
+
+    .conteudo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 10px;
+    }
+
+    .titulo {
+        margin: 0;
+        font-size: 4rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .icone-codigo {
+        color: var(--destaque-laranja);
+        font-size: 3.5rem;
+    }
+
+    .icone-cafe {
+        font-size: 3.5rem;
+    }
+
+    .subtitulo {
+        opacity: 0.9;
+        font-size: 1.8rem;
+    }
+}

@@ -1,30 +1,82 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    background-color: #fdfaf7;
-}
-
-/*LOGO*/
+/**
+ * LOGO
+ */
 .logotipo {
     display: flex;
-    align-items: center; 
     gap: 15px;
+    align-items: center;
+
+    .logo-icone {
+        width: auto;
+        height: 100px;
+    }
+
+    .logo-texto {
+        h1 {
+            margin: 0;
+            color: var(--destaque-laranja);
+            font-size: 26px;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        span {
+            color: var(--branco);
+            font-size: 13px;
+        }
+    }
 }
 
-.logo-icone { 
-    height: 100px;
-    width: auto;
-}
+/**
+ * MENU
+ */
+.menu {
+    position: sticky;
+    top: 0;
+    z-index: var(--camada-maxima);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    /*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);*/
+    background-color: var(--fundo-marrom);
+    color: var(--branco);
 
-.logo-texto h1 { 
-    margin: 0;
-    font-size: 26px;
-    color: #e67e3c; 
-    line-height: 1;
-}
+    .menu-botoes {
+        display: flex;
+        align-items: center;
+        gap: 25px;
 
-.logo-texto span { 
-    font-size: 13px;
-    color: white;
+        li {
+            list-style: none;
+        }
+
+        a {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 10px 25px;
+            border-radius: 12px;
+            background-color: transparent;
+            color: var(--branco);
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+
+            &.ativo,
+            &:hover {
+                color: var(--destaque-laranja);
+                accent-color: var(--destaque-laranja);
+            }
+
+            &:active,
+            &:focus,
+            &:focus-visible {
+                background-color: var(--fundo-laranja);
+                color: var(--branco);
+                accent-color: var(--branco);
+                box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
 }

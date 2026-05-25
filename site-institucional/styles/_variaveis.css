@@ -1,0 +1,25 @@
+:root {
+    /**
+     * CORES
+     */
+    --branco: #fff;
+    --campo-fundo-branco: #fafafa;
+    --destaque-laranja: #e67e3c;
+    --fundo-branco: #fff9f5;
+    --fundo-creme: #f5e6d3;
+    --fundo-gelo: #fdfaf7;
+    --fundo-marrom: #634226;
+    --fundo-laranja: #f28d4f;
+    --texto-cafe: #5d4a3e;
+    --texto-cinza: #666;
+    --texto-claro: #9e8d82;
+    --sombra: rgba(74, 52, 39, 0.06);
+    /**
+     * CAMADAS Z-INDEX
+     */
+    --camada-maxima: 10;
+    --camada-alta: 8;
+    --camada-media: 5;
+    --camada-media-baixa: 3;
+    --camada-baixa: 1;
+}

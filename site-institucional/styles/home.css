@@ -1,22 +1,4 @@
-@import "_header.css";
-@import "_menu.css";
-@import "_footer.css";
-
-:root {
-    --primary-brown: #634226;
-    --accent-orange: #e67e3c;
-    --bg-cream: #fdfaf7;
-    --text-coffee: #5d4a3e;
-    --text-light: #9e8d82;
-    --white: #ffffff;
-    --shadow: rgba(74, 52, 39, 0.06);
-
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import "_layout.css";
 
 .container {
     max-width: 1200px;
@@ -24,191 +6,220 @@
     padding: 0 20px;
 }
 
-.btn-cardapio2 {
-    background-color: var(--accent-orange);
-    color: var(--white);
-    padding: 14px 32px;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 1rem;
+.botao-laranja {
+    cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     transition: all 0.3s ease;
+    padding: 14px 32px;
     border: none;
-    cursor: pointer;
-    box-shadow: var(--shadow);
-}
+    border-radius: 50px;
+    box-shadow: var(--sombra);
+    background-color: var(--destaque-laranja);
+    color: var(--branco);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
 
-.btn-cardapio2:hover {
-    background-color: var(--accent-orange);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(226, 123, 66, 0.3);
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 15px rgba(226, 123, 66, 0.3);
+        background-color: var(--destaque-laranja);
+    }
 }
 
 .hero {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 80px 0 100px;
     gap: 40px;
-}
+    padding: 80px 0 100px;
 
-.conteudo-principal {
-    flex: 1;
-    max-width: 550px;
-}
+    .conteudo-principal {
+        flex: 1;
+        max-width: 550px;
 
-.titulo-principal {
-    font-size: 4rem;
-    line-height: 1.15;
-    margin-bottom: 25px;
-    color: var(--primary-brown);
-}
+        h2 {
+            margin-bottom: 25px;
+            color: var(--fundo-marrom);
+            font-size: 4rem;
+            line-height: 1.15;
+        }
 
-.texto-principal {
-    font-size: 1.25rem;
-    color: var(--text-light);
-    margin-bottom: 40px;
-    font-weight: 500;
-}
+        p {
+            margin-bottom: 40px;
+            color: var(--texto-claro);
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+    }
 
-.imagem-principal {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-}
+    .imagem-principal {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
 
-.imagem-principal img {
-    width: 100%;
-    max-width: 500px;
-    border-radius: 30px;
-    object-fit: cover;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08); 
+        img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            object-fit: cover;
+        }
+    }
 }
 
 .features {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    padding: 80px 0;
     margin-bottom: 80px;
-    text-align: center;
-    background-color: var(--white);
+    padding: 80px 0;
     border-radius: 40px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03); /* Soft UI Box */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    background-color: var(--branco);
+    text-align: center;
+
+    .principal-itens {
+        padding: 30px 40px;
+
+        &:nth-child(2) {
+            border-left: 2px dashed var(--sombra);
+            border-right: 2px dashed var(--sombra);
+        }
+
+        h3 {
+            margin-bottom: 15px;
+            color: var(--fundo-marrom);
+            font-size: 1.4rem;
+        }
+
+        p {
+            color: var(--texto-claro);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+    }
 }
 
-.principal-itens {
-    padding: 30px 40px;
-}
-
-.principal-itens:nth-child(2) {
-    border-left: 2px dashed var(--shadow);
-    border-right: 2px dashed var(--shadow);
-}
-
-.principal-itens h3 {
-    color: var(--primary-brown);
-    margin-bottom: 15px;
-    font-size: 1.4rem;
-}
-
-.principal-itens p {
-    color: var(--text-light);
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-.history-section {
+.secao-historia {
     display: flex;
     align-items: center;
     gap: 80px;
     margin-bottom: 120px;
-}
 
-.imagem-historia img {
-    width: 100%;
-    border-radius: 200px 200px 30px 30px;
-    max-width: 450px;
-    object-fit: cover;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-}
+    .imagem-historia img {
+        width: 100%;
+        max-width: 450px;
+        border-radius: 200px 200px 30px 30px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        object-fit: cover;
+    }
 
-.conteudo-historia {
-    flex: 1;
-}
+    .conteudo-historia {
+        flex: 1;
 
-.subtitulo-historia {
-    font-size: 3rem;
-    margin-bottom: 25px;
-    color: var(--primary-brown);
-    line-height: 1.2;
-}
+        h2 {
+            margin-bottom: 25px;
+            color: var(--fundo-marrom);
+            font-size: 3rem;
+            line-height: 1.2;
+        }
 
-.paragrafo-historia {
-    color: var(--text-light);
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-    font-weight: 500;
+        p {
+            margin-bottom: 20px;
+            color: var(--texto-claro);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+    }
 }
 
 .missao {
-    background-color: var(--white);
+    margin-bottom: 40px;
     padding: 80px 60px;
     border-radius: 40px;
-    margin-bottom: 100px;
+    background-color: var(--branco);
     text-align: center;
+
+    h3 {
+        margin-bottom: 25px;
+        color: var(--fundo-marrom);
+        font-size: 2.8rem;
+    }
+
+    p {
+        max-width: 800px;
+        margin: 0 auto 60px;
+        color: var(--texto-claro);
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+
+    .valores {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    .cartao-valores {
+        transition: transform 0.3s;
+        padding: 40px;
+        border-radius: 30px;
+        box-shadow: 0 10px 30px rgba(74, 52, 36, 0.05);
+        background: var(--fundo-gelo);
+
+        &:hover {
+            transform: translateY(-8px);
+        }
+
+        h4 {
+            margin-bottom: 15px;
+            color: var(--fundo-marrom);
+            font-size: 1.5rem;
+        }
+
+        p {
+            color: var(--texto-claro);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+    }
 }
 
-.missao-titulo {
-    font-size: 2.8rem;
-    margin-bottom: 25px;
-    color: var(--primary-brown);
-}
-
-.missao-texto {
-    color: var(--text-light);
-    font-size: 1.25rem;
-    font-weight: 500;
-    max-width: 800px;
-    margin: 0 auto 60px auto;
-}
-
-.valores {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-.card-valores {
-    background: var(--bg-cream);
-    padding: 40px;
-    border-radius: 30px;
-    box-shadow: 0 10px 30px rgba(74, 52, 36, 0.05); /* Soft UI Box */
-    transition: transform 0.3s;
-}
-
-.card-valores:hover {
-    transform: translateY(-8px);
-}
-
-.valor-titulo {
-    font-size: 1.5rem;
-    color: var(--primary-brown);
-    margin-bottom: 15px;
-}
-
-.card-valores p {
-    color: var(--text-light);
-    font-size: 1.1rem;
-    font-weight: 500;
-}
 @media (max-width: 992px) {
-    .hero, .history-section { flex-direction: column; text-align: center; }
-    .conteudo-principal, .conteudo-historia { max-width: 100%; }
-    .imagem-principal, .imagem-historia { justify-content: center; margin-top: 40px; }
-    .features, .values-grid { grid-template-columns: 1fr; gap: 40px; }
-    .principal-itens:nth-child(2) { border: none; }
-    .titulo-principal { font-size: 3rem; }
-    .subtitulo-historia { font-size: 2.2rem; }
+    .hero,
+    .secao-historia {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .conteudo-principal,
+    .conteudo-historia {
+        max-width: 100%;
+    }
+
+    .imagem-principal,
+    .imagem-historia {
+        justify-content: center;
+        margin-top: 40px;
+    }
+
+    .features,
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .principal-itens:nth-child(2) {
+        border: none;
+    }
+
+    .conteudo-principal h3 {
+        font-size: 3rem;
+    }
+
+    .conteudo-historia h2 {
+        font-size: 2.2rem;
+    }
 }

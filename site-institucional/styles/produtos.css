@@ -1,202 +1,137 @@
-@import "_header.css";
-@import "_menu.css";
-@import "_footer.css";
+@import "_layout.css";
 
-:root {
-    --primary-brown: #634226;
-    --accent-orange: #e67e3c;
-    --bg-cream: #fdfaf7;
-    --text-coffee: #5d4a3e;
-    --text-light: #9e8d82;
-    --white: #ffffff;
-    --shadow: rgba(74, 52, 39, 0.06);
+.carrossel,
+.carrossel-branco {
+    h4 {
+        margin-top: 40px;
+        color: var(--fundo-marrom);
+        font-size: 2.6rem;
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .carrossel-moldura {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .flecha {
+            cursor: pointer;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: background 0.3s;
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background: var(--fundo-marrom);
+            color: var(--branco);
+            text-decoration: none;
+
+            &:hover {
+                background: var(--destaque-laranja);
+            }
+
+            &.esq {
+                left: -20px;
+            }
+
+            &.dir {
+                right: -20px;
+            }
+        }
+
+        .carrossel-conteudo {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            .cartao {
+                overflow: hidden;
+                transition: transform 0.3s ease;
+                scroll-snap-align: start;
+                scroll-margin-top: 150px;
+                min-width: 300px;
+                border: 3px solid var(--destaque-laranja);
+                border-radius: 10px;
+
+                &:hover {
+                    transform: translateY(-10px);
+                }
+
+                img {
+                    scroll-margin-top: 150px;
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                }
+
+                .cartao-info {
+                    padding: 15px;
+                    text-align: left;
+
+                    h5 {
+                        margin: 0 0 10px 0;
+                        color: var(--fundo-marrom);
+                        font-size: 1.4rem;
+                    }
+
+                    p {
+                        min-height: 30px;
+                        color: var(--texto-claro);
+                        font-size: 1.0rem;
+                    }
+
+                    .preco {
+                        display: block;
+                        margin-top: 10px;
+                        color: var(--destaque-laranja);
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.banner { 
-    background-color: var(--primary-brown); 
-    color: var(--white);
-    text-align: center;
-    padding: 60px 20px;
-    font-family: sans-serif;
-}
-
-.banner-conteudo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 10px;
-}
-
-.titulo {
-    font-size: 4rem;
-    font-weight: bold;
-    margin: 0;
-}
-
-.icone-codigo { 
-    font-size: 3.5rem;
-    color: var(--accent-orange);
-}
-
-.icone-cafe { 
-    font-size: 3.5rem;
-}
-
-.subtitulo { 
-    font-size: 1.8rem;
-    opacity: 0.9;
-}
-
-
-.menu-main-title { 
-    font-size: 3.5rem;
-    margin-bottom: 5px;
-}
-
-.titulo-cardapio{ 
-    font-size: 2.6rem;
-    font-weight: bold;
-    text-align: center;
-    color: var(--primary-brown);
-    margin-top: 40px;
-}
-
-.carrosel {
+.carrossel {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
-.carrosel-moldura { 
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.carrosel-conteudo {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    scroll-behavior: smooth; 
-    scroll-snap-type: x mandatory; 
-    padding: 20px 0;
-}
-
-.carrosel-conteudo::-webkit-scrollbar { 
-    display: none;
-}
-
-.carrosel-conteudo {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.card { 
-    min-width: 300px;
-    scroll-snap-align: start;
-    background: var();
-    border: 3px solid var(--accent-orange);
-    border-radius: 10px;
-    overflow: hidden;
-    transition: transform 0.3s ease; 
-    scroll-margin-top: 150px;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-}
-
-.card img { 
-    width: 100%;
-    height: 200px;
-    object-fit: cover; 
-    scroll-margin-top: 150px;
-}
-
-.card-info {
-    padding: 15px;
-    text-align: left;
-}
-
-.card-info h5 { 
-    color: var(--primary-brown);
-    font-size: 1.4rem;
-    margin: 0 0 10px 0;
-}
-
-.card-info p { 
-    color: var(--text-light);
-    font-size: 1.0rem;
-    min-height: 30px;
-}
-
-.preco { 
-    display: block;
-    color: var(--accent-orange);
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-
-.arrow {
-    text-decoration: none; 
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    background: var(--primary-brown);
-    color: var(--white);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    position: absolute;
-    z-index: 10;
-    transition: background 0.3s;
-}
-
-.arrow:hover {
-    background: var(--accent-orange);
-}
-
-.left {
-    left: -20px;
-}
-
-.right {
-    right: -20px;
-}
-
-.carrosel-branco {
-    background-color: var(--white);
-    max-width: 100% !important; 
+.carrossel-branco {
+    max-width: 100% !important;
     padding: 40px 0;
-}
+    background-color: var(--branco);
 
-.carrosel-branco .carrosel-moldura {
-    max-width: 1200px;
-    margin: 0 auto;
-}
+    h4 {
+        text-transform: none;
+    }
 
-.section-subtitle { 
-    text-align: center;
-    color: var(--text-light);
-    font-size: 1.1rem;
-    margin-top: -10px;
-    margin-bottom: 30px;
-}
+    h4 + p {
+        margin-top: -10px;
+        margin-bottom: 30px;
+        color: var(--texto-claro);
+        font-size: 1.1rem;
+        text-align: center;
+    }
 
-@media (max-width: 768px) {
-    .grade-contato {
-        grid-template-columns: 1fr;
-        gap: 50px;
+    .carrossel-moldura {
+        max-width: 1200px;
+        margin: 0 auto;
     }
 }

@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nossa História - Code Cat Coffee</title>
-    <link rel="stylesheet" href="styles/home.css">
+    <title>Code Cat Coffee - Café • Códigos • Felinos</title>
+    <link rel="stylesheet" type="text/css" href="styles/home.css">
 </head>
 <body>
-<!--MENU-->
+<!--HEADER E MENU-->
 <header class="menu">
     <div class="logotipo">
-        <img src="images/logo.png" alt="Code Cat Coffee - Code, Cats, Coffee" class="logo-icone">
+        <img src="images/logo.png" alt="Code Cat Coffee - Código, Gatos, Felinos e Bem-estar" width="100" height="100"
+             class="logo-icone">
         <div class="logo-texto">
-            <h1>CODE CAT COFFEE</h1>
+            <h1>Code Cat Coffee</h1>
             <span>Café • Códigos • Felinos</span>
         </div>
     </div>
-    <nav class="menu-botoes">
-        <a href="home.html" class="btn-home">HOME</a>
-        <a href="historia.html" class="btn-empresa">SOBRE NÓS</a>
-        <a href="produtos.html" class="btn-cardapio">CARDÁPIO</a>
-        <a href="avaliacoes.html" class="btn-avaliacoes">AVALIAÇÕES</a>
-        <a href="contato.html" class="btn-contato">CONTATO</a>
+    <nav>
+        <ul class="menu-botoes">
+            <li><a href="home.html" class="btn-home ativo">Home</a></li>
+            <li><a href="historia.html" class="btn-empresa">Sobre Nós</a></li>
+            <li><a href="produtos.html" class="btn-cardapio">Cardápio</a></li>
+            <li><a href="avaliacoes.html" class="btn-avaliacoes">Avaliações</a></li>
+            <li><a href="contato.html" class="btn-contato">Contato</a></li>
+        </ul>
     </nav>
 </header>
- <!--INÍCIO DA PÁGINA-->
+<!--INÍCIO DA PÁGINA-->
+<main class="home">
     <section class="hero container">
         <div class="conteudo-principal">
-            <h1 class="titulo-principal">Café quente,<br>código limpo,<br>gatos por perto.</h1>
-            <p class="texto-principal">O melhor ambiente para você compilar seus projetos. Na Code Cat Coffee, unimos Wi-Fi rápido, grãos selecionados e o ronronar anti-estresse dos nossos felinos.</p>
-            <a class="btn-cardapio2" href="produtos.html">Ver Cardápio de Boosts 🐾</a>
+            <h2>Café quente,<br>código limpo,<br>gatos por perto.</h2>
+            <p>O melhor ambiente para você compilar seus projetos. Na Code Cat Coffee, unimos
+                Wi-Fi rápido, grãos selecionados e o ronronar anti-estresse dos nossos felinos.</p>
+            <a class="botao-laranja" href="produtos.html">Ver Cardápio de Boosts 🐾</a>
         </div>
         <div class="imagem-principal">
             <img src="images/gato7.avif" alt="Gato ruivo">
@@ -38,64 +43,76 @@
     <section class="features container">
         <div class="principal-itens">
             <h3>☕ Combustível de Dev</h3>
-            <p>Cafés especiais com alta dosagem de foco para você dar aquele sprint final no seu código sem perder a energia.</p>
+            <p>Cafés especiais com alta dosagem de foco para você dar aquele sprint final no seu código sem perder a
+                energia.</p>
         </div>
         <div class="principal-itens">
             <h3>🐈 Pair Programming Felino</h3>
-            <p>Nossos gatos estão sempre prontos para ser o seu "patinho de borracha" e ouvir você tentar resolver aquele bug chato.</p>
+            <p>Nossos gatos estão sempre prontos para ser o seu "patinho de borracha" e ouvir você tentar resolver
+                aquele bug chato.</p>
         </div>
         <div class="principal-itens">
             <h3>🍰 Pausa para o Commit</h3>
-            <p>Doces deliciosos e lanches rápidos para você recarregar as energias entre uma linha de código e outra.</p>
+            <p>Doces deliciosos e lanches rápidos para você recarregar as energias entre uma linha de código e
+                outra.</p>
         </div>
     </section>
-    <section class="history-section container">
+    <section class="secao-historia container">
         <div class="imagem-historia">
             <img src="images/gato8.avif" alt="Gato encarando">
         </div>
         <div class="conteudo-historia">
-            <h2 class="subtitulo-historia">De Devs para Devs,<br>com muito ronronar.</h2>
-            <p class="paragrafo-historia">
-                Cansados de trabalhar em home office solitários ou em cafeterias barulhentas sem tomadas suficientes, decidimos fundar a <strong>Code Cat Coffee</strong>.
+            <h2>De Devs para Devs,<br>com muito ronronar.</h2>
+            <p>
+                Cansados de trabalhar em home office solitários ou em cafeterias barulhentas sem tomadas suficientes,
+                decidimos fundar a <strong>Code Cat Coffee</strong>.
             </p>
-            <p class="paragrafo-historia">
-                Somos um grupo de desenvolvedores que sonhava com o setup perfeito: infraestrutura impecável para trabalhar, um espresso de respeito e, claro, a companhia de gatos para reduzir a ansiedade na hora de fazer o deploy em produção. Acreditamos que a convivência com felinos melhora a lógica e a criatividade!
+            <p>
+                Somos um grupo de desenvolvedores que sonhava com o setup perfeito: infraestrutura impecável para
+                trabalhar, um espresso de respeito e, claro, a companhia de gatos para reduzir a ansiedade na hora de
+                fazer o deploy em produção. Acreditamos que a convivência com felinos melhora a lógica e a criatividade!
             </p>
-            <a class="btn-cardapio2" href="historia.html">Conheça nossa História 🐾</a>
+            <a class="botao-laranja" href="historia.html">Conheça nossa História 🐾</a>
         </div>
     </section>
     <section class="container">
         <div class="missao">
-            <h3 class="missao-titulo">Nossa Missão</h3>
-            <p class="missao-texto">
-                Proporcionar um ambiente de trabalho acolhedor e inspirador para a comunidade de tecnologia. Queremos que você alcance a máxima produtividade nos seus projetos enquanto desfruta de um café de especialidade e do amor dos nossos gatos residentes.
+            <h3>Nossa Missão</h3>
+            <p>
+                Proporcionar um ambiente de trabalho acolhedor e inspirador para a comunidade de tecnologia. Queremos
+                que você alcance a máxima produtividade nos seus projetos enquanto desfruta de um café de especialidade
+                e do amor dos nossos gatos residentes.
             </p>
             <div class="valores">
-                <div class="card-valores">
-                    <h4 class="valor-titulo">Código e Qualidade</h4>
-                    <p>Assim como não aceitamos código sujo, não servimos café ruim. Ingredientes premium e preparo artesanal.</p>
+                <div class="cartao-valores">
+                    <h4>Código e Qualidade</h4>
+                    <p>Assim como não aceitamos código sujo, não servimos café ruim. Ingredientes premium e preparo
+                        artesanal.</p>
                 </div>
-                <div class="card-valores">
-                    <h4 class="valor-titulo">Anti-Burnout</h4>
-                    <p>Priorizamos o bem-estar absoluto dos nossos gatos e oferecemos um refúgio para aliviar o estresse da tela.</p>
+                <div class="cartao-valores">
+                    <h4>Anti-Burnout</h4>
+                    <p>Priorizamos o bem-estar absoluto dos nossos gatos e oferecemos um refúgio para aliviar o estresse
+                        da tela.</p>
                 </div>
-                <div class="card-valores">
-                    <h4 class="valor-titulo">Comunidade</h4>
-                    <p>Um espaço real de networking para devs, designers e cat lovers compartilharem ideias e carinho.</p>
+                <div class="cartao-valores">
+                    <h4>Comunidade</h4>
+                    <p>Um espaço real de networking para devs, designers e cat lovers compartilharem ideias e
+                        carinho.</p>
                 </div>
             </div>
         </div>
     </section>
+</main>
 <!--RODAPÉ-->
 <footer class="rodape-principal">
     <div class="secao-redes-sociais">
-        <h3 class="titulo-redes">Siga-nos nas redes sociais</h3>
+        <h3>Siga-nos nas redes sociais</h3>
         <ul class="lista-redes">
-            <li> 
+            <li>
                 <a aria-label="Instagram">
                     <svg class="icone-rede-social" viewBox="0 0 24 24">
                         <path
-                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
                     </svg>
                 </a>
             </li>
@@ -103,7 +120,7 @@
                 <a aria-label="Facebook">
                     <svg class="icone-rede-social" viewBox="0 0 24 24">
                         <path
-                            d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.14h-3v4h3v12h5v-12h3.85l.42-4z"/>
+                                d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.14h-3v4h3v12h5v-12h3.85l.42-4z"/>
                     </svg>
                 </a>
             </li>
@@ -126,28 +143,29 @@
             </li>
         </ul>
     </div>
-    <div class="rodape-linha"></div>
+    <hr>
     <div class="grade-contato">
         <div class="coluna-contato">
             <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-            class="icone-contato">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#FF5722"/>
+                 class="icone-contato">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                      fill="#FF5722"/>
             </svg>
-            <h3 class="titulo-contato">Endereço</h3>
-            <p class="texto-contato">Av. Professor Luiz Ignácio Anhaia Mello, 1363</p>
-            <p class="texto-contato">Bairro Vila Prudente</p>
-            <p class="texto-contato">São Paulo - SP</p>
-            <p class="texto-contato">CEP: 03155-000</p>
+            <h3>Endereço</h3>
+            <p>Av. Professor Luiz Ignácio Anhaia Mello, 1363</p>
+            <p>Bairro Vila Prudente</p>
+            <p>São Paulo–SP</p>
+            <p>CEP: 03155-000</p>
         </div>
         <div class="coluna-contato">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="#FF5722" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="icone-contato">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2a19.79 19.79 0 0 1-8.63-3.07a19.5 19.5 0 0 1-6-6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72a12.06 12.06 0 0 0 .57 2.22a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.91-1.91a2 2 0 0 1 2.11-.45a12.06 12.06 0 0 0 2.22.57A2 2 0 0 1 22 16.92z" />
+                 stroke="#FF5722" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class="icone-contato">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2a19.79 19.79 0 0 1-8.63-3.07a19.5 19.5 0 0 1-6-6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72a12.06 12.06 0 0 0 .57 2.22a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.91-1.91a2 2 0 0 1 2.11-.45a12.06 12.06 0 0 0 2.22.57A2 2 0 0 1 22 16.92z"/>
             </svg>
-            <h3 class="titulo-contato">Telefone</h3>
-            <p class="texto-contato">(11) 2633-9000</p>
-            <p class="texto-contato">WhatsApp:(11) 90000-2633</p>
+            <h3>Telefone</h3>
+            <p>(11) 2633-9000</p>
+            <p>WhatsApp:(11) 90000-2633</p>
         </div>
         <div class="coluna-contato">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -157,37 +175,37 @@
                 <rect x="2" y="4" width="20" height="16" rx="2"/>
             </svg>
 
-            <h3 class="titulo-contato">Email</h3>
-            <ul class="lista-contato"> 
+            <h3>Email</h3>
+            <ul class="lista-contato">
                 <li>contato@codecatcoffee.com.br</li>
                 <li>reservas@codecatcoffee.com.br</li>
             </ul>
         </div>
     </div>
-    <div class="rodape-linha"></div>
+    <hr>
     <div class="copyright">
         <div class="secao-horario">
-            <h3 class="titulo-horario">Horário de Funcionamento</h3>
+            <h3>Horário de Funcionamento</h3>
             <table class="tabela-horario">
                 <tbody>
-                <tr> 
-                    <td class="coluna-dias">Segunda à Sexta:</td>
-                    <td class="coluna-horas">08:00 - 22:00</td>
+                <tr>
+                    <td>Segunda a sexta:</td>
+                    <td>08:00 - 22:00</td>
                 </tr>
                 <tr>
-                    <td class="coluna-dias">Sábado:</td>
-                    <td class="coluna-horas">09:00 - 23:00</td>
+                    <td>Sábado:</td>
+                    <td>09:00 - 23:00</td>
                 </tr>
                 <tr>
-                    <td class="coluna-dias">Domingo:</td>
-                    <td class="coluna-horas">10:00 - 20:00</td>
+                    <td>Domingo:</td>
+                    <td>10:00 - 20:00</td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <div class="cabecalho-rodape">
-            <p class="titulo-rodape">Desenvolvido com ❤️ e muitos ronronares<span class="icone-gato">😸</span></p>
-            <p class="subtitulo-rodape">© 2026 Code Cat Coffee. Todos os direitos reservados.</p>
+        <div class="creditos">
+            <p>Desenvolvido com ❤️ e muitos ronronares <span class="icone-gato">😸</span></p>
+            <p>© 2026 Code Cat Coffee. Todos os direitos reservados.</p>
         </div>
     </div>
 </footer>
