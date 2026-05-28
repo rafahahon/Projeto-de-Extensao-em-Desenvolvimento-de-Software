@@ -1,0 +1,1324 @@
+flowchart TB
+    A(["Início do Programa"]) --> B["Conectar à Base de Dados"]
+    B --> C{"Ligação Efetuada?"}
+    C -- Não --> n1["Imprime Erro"]
+    C -- Sim --> n2["Imprimir Logotipo"]
+    n1 --> Q
+    n2 --> n3["Imprimir Menu Principal"]
+    n3 --> G[/"Aguardar e Ler Opção"/]
+    G --> H{"Opção Escolhida?"}
+    H -- "1 - Pedidos" --> n4((1))
+    H -- "2 - Clientes" --> n5((2))
+    H -- "3 - Produtos" --> n6((3))
+    H -- "4 - Mesas" --> n7((4))
+    H -- "5 - Playground" --> n8((5))
+    H -- "6 - Outros" --> n9((6))
+    H -- 0 --> O["Fechar\n Base de\n Dados"]
+    H -- Opção Inválida --> n10["Mostrar Erro"]
+    n10 --> n3
+    n11((8)) --> n3
+    O --> n12["Imprime despedida"]
+    n12 --> Q(["Fim"])
+
+    n1@{ shape: doc}
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n10@{ shape: doc}
+    n12@{ shape: doc}
+
+
+
+
+flowchart TB
+    n1(("1")) --> n2["Imprimir Cabeçalho PEDIDOS"]
+    n2 --> n3["Imprimir Menu de Pedido"]
+    n3 --> D[/"Ler Opção"/]
+    D --> E{"Opção?"}
+    E -- "1 - Cadastrar\n Pedido" --> n6(("8"))
+    E -- "2 - Editar\n Pedido" --> n7(("9"))
+    E -- "3 - Buscar\n Pedido" --> n8(("10"))
+    E -- "4 - Listar\n Pedidos" --> n9(("11"))
+    E -- "0 - Voltar" --> n4(("8"))
+    E -- Outra --> n5["Exibir \nOpção Inválida"]
+    n5 --> n2
+    n10((12)) --> n2
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: doc}
+
+
+flowchart TB
+    n1(("2")) --> n2["Imprimir Cabeçalho CLIENTES"]
+    n2 --> n3["Mostrar Opções de Cliente"]
+    n3 --> D[/Ler Opção/]
+    D --> E{Opção?}
+    E -- "1 - Cadastrar\n Cliente" --> n6(("13"))
+    E -- "2 - Editar\n Cliente" --> n7(("14"))
+    E -- "3 - Buscar\n Cliente" --> n8(("15"))
+    E -- "4 - Listar\n Clientes" --> n9(("16"))
+    E -- "0 - Voltar" --> n4(("8"))
+    E -- Outra --> n5["Exibir\n Opção Inválida"]
+    n5 --> n2
+    n10((17)) --> n2
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: doc}
+
+flowchart TB
+    n1(("3")) --> n2[Imprimir Cabeçalho PRODUTOS]
+    n2 --> n3[Mostrar Opções de Produto]
+    n3 --> D[/Ler Opção/]
+    D --> E{Opção?}
+    E -- "1 - Cadastrar\n Produto" --> n6(("18"))
+    E -- "2 - Editar\n Produto" --> n7(("19"))
+    E -- "3 - Buscar\n Produto" --> n8(("20"))
+    E -- "4 - Listar\n Produtos" --> n9(("21"))
+    E -- "5 - Cadastrar\n Categoria\n de Produto" --> n10(("22"))
+    E -- "6 - Editar\n Categoria\n de Produto" --> n11(("23"))
+    E -- "7 - Buscar\n Categoria\n de Produto" --> n12(("24"))
+    E -- "8 - Listar\n Categoria\n de Produto" --> n13(("25"))
+    E -- "0 - Voltar" --> n4(("8"))
+    E -- Outra --> n5["Exibir\n Opção Inválida"]
+    n5 --> n2
+    n10((26)) --> n2
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: doc}
+
+
+flowchart TB
+    n1(("4")) --> n2[Imprimir Cabeçalho MESAS]
+    n2 --> n3[Mostrar Opções de Mesa]
+    n3 --> D[/Ler Opção/]
+    D --> E{Opção?}
+    E -- "1 - Cadastrar\n Mesa" --> n6(("27"))
+    E -- "2 - Editar\n Mesa" --> n7(("28"))
+    E -- "3 - Buscar\n Mesa" --> n8(("29"))
+    E -- "4 - Listar\n Mesas" --> n9(("30"))
+    E -- "5 - Cadastrar\n Reserva\n de Mesa" --> n10(("31"))
+    E -- "6 - Editar\n Reserva\n de Mesa" --> n11(("32"))
+    E -- "7 - Buscar\n Reserva\n de Mesa\n Por Nome" --> n12(("33"))
+    E -- "8 - Buscar\n Reserva\n de Mesa\n Por Número" --> n13(("34"))
+    E -- "9 - Listar\n Reserva\n de Mesa" --> n14(("35"))
+    E -- "0 - Voltar" --> n4(("8"))
+    E -- Outra --> n5["Exibir\n Opção Inválida"]
+    n5 --> n2
+    n15((36)) --> n2
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: doc}
+
+
+flowchart TB
+    n1(("5")) --> n2[Imprimir Cabeçalho PLAYGROUND]
+    n2 --> n3[Mostrar Opções de Playground]
+    n3 --> D[/Ler Opção/]
+    D --> E{Opção?}
+    E -- "1 - Cadastrar\n Playground" --> n6(("37"))
+    E -- "2 - Editar\n Playground" --> n7(("38"))
+    E -- "3 - Buscar\n Playground" --> n8(("39"))
+    E -- "4 - Listar\n Playgrounds" --> n9(("40"))
+    E -- "1 - Cadastrar\n Gato" --> n10(("41"))
+    E -- "2 - Editar\n Gato" --> n11(("42"))
+    E -- "3 - Buscar\n Gato" --> n12(("43"))
+    E -- "4 - Listar\n Gatos" --> n13(("44"))
+    E -- "5 - Cadastrar \n Sessão de\n Playground" --> n14(("45"))
+    E -- "6 - Editar \nSessão de\n Playground" --> n15(("46"))
+    E -- "7 - Buscar \n Sessão de\n Playground \n Por Cliente" --> n16(("47"))
+    E -- "7 - Buscar \n Sessão de\n Playground \nPor Playground" --> n17(("48"))
+    E -- "8 - Listar \nSessões de\n Playground" --> n18(("49"))
+    E -- "0 - Voltar" --> n4(("8"))
+    E -- Outra --> n5["Exibir\n Opção Inválida"]
+    n5 --> n2
+    n19((50)) --> n2
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: doc}
+
+flowchart TB
+    n1(("6")) --> n2[Imprimir Cabeçalho OUTROS]
+    n2 --> n3[Mostrar Opções de Outros]
+    n3 --> D[/Ler Opção/]
+    D --> E{Opção?}
+    E -- "1 - Cadastrar\n Funcionário" --> n6(("51"))
+    E -- "2 - Editar\n Funcionário" --> n7(("52"))
+    E -- "3 - Buscar\n Funcionário" --> n8(("53"))
+    E -- "4 - Listar\n Funcionários" --> n9(("54"))
+    E -- "1 - Cadastrar\n Forma de\n Pagamento" --> n10(("55"))
+    E -- "2 - Editar\n Forma de\n Pagamento" --> n11(("56"))
+    E -- "3 - Buscar\n Forma de\n Pagamento" --> n12(("57"))
+    E -- "4 - Listar\n Formas de \nPagamento" --> n13(("58"))
+    E -- "0 - Voltar" --> n4(("8"))
+    E -- Outra --> n5["Exibir\n Opção Inválida"]
+    n5 --> n2
+    n14((59)) --> n2
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: doc}
+
+graph TD
+    n1((8)) --> n2["Imprime opções\nde cliente:\n 1-Buscar\n 2-Listar\n 3-Cadastrar"]
+    n5["Cadastrar\nPedido"]
+	n2 --> A[/"Ler Opção"/]
+    A --> B{"Opção?"}
+    B -- "1 - Buscar" --> n3(("15"))
+    B -- "2 - Listar" --> n4(("16"))
+    B -- "3 - Cadastrar" --> n6(("13"))
+    B -- Outra --> n7["Erro:\nOpção\nInválida"]
+    n3 --> C{"id_cliente == 0?"}
+    n4 --> C
+    n6 --> C
+    n7 --> n2
+    C -- Sim --> n2
+    C -- Não --> n8["Imprime opções de\nforma de pagamento:\n 1-Buscar\n 2-Listar\n 3-Cadastrar"]
+    n8 --> D[/"Ler Opção"/]
+    D --> E{"Opção?"}
+    E -- "1 - Buscar" --> n9(("58"))
+    E -- "2 - Listar" --> n10(("57"))
+    E -- "3 - Cadastrar" --> n11(("55"))
+    E -- Outra --> n12["Erro:\nOpção\nInválida"]
+    n9 --> F{"id_forma == 0?"}
+    n10 --> F
+    n11 --> F
+    n12 --> n8
+    F -- Sim --> n8
+    F -- Não --> G[/Ler data/]
+	G --> H[Preparar e\nexecutar INSERT SQL]
+    H --> I{Executou com\nsucesso?}
+    I -- Não --> n13[Imprime erro]
+    I -- Sim --> J[Obter ID gerado]
+    J --> n14[Imprime sucesso]
+	n14 --> n15[/Deseja adicionar \nitens ao pedido? s/n/]
+    n15 --> L{Resposta?}
+    L -- s --> n16[Imprime opções\nde produto:\n 1-Buscar\n 2-Listar\n 3-Cadastrar]
+    L -- n --> n10((12))
+    n16 --> M[/Ler Opção/]
+    M --> N{Opção?}
+    N -- "1 - Buscar" --> n16((20))
+    N -- "2 - Listar" --> n17((21))
+    N -- "3 - Cadastrar" --> n18((18))
+    N -- Outra --> n19[Erro:\nOpção\nInválida]
+    n16 --> O
+    n17 --> O
+    n18 --> P{Novo\nproduto\ncriado?}
+    n19 --> n15
+    P -- Sim --> n20[/Deseja usar o\nnovo produto? s/n/]
+    P -- Não --> n15
+    n20 --> Q{Resposta?}
+    Q -- s --> R[id_produto =\n id_novo_produto]
+    Q -- n --> S[/Ler ID do produto/]
+    S --> O{id_produto == 0?}
+    O -- Sim --> n15
+    O -- Não --> T[/Ler Quantidade/]
+	T --> U[Preparar e\nexecutar INSERT SQL]
+    U --> V{Executou com\nsucesso?}
+    V -- Não --> n21[Imprime erro]
+    V -- Sim --> n15
+    n14 -->
+
+    n2@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n12@{ shape: doc}
+    n13@{ shape: doc}
+    n14@{ shape: doc}
+    n5@{ shape: comment}
+
+graph TD
+    n1((9)) --> n11[Imprime opções:\n 1-Buscar por cliente\n 2-Listar\n 3-Cadastrar]
+    n5["Editar\nPedido"]
+    n11 --> C[/Ler Opção/]
+    C --> D{Opção?}
+    D -- "1 - Buscar" --> n2((10))
+    D -- "2 - Listar" --> n3((11))
+    D -- "3 - Cadastrar" --> n4((8))
+    D -- Outra --> n12[Erro:\nOpção\nInválida]
+    n2 --> H
+    n3 --> H
+    n4 --> F{Novo\npedido\ncriado?}
+    n12 --> n11
+    F -- Sim --> n6[/Deseja usar o\nnovo pedido? s/n/]
+    F -- Não --> H
+    n6 --> I{Resposta?}
+    I -- s --> G[id_pedido =\n id_novo_pedido]
+    I -- n --> H[/Ler ID do cliente/]
+    H --> J{id_pedido == 0?}
+    J -- Sim --> n11
+    J -- Não --> K[/Ler novos dados e Validar/]
+    G --> K
+    K --> L{Tudo igual\na -1?}
+    L -- Sim --> n7[Imprime que\nnada foi alterado]
+    L -- Não --> M[Preparar e\nexecutar SQL UPDATE]
+    M --> N{"Preparou e\nexecutou\ncom sucesso?"}
+    N -- Não --> n8["Imprime Erro"]
+    N -- Sim --> n9["Imprimir\nSucesso"]
+	n7 --> n10
+	n8 --> n10
+	n9 --> n10
+
+    n6@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n9@{ shape: doc}
+    n11@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}
+
+
+flowchart TB
+    n1((10)) --> B[/"Ler nome do cliente"/]
+    n5["Buscar\nPedido"]
+    B --> C["Preparar e\n executar SELECT SQL"]
+    C --> D{"Preparou e\n executou \ncom sucesso?"}
+    D -- Não --> n2["Imprime Erro"]
+    D -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((12))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+
+flowchart TD
+    n1((11)) --> B[Preparar e executar SELECT SQL de todos os pedidos]
+    n5["Listar\nPedidos"]
+    B --> C{"Preparou e\n executou \ncom sucesso?"}
+    C -- Não --> n2["Imprime Erro"]
+    C -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((12))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+graph TD
+    n1((13)) --> B[/Ler nome do cliente/]
+    n5["Cadastrar\nCliente"]
+    B --> C{Nome >=\n3 letras?}
+    C -- Não --> B
+    C -- Sim --> D[/Ler email e github_user/]
+	D --> E[Preparar e\nexecutar INSERT SQL]
+    E --> F{Executou com\nsucesso?}
+    F -- Não --> n2[Imprime erro]
+    F -- Sim --> G[Obter ID gerado]
+    G --> n3[Imprime sucesso]
+    n2 --> H([Retornar 0])
+    n3 --> I([Retornar ID])
+	H --> n4((17))
+	I --> n4
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+graph TD
+    n1((14)) --> n11[Imprime opções:\n 1-Buscar\n 2-Listar\n 3-Cadastrar]
+    n5["Editar\nCliente"]
+    n11 --> C[/Ler Opção/]
+    C --> D{Opção?}
+    D -- "1 - Buscar" --> n2((15))
+    D -- "2 - Listar" --> n3((16))
+    D -- "3 - Cadastrar" --> n4((13))
+    D -- Outra --> n12[Erro:\nOpção\nInválida]
+    n2 --> H
+    n3 --> H
+    n4 --> F{Novo\ncliente\ncriado?}
+    n12 --> n11
+    F -- Sim --> n6[/Deseja usar o\nnovo cliente? s/n/]
+    F -- Não --> H
+    n6 --> I{Resposta?}
+    I -- s --> G[id_cliente =\n id_novo_cliente]
+    I -- n --> H[/Ler ID do cliente/]
+    H --> J{id_cliente == 0?}
+    J -- Sim --> n11
+    J -- Não --> K[/Ler novos dados e Validar/]
+    G --> K
+    K --> L{Tudo igual\na -1?}
+    L -- Sim --> n7[Imprime que\nnada foi alterado]
+    L -- Não --> M[Preparar e\nexecutar SQL UPDATE]
+    M --> N{"Preparou e\nexecutou\ncom sucesso?"}
+    N -- Não --> n8["Imprime Erro"]
+    N -- Sim --> n9["Imprimir\nSucesso"]
+
+	n7 --> n10((17))
+	n8 --> n10
+	n9 --> n10
+
+    n6@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n9@{ shape: doc}
+    n11@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}
+
+flowchart TB
+    n1((15)) --> B[/"Ler nome_cliente"/]
+    n5["Buscar\nCliente"]
+    B --> C["Preparar e\n executar SELECT SQL"]
+    C --> D{"Preparou e\n executou \ncom sucesso?"}
+    D -- Não --> n2["Imprime Erro"]
+    D -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((17))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+
+flowchart TD
+    n1((16)) --> B[Preparar e executar SELECT SQL de todos os clientes]
+    n5["Listar\nClientes"]
+    B --> C{"Preparou e\n executou \ncom sucesso?"}
+    C -- Não --> n2["Imprime Erro"]
+    C -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((17))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+
+graph TD
+    n1((18)) --> n2["Imprime opções\nde cliente:\n 1-Buscar\n 2-Listar\n 3-Cadastrar"]
+    n5["Cadastrar\nProduto"]
+	n2 --> A[/"Ler Opção"/]
+    A --> B{"Opção?"}
+    B -- "1 - Buscar" --> n3(("15"))
+    B -- "2 - Listar" --> n4(("16"))
+    B -- "3 - Cadastrar" --> n6(("13"))
+    B -- Outra --> n7["Erro:\nOpção\nInválida"]
+    n3 --> C{"id_cliente == 0?"}
+    n4 --> C
+    n6 --> C
+    n7 --> n2
+    C -- Sim --> n2
+    C -- Não -->
+    C -- Sim --> D[/Ler preço e quantidade em estoque/]
+	D --> n11[Imprime opções:\n 1-Buscar\n 2-Listar\n 3-Cadastrar]
+	n11 --> E[/Ler Opção/]
+    E --> F{Opção?}
+    F -- "1 - Buscar" --> n2((29))
+    F -- "2 - Listar" --> n3((30))
+    F -- "3 - Cadastrar" --> n4((27))
+    F -- Outra --> n12[Erro:\nOpção\nInválida]
+    n2 --> K
+    n3 --> K
+    n4 --> H{Nova\ncategoria\ncriada?}
+    n12 --> n11
+    H -- Sim --> n6[/Deseja usar a\nnova categoria? s/n/]
+    H -- Não --> K
+    n6 --> I{Resposta?}
+    I -- n --> K[/Ler ID da categoria/]
+    I -- s --> J[id_cat =\n id_nova_cat]
+    J --> L{id_cat == 0?}
+    K --> L
+    L -- Sim --> n11
+    L -- Não --> M[Preparar e\nexecutar INSERT SQL]
+    M --> O{Executou com\nsucesso?}
+    O -- Não --> n7[Imprime erro]
+    O -- Sim --> P[Obter ID gerado]
+    P --> n8[Imprime sucesso]
+    n7 --> Q([Retornar 0])
+    n8 --> R([Retornar ID])
+	Q --> n9((26))
+	R --> n9
+    n6@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n11@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}
+
+graph TD
+    n1((19)) --> n11[Imprime opções:\n 1-Buscar\n 2-Listar\n 3-Cadastrar]
+    n5["Editar\nProduto"]
+    n11 --> C[/Ler Opção/]
+    C --> D{Opção?}
+    D -- "1 - Buscar" --> n2((20))
+    D -- "2 - Listar" --> n3((21))
+    D -- "3 - Cadastrar" --> n4((18))
+    D -- Outra --> n12[Erro:\nOpção\nInválida]
+    n2 --> H
+    n3 --> H
+    n4 --> F{Novo\nproduto\ncriado?}
+    n12 --> n11
+    F -- Sim --> n6[/Deseja usar o\nnovo produto? s/n/]
+    F -- Não --> H
+    n6 --> I{Resposta?}
+    I -- s --> G[id_produto =\n id_novo_produto]
+    I -- n --> H[/Ler ID do produto/]
+    H --> J{id_produto == 0?}
+    J -- Sim --> n11
+    J -- Não --> K[/Ler novos dados e Validar/]
+    G --> K
+    K --> L{Tudo igual\na -1?}
+    L -- Sim --> n7[Imprime que\nnada foi alterado]
+    L -- Não --> M[Preparar e\nexecutar SQL UPDATE]
+    M --> N{"Preparou e\nexecutou\ncom sucesso?"}
+    N -- Não --> n8["Imprime Erro"]
+    N -- Sim --> n9["Imprimir\nSucesso"]
+
+	n7 --> n10((26))
+	n8 --> n10
+	n9 --> n10
+
+    n6@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n9@{ shape: doc}
+    n11@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}
+
+flowchart TB
+    n1((20)) --> B[/"Ler nome_produto"/]
+    n5["Buscar\nProduto"]
+    B --> C["Preparar e\n executar SELECT SQL"]
+    C --> D{"Preparou e\n executou \ncom sucesso?"}
+    D -- Não --> n2["Imprime Erro"]
+    D -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((26))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+
+flowchart TD
+    n1((21)) --> B[Preparar e executar SELECT SQL de todos os produtos]
+    n5["Listar\nProdutos"]
+    B --> C{"Preparou e\n executou \ncom sucesso?"}
+    C -- Não --> n2["Imprime Erro"]
+    C -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((26))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+
+graph TD
+    n1((22)) --> B[/Ler nome da categoria/]
+    n5["Cadastrar\nCategoria\nde Produto"]
+    B --> C{Tamanho\nnome >= 3?}
+    C -- Não --> B
+    C -- Sim --> D[Preparar e\nexecutar INSERT SQL]
+    D --> E{Executou com\nsucesso?}
+    E -- Não --> n2[Imprime erro]
+    E -- Sim --> F[Obter ID gerado]
+    F --> n3[Imprime sucesso]
+    n2 --> G([Retornar 0])
+    n3 --> H([Retornar ID])
+	G --> n4((26))
+	H --> n4
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+graph TD
+    n1((23)) --> n11[Imprime opções:\n 1-Buscar\n 2-Listar\n 3-Cadastrar]
+    n5["Editar\nCategoria\nde Produto"]
+    n11 --> C[/Ler Opção/]
+    C --> D{Opção?}
+    D -- "1 - Buscar" --> n2((29))
+    D -- "2 - Listar" --> n3((30))
+    D -- "3 - Cadastrar" --> n4((27))
+    D -- Outra --> n12[Erro:\nOpção\nInválida]
+    n2 --> H
+    n3 --> H
+    n4 --> F{Nova\ncategoria\ncriada?}
+    n12 --> n11
+    F -- Sim --> n6[/Deseja usar a\nnova categoria? s/n/]
+    F -- Não --> H
+    n6 --> I{Resposta?}
+    I -- s --> G[id_cat =\n id_nova_cat]
+    I -- n --> H[/Ler ID da categoria/]
+    H --> J{id_cat == 0?}
+    J -- Sim --> n11
+    J -- Não --> K[/Ler novos dados e Validar/]
+    G --> K
+    K --> L{Tudo igual\na -1?}
+    L -- Sim --> n7[Imprime que\nnada foi alterado]
+    L -- Não --> M[Preparar e\nexecutar SQL UPDATE]
+    M --> N{"Preparou e\nexecutou\ncom sucesso?"}
+    N -- Não --> n8["Imprime Erro"]
+    N -- Sim --> n9["Imprimir\nSucesso"]
+
+	n7 --> n10((26))
+	n8 --> n10
+	n9 --> n10
+
+    n6@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n9@{ shape: doc}
+    n11@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}
+
+flowchart TB
+    n1(("24")) --> B[/"Ler nome_categoria"/]
+    n5["Buscar\nCategoria\nde Produto"]
+    B --> C["Preparar e\n executar SELECT SQL"]
+    C --> D{"Preparou e\n executou \ncom sucesso?"}
+    D -- Não --> n2["Imprime Erro"]
+    D -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((26))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+
+flowchart TD
+    n1((25)) --> B[Preparar e executar SELECT SQL de todas as categorias]
+    n5["Listar\nCategorias\nde Produto"]
+    B --> C{"Preparou e\n executou \ncom sucesso?"}
+    C -- Não --> n2["Imprime Erro"]
+    C -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((26))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+
+flowchart TD
+    n1((27)) --> B[/Ler numero_mesa/]
+    n5["Cadastrar\nMesa"]
+    B --> C{numero_mesa <= 0?}
+    C -- Sim --> B
+    C -- Não --> D[/Ler tomadas/]
+    D --> E{tomadas < 0?}
+    E -- Sim --> D
+    E -- Não --> F[/Ler monitores_extra/]
+    F --> G{monitores_extra < 0?}
+    G -- Sim --> F
+    G -- Não --> H[Preparar e\nexecutar INSERT SQL]
+    H --> L{Executou com\nsucesso?}
+    L -- Não --> n2[Imprime erro]
+    L -- Sim --> M[Obter ID gerado]
+    M --> n3[Imprime sucesso]
+    n2 --> N([Retornar 0])
+    n3 --> O([Retornar ID])
+	N --> n4((36))
+	O --> n4
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+
+graph TD
+    n1((28)) --> n11[Imprime opções:\n 1-Buscar\n 2-Listar\n 3-Cadastrar]
+    n5["Editar\nMesa"]
+    n11 --> C[/Ler Opção/]
+    C --> D{Opção?}
+    D -- "1 - Buscar" --> n2((29))
+    D -- "2 - Listar" --> n3((30))
+    D -- "3 - Cadastrar" --> n4((27))
+    D -- Outra --> n12[Erro:\nOpção\nInválida]
+    n2 --> H
+    n3 --> H
+    n4 --> F{Nova\nmesa\ncriada?}
+    n12 --> n11
+    F -- Sim --> n6[/Deseja usar a\nnova mesa? s/n/]
+    F -- Não --> H
+    n6 --> I{Resposta?}
+    I -- s --> G[id_mesa =\n id_nova_mesa]
+    I -- n --> H[/Ler ID da mesa/]
+    H --> J{id_mesa == 0?}
+    J -- Sim --> n11
+    J -- Não --> K[/Ler novos dados e Validar/]
+    G --> K
+    K --> L{Tudo igual\na -1?}
+    L -- Sim --> n7[Imprime que\nnada foi alterado]
+    L -- Não --> M[Preparar e\nexecutar SQL UPDATE]
+    M --> N{"Preparou e\nexecutou\ncom sucesso?"}
+    N -- Não --> n8["Imprime Erro"]
+    N -- Sim --> n9["Imprimir\nSucesso"]
+
+	n7 --> n10((36))
+	n8 --> n10
+	n9 --> n10
+
+    n6@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n9@{ shape: doc}
+    n11@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}
+
+
+flowchart TB
+    n1(("29")) --> B[/"Ler numero_mesa"/]
+    n5["Buscar\nMesa"]
+    B --> C["Preparar e\n executar SELECT SQL"]
+    C --> D{"Preparou e\n executou \ncom sucesso?"}
+    D -- Não --> n2["Imprime Erro"]
+    D -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((36))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+flowchart TD
+    n1((30)) --> B[Preparar e executar SELECT SQL de todas as mesas]
+    n5["Listar\nMesas"]
+    B --> C{"Preparou e\n executou \ncom sucesso?"}
+    C -- Não --> n2["Imprime Erro"]
+    C -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((36))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+flowchart TD
+    n1((31)) --> n2["Imprime opções\nde cliente:\n 1-Buscar\n 2-Listar\n 3-Cadastrar"]
+    n5["Cadastrar\nReserva de\nMesas"]
+	n2 --> A[/"Ler Opção"/]
+    A --> B{"Opção?"}
+    B -- "1 - Buscar" --> n3(("15"))
+    B -- "2 - Listar" --> n4(("16"))
+    B -- "3 - Cadastrar" --> n6(("13"))
+    B -- Outra --> n7["Erro:\nOpção\nInválida"]
+    n3 --> C{"id_cliente == 0?"}
+    n4 --> C
+    n6 --> C
+    n7 --> n2
+    C -- Sim --> n2
+    C -- Não --> n8["Imprime opções\nde mesa:\n 1-Buscar\n 2-Listar\n 3-Cadastrar"]
+    n8 --> D[/"Ler Opção"/]
+    D --> E{"Opção?"}
+    E -- "1 - Buscar" --> n9(("29"))
+    E -- "2 - Listar" --> n10(("30"))
+    E -- "3 - Cadastrar" --> n11(("27"))
+    E -- Outra --> n12["Erro:\nOpção\nInválida"]
+    n9 --> F{"id_mesa == 0?"}
+    n10 --> F
+    n11 --> F
+    n12 --> n8
+    F -- Sim --> n8
+    F -- Não --> G[/Ler qtd_pessoas, data e hora/]
+    G --> H["Preparar e\nexecutar INSERT SQL"]
+    H --> J{"Executou com\nsucesso?"}
+    J -- Não --> n13["Imprime erro"]
+    J -- Sim --> Q["Obter ID gerado"]
+    Q --> n14["Imprime sucesso"]
+    n13 --> R(["Retornar 0"])
+    n14 --> S(["Retornar ID"])
+	R --> n15((36))
+    S --> n15
+
+    n5@{ shape: comment}
+    n2@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n12@{ shape: doc}
+    n13@{ shape: doc}
+    n14@{ shape: doc}
+
+
+graph TD
+    n1((32)) --> n12[Imprime opções:\n 1-Buscar por cliente\n 2-Listar\n 3-Cadastrar]
+    n5["Editar\nReserva\nde Mesa"]
+    n12 --> C[/Ler Opção/]
+    C --> D{Opção?}
+    D -- "1 - Buscar" --> n2((33))
+    D -- "2 - Listar" --> n3((35))
+    D -- "3 - Cadastrar" --> n4((31))
+    D -- Outra --> n6[Erro:\nOpção\nInválida]
+    n2 --> H
+    n3 --> H
+    n4 --> F{Nova\nreserva\ncriada?}
+    n6 --> n12
+    F -- Sim --> n7[/Deseja usar a\nnova reserva? s/n/]
+    F -- Não --> H
+    n7 --> I{Resposta?}
+    I -- s --> G[id_reserva =\n id_nova_reserva]
+    I -- n --> H[/Ler ID da reserva/]
+    H --> J{id_reserva == 0?}
+    J -- Sim --> n12
+    J -- Não --> K[/Ler novos dados e Validar/]
+    G --> K
+    K --> L{Tudo igual\na -1?}
+    L -- Sim --> n8[Imprime que\nnada foi alterado]
+    L -- Não --> M[Preparar e\nexecutar SQL UPDATE]
+    M --> N{"Preparou e\nexecutou\ncom sucesso?"}
+    N -- Não --> n9["Imprime Erro"]
+    N -- Sim --> n10["Imprimir\nSucesso"]
+
+	n8 --> n11((36))
+	n9 --> n11
+	n10 --> n11
+
+    n6@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n9@{ shape: doc}
+    n10@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}
+
+
+flowchart TB
+    n1(("33")) --> B[/"Ler nome_cliente"/]
+    n5["Buscar\nReserva\nde Mesa\npor Cliente"]
+    B --> C["Preparar e\n executar SELECT SQL"]
+    C --> D{"Preparou e\n executou \ncom sucesso?"}
+    D -- Não --> n2["Imprime Erro"]
+    D -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((36))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+flowchart TB
+    n1(("34")) --> B[/"Ler numero_mesa"/]
+    n5["Buscar\nReserva\nde Mesa\npor Mesa"]
+    B --> C["Preparar e\n executar SELECT SQL"]
+    C --> D{"Preparou e\n executou \ncom sucesso?"}
+    D -- Não --> n2["Imprime Erro"]
+    D -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((36))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+flowchart TD
+    n1((35)) --> B[Preparar e executar SELECT SQL de todas as reservas]
+    n5["Listar\nReservas\nde Mesa"]
+    B --> C{"Preparou e\n executou \ncom sucesso?"}
+    C -- Não --> n2["Imprime Erro"]
+    C -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((36))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+
+graph TD
+    n1((37)) --> B[/Ler nome do\nsetor/]
+    n5["Cadastrar\nPlayground"]
+    B --> C{Nome >=\n3 letras?}
+    C -- Não --> B
+    C -- Sim --> D[/Ler capacidade_clientes/]
+    D --> E{capacidade_clientes\n> 0?}
+    E -- Não --> D
+    E -- Sim --> F[/Ler capacidade_gatos/]
+    F --> G{capacidade_gatos\n> 0?}
+    G -- Não --> F
+    G -- Sim --> H[Preparar e\nexecutar INSERT SQL]
+    H --> I{Executou com\nsucesso?}
+    I -- Não --> n2[Imprime erro]
+    I -- Sim --> J[Obter ID gerado]
+    J --> n3[Imprime sucesso]
+    n2 --> K([Retornar 0])
+    n3 --> L([Retornar ID])
+	K --> n4((50))
+	L --> n4
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+graph TD
+    n1((38)) --> n12[Imprime opções:\n 1-Buscar\n 2-Listar\n 3-Cadastrar]
+    n5["Editar\nPlayground"]
+    n12 --> C[/Ler Opção/]
+    C --> D{Opção?}
+    D -- "1 - Buscar" --> n2((39))
+    D -- "2 - Listar" --> n3((40))
+    D -- "3 - Cadastrar" --> n4((37))
+    D -- Outra --> n11[Erro:\nOpção\nInválida]
+    n2 --> H
+    n3 --> H
+    n4 --> F{Novo\nplayground\ncriado?}
+    n11 --> n12
+    F -- Sim --> n6[/Deseja usar o\nnovo playground? s/n/]
+    F -- Não --> H
+    n6 --> I{Resposta?}
+    I -- s --> G[id_play =\n id_novo_play]
+    I -- n --> H[/Ler ID do playground/]
+    H --> J{id_play == 0?}
+    J -- Sim --> n12
+    J -- Não --> K[/Ler novos dados e Validar/]
+    G --> K
+    K --> L{Tudo igual\na -1?}
+    L -- Sim --> n7[Imprime que\nnada foi alterado]
+    L -- Não --> M[Preparar e\nexecutar SQL UPDATE]
+    M --> N{"Preparou e\nexecutou\ncom sucesso?"}
+    N -- Não --> n8["Imprime Erro"]
+    N -- Sim --> n9["Imprimir\nSucesso"]
+
+	n7 --> n10((50))
+	n8 --> n10
+	n9 --> n10
+
+    n6@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n9@{ shape: doc}
+    n11@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}
+
+flowchart TB
+    n1((39)) --> B[/"Ler nome_setor"/]
+    n5["Buscar\nPlayground"]
+    B --> C["Preparar e\n executar SELECT SQL"]
+    C --> D{"Preparou e\n executou \ncom sucesso?"}
+    D -- Não --> n2["Imprime Erro"]
+    D -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((50))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+
+flowchart TD
+    n1((40)) --> B[Preparar e executar SELECT SQL de todos os playgrounds]
+    n5["Listar\nPlaygrounds"]
+    B --> C{"Preparou e\n executou \ncom sucesso?"}
+    C -- Não --> n2["Imprime Erro"]
+    C -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((50))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+
+flowchart TB
+    n1(("41")) --> B[/"Ler nome do\ngato"/]
+    n50["Cadastrar\nGato"]
+    B --> C{"Nome >=\n3 letras?"}
+    C -- Não --> B
+    C -- Sim --> D[/"Ler personalidade e status"/]
+    D --> n2["Imprime opções\nde playground:\n 1-Buscar\n 2-Listar\n 3-Cadastrar"]
+    n2 --> F[/"Ler Opção"/]
+    F --> G{"Opção?"}
+    G -- "1 - Buscar" --> n3(("39"))
+    G -- "2 - Listar" --> n4(("40"))
+    G -- "3 - Cadastrar" --> n5(("37"))
+    G -- Outra --> n6["Erro:\nOpção\nInválida"]
+    n3 --> M{"id_play == 0?"}
+    n4 --> M
+    n5 --> M
+    n6 --> n2
+    M -- Sim --> n2
+    M -- Não --> N["id_playground = id_play"]
+    N --> O["Preparar e\nexecutar INSERT SQL"]
+    O --> P{"Executou com\nsucesso?"}
+    P -- Não --> n8["Imprime erro"]
+    P -- Sim --> Q["Obter ID gerado"]
+    Q --> n9["Imprime sucesso"]
+    n8 --> R(["Retornar 0"])
+    n9 --> S(["Retornar ID"])
+    R --> n10(("50"))
+    S --> n10
+
+    n50@{ shape: comment}
+    n2@{ shape: doc}
+    n6@{ shape: doc}
+    n8@{ shape: doc}
+    n9@{ shape: doc}
+
+graph TD
+    n1((42)) --> n12[Imprime opções:\n 1-Buscar\n 2-Listar\n 3-Cadastrar]
+    n5["Editar\nGato"]
+    n12 --> C[/Ler Opção/]
+    C --> D{Opção?}
+    D -- "1 - Buscar" --> n2((43))
+    D -- "2 - Listar" --> n3((44))
+    D -- "3 - Cadastrar" --> n4((41))
+    D -- Outra --> n11[Erro:\nOpção\nInválida]
+    n2 --> H
+    n3 --> H
+    n4 --> F{Novo\ngato\ncriado?}
+    n11 --> n12
+    F -- Sim --> n6[/Deseja usar o\nnovo gato? s/n/]
+    F -- Não --> H
+    n6 --> I{Resposta?}
+    I -- s --> G[id_gato =\n id_novo_gato]
+    I -- n --> H[/Ler ID do gato/]
+    H --> J{id_gato == 0?}
+    J -- Sim --> n12
+    J -- Não --> K[/Ler novos dados e Validar/]
+    G --> K
+    K --> L{Tudo igual\na -1?}
+    L -- Sim --> n7[Imprime que\nnada foi alterado]
+    L -- Não --> M[Preparar e\nexecutar SQL UPDATE]
+    M --> N{"Preparou e\nexecutou\ncom sucesso?"}
+    N -- Não --> n8["Imprime Erro"]
+    N -- Sim --> n9["Imprimir\nSucesso"]
+
+	n7 --> n10((50))
+	n8 --> n10
+	n9 --> n10
+
+    n6@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n9@{ shape: doc}
+    n11@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}
+
+flowchart TB
+    n1((43)) --> B[/"Ler nome_gato"/]
+    n5["Buscar\nGato"]
+    B --> C["Preparar e\n executar SELECT SQL"]
+    C --> D{"Preparou e\n executou \ncom sucesso?"}
+    D -- Não --> n2["Imprime Erro"]
+    D -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((50))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+
+flowchart TD
+    n1((44)) --> B[Preparar e executar SELECT SQL de todos os gatos]
+    n5["Listar\nGatos"]
+    B --> C{"Preparou e\n executou \ncom sucesso?"}
+    C -- Não --> n2["Imprime Erro"]
+    C -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((50))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+flowchart TB
+    n1(("45")) --> n2["Imprime opções\nde cliente:\n 1-Buscar\n 2-Listar\n 3-Cadastrar"]
+    n5["Cadastrar\nSessão de\nPlayground"]
+	n2 --> A[/"Ler Opção"/]
+    A --> B{"Opção?"}
+    B -- "1 - Buscar" --> n3(("15"))
+    B -- "2 - Listar" --> n4(("16"))
+    B -- "3 - Cadastrar" --> n6(("13"))
+    B -- Outra --> n7["Erro:\nOpção\nInválida"]
+    n3 --> C{"id_cliente == 0?"}
+    n4 --> C
+    n6 --> C
+    n7 --> n2
+    C -- Sim --> n2
+    C -- Não --> n8["Imprime opções\nde playground:\n 1-Buscar\n 2-Listar\n 3-Cadastrar"]
+    n8 --> D[/"Ler Opção"/]
+    D --> E{"Opção?"}
+    E -- "1 - Buscar" --> n9(("39"))
+    E -- "2 - Listar" --> n10(("40"))
+    E -- "3 - Cadastrar" --> n11(("37"))
+    E -- Outra --> n12["Erro:\nOpção\nInválida"]
+    n9 --> F{"id_play == 0?"}
+    n10 --> F
+    n11 --> F
+    n12 --> n8
+    F -- Sim --> n8
+    F -- Não --> G[/Ler data e hora/]
+    G --> I["Preparar e\nexecutar INSERT SQL"]
+    I --> J{"Executou com\nsucesso?"}
+    J -- Não --> n13["Imprime erro"]
+    J -- Sim --> Q["Obter ID gerado"]
+    Q --> n14["Imprime sucesso"]
+    n13 --> R(["Retornar 0"])
+    n14 --> S(["Retornar ID"])
+    R --> n15(("50"))
+    S --> n15
+
+    n5@{ shape: comment}
+    n2@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n12@{ shape: doc}
+    n13@{ shape: doc}
+    n14@{ shape: doc}
+
+
+graph TD
+    n1((46)) --> n12[Imprime opções:\n 1-Buscar por playground\n 2-Listar\n 3-Cadastrar]
+    n5["Editar\nSessão de\nPlayground"]
+    n12 --> C[/Ler Opção/]
+    C --> D{Opção?}
+    D -- "1 - Buscar" --> n2((48))
+    D -- "2 - Listar" --> n3((49))
+    D -- "3 - Cadastrar" --> n4((45))
+    D -- Outra --> n11[Erro:\nOpção\nInválida]
+    n2 --> H
+    n3 --> H
+    n4 --> F{Nova\nsessão\ncriada?}
+    n11 --> n12
+    F -- Sim --> n6[/Deseja usar a\nnova sessão? s/n/]
+    F -- Não --> H
+    n6 --> I{Resposta?}
+    I -- s --> G[id_sessao =\n id_nova_sessao]
+    I -- n --> H[/Ler ID da sessão/]
+    H --> J{id_sessao == 0?}
+    J -- Sim --> n12
+    J -- Não --> K[/Ler novos dados e Validar/]
+    G --> K
+    K --> L{Tudo igual\na -1?}
+    L -- Sim --> n7[Imprime que\nnada foi alterado]
+    L -- Não --> M[Preparar e\nexecutar SQL UPDATE]
+    M --> N{"Preparou e\nexecutou\ncom sucesso?"}
+    N -- Não --> n8["Imprime Erro"]
+    N -- Sim --> n9["Imprimir\nSucesso"]
+
+	n7 --> n10((50))
+	n8 --> n10
+	n9 --> n10
+
+    n6@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n9@{ shape: doc}
+    n11@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}
+
+flowchart TB
+    n1((47)) --> B[/"Ler nome_cliente"/]
+    n5["Buscar\nSessão de\nPlayground\nPor Cliente"]
+    B --> C["Preparar e\n executar SELECT SQL"]
+    C --> D{"Preparou e\n executou \ncom sucesso?"}
+    D -- Não --> n2["Imprime Erro"]
+    D -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((50))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+flowchart TB
+    n1((48)) --> B[/"Ler nome_setor"/]
+    n5["Buscar\nSessão de\nPlayground\nPor playground"]
+    B --> C["Preparar e\n executar SELECT SQL"]
+    C --> D{"Preparou e\n executou \ncom sucesso?"}
+    D -- Não --> n2["Imprime Erro"]
+    D -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((50))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+
+flowchart TD
+    n1((49)) --> B[Preparar e executar SELECT SQL de todas as sessões]
+    n5["Listar\nSessões de\nPlayground"]
+    B --> C{"Preparou e\n executou \ncom sucesso?"}
+    C -- Não --> n2["Imprime Erro"]
+    C -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((50))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+graph TD
+    n1((51)) --> B[/Ler nome do\nfuncionário/]
+    n5["Cadastrar\nFuncionário"]
+    B --> C{Nome >=\n3 letras?}
+    C -- Não --> B
+    C -- Sim --> D[/Ler cargo/]
+    D --> E{Cargo >= 5 letras?}
+    E -- Não --> D
+    E -- Sim --> F[Preparar e\nexecutar INSERT SQL]
+    F --> G{Executou com\nsucesso?}
+    G -- Não --> n2[Imprime erro]
+    G -- Sim --> H[Obter ID gerado]
+    H --> n3[Imprime sucesso]
+    n2 --> I([Retornar 0])
+    n3 --> J([Retornar ID])
+	I --> n4((59))
+	J --> n4
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+graph TD
+    n1((52)) --> n2[Imprime opções:\n 1-Buscar\n 2-Listar\n 3-Cadastrar]
+    n5["Editar\nFuncionário"]
+    n2 --> C[/Ler Opção/]
+    C --> D{Opção?}
+    D -- "1 - Buscar" --> n3((53))
+    D -- "2 - Listar" --> n4((54))
+    D -- "3 - Cadastrar" --> n6((51))
+    D -- Outra --> n12[Erro:\nOpção\nInválida]
+    n3 --> H
+    n4 --> H
+    n6 --> F{Novo\nfuncionário\ncriado?}
+    n12 --> n2
+    F -- Sim --> n7[/Deseja usar o\nnovo funcionário? s/n/]
+    F -- Não --> H
+    n7 --> I{Resposta?}
+    I -- s --> G[id_func =\n id_novo_func]
+    I -- n --> H[/Ler ID do funcionário/]
+    H --> J{id_func == 0?}
+    J -- Sim --> n2
+    J -- Não --> K[/Ler novos dados e Validar/]
+    G --> K
+    K --> L{Tudo igual\na -1?}
+    L -- Sim --> n8[Imprime que\nnada foi alterado]
+    L -- Não --> M[Preparar e\nexecutar SQL UPDATE]
+    M --> N{"Preparou e\nexecutou\ncom sucesso?"}
+    N -- Não --> n9["Imprime Erro"]
+    N -- Sim --> n10["Imprimir\nSucesso"]
+
+	n8 --> n11((59))
+	n9 --> n11
+	n10 --> n11
+
+    n2@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n9@{ shape: doc}
+    n10@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}
+
+flowchart TB
+    n1((53)) --> B[/"Ler nome_funcionario"/]
+    n5["Buscar\nFuncionário"]
+    B --> C["Preparar e\n executar SELECT SQL"]
+    C --> D{"Preparou e\n executou \ncom sucesso?"}
+    D -- Não --> n2["Imprime Erro"]
+    D -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((59))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+
+flowchart TD
+    n1((54)) --> B[Preparar e executar SELECT SQL de todos os funcionários]
+    n5["Listar\nFuncionários"]
+    B --> C{"Preparou e\n executou \ncom sucesso?"}
+    C -- Não --> n2["Imprime Erro"]
+    C -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((59))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+graph TD
+    n1((55)) --> B[/Ler nome da\nforma de pagamento/]
+    n5["Cadastrar\nForma de\nPagamento"]
+    B --> C{Nome >=\n3 letras?}
+    C -- Não --> B
+    C -- Sim --> D[Preparar e\nexecutar INSERT SQL]
+    D --> E{Executou com\nsucesso?}
+    E -- Não --> n2[Imprime erro]
+    E -- Sim --> F[Obter ID gerado]
+    F --> n3[Imprime sucesso]
+    n2 --> G([Retornar 0])
+    n3 --> H([Retornar ID])
+	G --> n4((59))
+	H --> n4
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+graph TD
+    n1((56)) --> n12[Imprime opções:\n 1-Buscar\n 2-Listar\n 3-Cadastrar]
+    n5["Editar\nForma de\nPagamento"]
+    n12 --> C[/Ler Opção/]
+    C --> D{Opção?}
+    D -- "1 - Buscar" --> n2((57))
+    D -- "2 - Listar" --> n3((58))
+    D -- "3 - Cadastrar" --> n4((55))
+    D -- Outra --> n6[Erro:\nOpção\nInválida]
+    n2 --> H
+    n3 --> H
+    n4 --> F{Nova\nforma\ncriada?}
+    n6 --> n12
+    F -- Sim --> n7[/Deseja usar a\nnova forma? s/n/]
+    F -- Não --> H
+    n7 --> I{Resposta?}
+    I -- s --> G[id_forma =\n id_nova_forma]
+    I -- n --> H[/Ler ID da forma/]
+    H --> J{id_forma == 0?}
+    J -- Sim --> n12
+    J -- Não --> K[/Ler novos dados e Validar/]
+    G --> K
+    K --> L{Tudo igual\na -1?}
+    L -- Sim --> n8[Imprime que\nnada foi alterado]
+    L -- Não --> M[Preparar e\nexecutar SQL UPDATE]
+    M --> N{"Preparou e\nexecutou\ncom sucesso?"}
+    N -- Não --> n9["Imprime Erro"]
+    N -- Sim --> n10["Imprimir\nSucesso"]
+
+	n8 --> n11((59))
+	n9 --> n11
+	n10 --> n11
+
+    n6@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n9@{ shape: doc}
+    n10@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}
+
+flowchart TB
+    n1((57)) --> B[/"Ler nome_forma"/]
+    n5["Buscar\nForma de\nPagamento"]
+    B --> C["Preparar e\n executar SELECT SQL"]
+    C --> D{"Preparou e\n executou \ncom sucesso?"}
+    D -- Não --> n2["Imprime Erro"]
+    D -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((59))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
+
+flowchart TD
+    n1((58)) --> B[Preparar e executar SELECT SQL de todas as formas de pagamento]
+    n5["Listar\nFormas de\nPagamento"]
+    B --> C{"Preparou e\n executou \ncom sucesso?"}
+    C -- Não --> n2["Imprime Erro"]
+    C -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((59))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}
+
