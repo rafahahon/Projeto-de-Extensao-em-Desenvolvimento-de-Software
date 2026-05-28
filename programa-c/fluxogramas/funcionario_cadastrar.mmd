@@ -1,0 +1,20 @@
+flowchart TB
+    n1((51)) --> B[/Ler nome do\nfuncionário/]
+    n5["Cadastrar\nFuncionário"]
+    B --> C{Nome >=\n3 letras?}
+    C -- Não --> B
+    C -- Sim --> D[/Ler cargo/]
+    D --> E{Cargo >= 5 letras?}
+    E -- Não --> D
+    E -- Sim --> F[Preparar e\nexecutar INSERT SQL]
+    F --> G{Executou com\nsucesso?}
+    G -- Não --> n2[Imprime erro]
+    G -- Sim --> H[Obter ID gerado]
+    H --> n3[Imprime sucesso]
+    n2 --> I([Retornar 0])
+    n3 --> J([Retornar ID])
+    I --> n4((59))
+    J --> n4
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}

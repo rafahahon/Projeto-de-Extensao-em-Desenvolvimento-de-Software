@@ -1,0 +1,12 @@
+flowchart TB
+    n1((21)) --> B[Preparar e executar SELECT SQL de todos os produtos]
+    n5["Listar\nProdutos"]
+    B --> C{"Preparou e\n executou \ncom sucesso?"}
+    C -- Não --> n2["Imprime Erro"]
+    C -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((26))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}

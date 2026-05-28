@@ -1,0 +1,40 @@
+flowchart TB
+    n1((56)) --> n12[Imprime opções:\n 1-Buscar\n 2-Listar\n 3-Cadastrar]
+    n5["Editar\nForma de\nPagamento"]
+    n12 --> C[/Ler Opção/]
+    C --> D{Opção?}
+    D -- "1 - Buscar" --> n2((57))
+    D -- "2 - Listar" --> n3((58))
+    D -- "3 - Cadastrar" --> n4((55))
+    D -- Outra --> n6[Erro:\nOpção\nInválida]
+    n2 --> H
+    n3 --> H
+    n4 --> F{Nova\nforma\ncriada?}
+    n6 --> n12
+    F -- Sim --> n7[/Deseja usar a\nnova forma? s/n/]
+    F -- Não --> H
+    n7 --> I{Resposta?}
+    I -- s --> G[id_forma =\n id_nova_forma]
+    I -- n --> H[/Ler ID da forma/]
+    H --> J{id_forma == 0?}
+    J -- Sim --> n12
+    J -- Não --> K[/Ler novos dados e Validar/]
+    G --> K
+    K --> L{Tudo igual\na -1?}
+    L -- Sim --> n8[Imprime que\nnada foi alterado]
+    L -- Não --> M[Preparar e\nexecutar SQL UPDATE]
+    M --> N{"Preparou e\nexecutou\ncom sucesso?"}
+    N -- Não --> n9["Imprime Erro"]
+    N -- Sim --> n10["Imprimir\nSucesso"]
+
+    n8 --> n11((59))
+    n9 --> n11
+    n10 --> n11
+
+    n6@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n9@{ shape: doc}
+    n10@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}

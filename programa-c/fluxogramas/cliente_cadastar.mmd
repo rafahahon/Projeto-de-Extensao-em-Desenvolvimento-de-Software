@@ -1,0 +1,18 @@
+flowchart TB
+    n1((13)) --> B[/Ler nome do cliente/]
+    n5["Cadastrar\nCliente"]
+    B --> C{Nome >=\n3 letras?}
+    C -- Não --> B
+    C -- Sim --> D[/Ler email e github_user/]
+    D --> E[Preparar e\nexecutar INSERT SQL]
+    E --> F{Executou com\nsucesso?}
+    F -- Não --> n2[Imprime erro]
+    F -- Sim --> G[Obter ID gerado]
+    G --> n3[Imprime sucesso]
+    n2 --> H([Retornar 0])
+    n3 --> I([Retornar ID])
+    H --> n4((17))
+    I --> n4
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}

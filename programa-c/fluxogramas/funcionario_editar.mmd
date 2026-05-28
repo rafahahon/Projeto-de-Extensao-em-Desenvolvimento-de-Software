@@ -1,0 +1,40 @@
+flowchart TB
+    n1((52)) --> n2[Imprime opções:\n 1-Buscar\n 2-Listar\n 3-Cadastrar]
+    n5["Editar\nFuncionário"]
+    n2 --> C[/Ler Opção/]
+    C --> D{Opção?}
+    D -- "1 - Buscar" --> n3((53))
+    D -- "2 - Listar" --> n4((54))
+    D -- "3 - Cadastrar" --> n6((51))
+    D -- Outra --> n12[Erro:\nOpção\nInválida]
+    n3 --> H
+    n4 --> H
+    n6 --> F{Novo\nfuncionário\ncriado?}
+    n12 --> n2
+    F -- Sim --> n7[/Deseja usar o\nnovo funcionário? s/n/]
+    F -- Não --> H
+    n7 --> I{Resposta?}
+    I -- s --> G[id_func =\n id_novo_func]
+    I -- n --> H[/Ler ID do funcionário/]
+    H --> J{id_func == 0?}
+    J -- Sim --> n2
+    J -- Não --> K[/Ler novos dados e Validar/]
+    G --> K
+    K --> L{Tudo igual\na -1?}
+    L -- Sim --> n8[Imprime que\nnada foi alterado]
+    L -- Não --> M[Preparar e\nexecutar SQL UPDATE]
+    M --> N{"Preparou e\nexecutou\ncom sucesso?"}
+    N -- Não --> n9["Imprime Erro"]
+    N -- Sim --> n10["Imprimir\nSucesso"]
+
+    n8 --> n11((59))
+    n9 --> n11
+    n10 --> n11
+
+    n2@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n9@{ shape: doc}
+    n10@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}

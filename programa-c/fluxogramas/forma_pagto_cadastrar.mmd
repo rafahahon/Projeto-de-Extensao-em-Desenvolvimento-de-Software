@@ -1,0 +1,17 @@
+flowchart TB
+    n1((55)) --> B[/Ler nome da\nforma de pagamento/]
+    n5["Cadastrar\nForma de\nPagamento"]
+    B --> C{Nome >=\n3 letras?}
+    C -- Não --> B
+    C -- Sim --> D[Preparar e\nexecutar INSERT SQL]
+    D --> E{Executou com\nsucesso?}
+    E -- Não --> n2[Imprime erro]
+    E -- Sim --> F[Obter ID gerado]
+    F --> n3[Imprime sucesso]
+    n2 --> G([Retornar 0])
+    n3 --> H([Retornar ID])
+    G --> n4((59))
+    H --> n4
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}

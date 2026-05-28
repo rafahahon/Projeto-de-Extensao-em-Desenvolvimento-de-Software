@@ -1,0 +1,13 @@
+flowchart TB
+    n1((57)) --> B[/"Ler nome_forma"/]
+    n5["Buscar\nForma de\nPagamento"]
+    B --> C["Preparar e\n executar SELECT SQL"]
+    C --> D{"Preparou e\n executou \ncom sucesso?"}
+    D -- Não --> n2["Imprime Erro"]
+    D -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((59))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}

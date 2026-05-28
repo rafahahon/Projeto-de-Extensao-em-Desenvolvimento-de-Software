@@ -1,0 +1,39 @@
+graph TD
+    n1((9)) --> n11[Imprime opções:\n 1-Buscar por cliente\n 2-Listar\n 3-Cadastrar]
+    n5["Editar\nPedido"]
+    n11 --> C[/Ler Opção/]
+    C --> D{Opção?}
+    D -- "1 - Buscar" --> n2((10))
+    D -- "2 - Listar" --> n3((11))
+    D -- "3 - Cadastrar" --> n4((7))
+    D -- Outra --> n12[Erro:\nOpção\nInválida]
+    n2 --> H
+    n3 --> H
+    n4 --> F{Novo\npedido\ncriado?}
+    n12 --> n11
+    F -- Sim --> n6[/Deseja usar o\nnovo pedido? s/n/]
+    F -- Não --> H
+    n6 --> I{Resposta?}
+    I -- s --> G[id_pedido =\n id_novo_pedido]
+    I -- n --> H[/Ler ID do cliente/]
+    H --> J{id_pedido == 0?}
+    J -- Sim --> n11
+    J -- Não --> K[/Ler novos dados e Validar/]
+    G --> K
+    K --> L{Tudo igual\na -1?}
+    L -- Sim --> n7[Imprime que\nnada foi alterado]
+    L -- Não --> M[Preparar e\nexecutar SQL UPDATE]
+    M --> N{"Preparou e\nexecutou\ncom sucesso?"}
+    N -- Não --> n8["Imprime Erro"]
+    N -- Sim --> n9["Imprimir\nSucesso"]
+    n7 --> n10
+    n8 --> n10
+    n9 --> n10
+
+    n6@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n9@{ shape: doc}
+    n11@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}

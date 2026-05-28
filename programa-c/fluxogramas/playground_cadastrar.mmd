@@ -1,0 +1,23 @@
+flowchart TB
+    n1((37)) --> B[/Ler nome do\nsetor/]
+    n5["Cadastrar\nPlayground"]
+    B --> C{Nome >=\n3 letras?}
+    C -- Não --> B
+    C -- Sim --> D[/Ler capacidade_clientes/]
+    D --> E{capacidade_clientes\n> 0?}
+    E -- Não --> D
+    E -- Sim --> F[/Ler capacidade_gatos/]
+    F --> G{capacidade_gatos\n> 0?}
+    G -- Não --> F
+    G -- Sim --> H[Preparar e\nexecutar INSERT SQL]
+    H --> I{Executou com\nsucesso?}
+    I -- Não --> n2[Imprime erro]
+    I -- Sim --> J[Obter ID gerado]
+    J --> n3[Imprime sucesso]
+    n2 --> K([Retornar 0])
+    n3 --> L([Retornar ID])
+    K --> n4((50))
+    L --> n4
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}

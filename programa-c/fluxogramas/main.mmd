@@ -1,0 +1,27 @@
+flowchart TB
+    A(["Início do Programa"]) --> B["Conectar à Base de Dados"]
+    B --> C{"Ligação Efetuada?"}
+    C -- Não --> n1["Imprime Erro"]
+    C -- Sim --> n2["Imprimir Logotipo"]
+    n1 --> Q
+    n2 --> n3["Imprimir Menu Principal"]
+    n3 --> G[/"Aguardar e Ler Opção"/]
+    G --> H{"Opção Escolhida?"}
+    H -- "1 - Pedidos" --> n4((1))
+    H -- "2 - Clientes" --> n5((2))
+    H -- "3 - Produtos" --> n6((3))
+    H -- "4 - Mesas" --> n7((4))
+    H -- "5 - Playground" --> n8((5))
+    H -- "6 - Outros" --> n9((6))
+    H -- 0 --> O["Fechar\n Base de\n Dados"]
+    H -- Opção Inválida --> n10["Mostrar Erro"]
+    n10 --> n3
+    n11((7)) --> n3
+    O --> n12["Imprime despedida"]
+    n12 --> Q(["Fim"])
+
+    n1@{ shape: doc}
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n10@{ shape: doc}
+    n12@{ shape: doc}

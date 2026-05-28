@@ -1,0 +1,44 @@
+flowchart TB
+    n1(("45")) --> n2["Imprime opções\nde cliente:\n 1-Buscar\n 2-Listar\n 3-Cadastrar"]
+    n5["Cadastrar\nSessão de\nPlayground"]
+    n2 --> A[/"Ler Opção"/]
+    A --> B{"Opção?"}
+    B -- "1 - Buscar" --> n3(("15"))
+    B -- "2 - Listar" --> n4(("16"))
+    B -- "3 - Cadastrar" --> n6(("13"))
+    B -- Outra --> n7["Erro:\nOpção\nInválida"]
+    n3 --> C{"id_cliente == 0?"}
+    n4 --> C
+    n6 --> C
+    n7 --> n2
+    C -- Sim --> n2
+    C -- Não --> n8["Imprime opções\nde playground:\n 1-Buscar\n 2-Listar\n 3-Cadastrar"]
+    n8 --> D[/"Ler Opção"/]
+    D --> E{"Opção?"}
+    E -- "1 - Buscar" --> n9(("39"))
+    E -- "2 - Listar" --> n10(("40"))
+    E -- "3 - Cadastrar" --> n11(("37"))
+    E -- Outra --> n12["Erro:\nOpção\nInválida"]
+    n9 --> F{"id_play == 0?"}
+    n10 --> F
+    n11 --> F
+    n12 --> n8
+    F -- Sim --> n8
+    F -- Não --> G[/Ler data e hora/]
+    G --> I["Preparar e\nexecutar INSERT SQL"]
+    I --> J{"Executou com\nsucesso?"}
+    J -- Não --> n13["Imprime erro"]
+    J -- Sim --> Q["Obter ID gerado"]
+    Q --> n14["Imprime sucesso"]
+    n13 --> R(["Retornar 0"])
+    n14 --> S(["Retornar ID"])
+    R --> n15(("50"))
+    S --> n15
+
+    n5@{ shape: comment}
+    n2@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n12@{ shape: doc}
+    n13@{ shape: doc}
+    n14@{ shape: doc}

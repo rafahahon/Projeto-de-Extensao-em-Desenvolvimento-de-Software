@@ -1,0 +1,23 @@
+flowchart TB
+    n1((27)) --> B[/Ler numero_mesa/]
+    n5["Cadastrar\nMesa"]
+    B --> C{numero_mesa <= 0?}
+    C -- Sim --> B
+    C -- Não --> D[/Ler tomadas/]
+    D --> E{tomadas < 0?}
+    E -- Sim --> D
+    E -- Não --> F[/Ler monitores_extra/]
+    F --> G{monitores_extra < 0?}
+    G -- Sim --> F
+    G -- Não --> H[Preparar e\nexecutar INSERT SQL]
+    H --> L{Executou com\nsucesso?}
+    L -- Não --> n2[Imprime erro]
+    L -- Sim --> M[Obter ID gerado]
+    M --> n3[Imprime sucesso]
+    n2 --> N([Retornar 0])
+    n3 --> O([Retornar ID])
+    N --> n4((36))
+    O --> n4
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}

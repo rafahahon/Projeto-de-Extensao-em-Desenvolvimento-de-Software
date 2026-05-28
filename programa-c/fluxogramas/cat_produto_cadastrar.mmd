@@ -1,0 +1,17 @@
+flowchart TB
+    n1((22)) --> B[/Ler nome da categoria/]
+    n5["Cadastrar\nCategoria\nde Produto"]
+    B --> C{Tamanho\nnome >= 3?}
+    C -- Não --> B
+    C -- Sim --> D[Preparar e\nexecutar INSERT SQL]
+    D --> E{Executou com\nsucesso?}
+    E -- Não --> n2[Imprime erro]
+    E -- Sim --> F[Obter ID gerado]
+    F --> n3[Imprime sucesso]
+    n2 --> G([Retornar 0])
+    n3 --> H([Retornar ID])
+    G --> n4((26))
+    H --> n4
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}

@@ -1,0 +1,17 @@
+flowchart TB
+    n1(("2")) --> n2["Imprimir Cabeçalho CLIENTES"]
+    n2 --> n3["Mostrar Opções de Cliente"]
+    n3 --> D[/Ler Opção/]
+    D --> E{Opção?}
+    E -- "1 - Cadastrar\n Cliente" --> n6(("13"))
+    E -- "2 - Editar\n Cliente" --> n7(("14"))
+    E -- "3 - Buscar\n Cliente" --> n8(("15"))
+    E -- "4 - Listar\n Clientes" --> n9(("16"))
+    E -- "0 - Voltar" --> n4(("8"))
+    E -- Outra --> n5["Exibir\n Opção Inválida"]
+    n5 --> n2
+    n10((17)) --> n2
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: doc}

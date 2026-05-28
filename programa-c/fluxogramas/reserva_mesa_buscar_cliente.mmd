@@ -1,0 +1,13 @@
+flowchart TB
+    n1(("33")) --> B[/"Ler nome_cliente"/]
+    n5["Buscar\nReserva\nde Mesa\npor Cliente"]
+    B --> C["Preparar e\n executar SELECT SQL"]
+    C --> D{"Preparou e\n executou \ncom sucesso?"}
+    D -- Não --> n2["Imprime Erro"]
+    D -- Sim --> n3["Imprimir\n Resultados"]
+    n2 --> n4((36))
+    n3 --> n4
+
+    n2@{ shape: doc}
+    n3@{ shape: doc}
+    n5@{ shape: comment}

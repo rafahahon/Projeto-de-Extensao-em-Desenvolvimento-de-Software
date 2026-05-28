@@ -1,0 +1,40 @@
+flowchart TB
+    n1((32)) --> n12[Imprime opções:\n 1-Buscar por cliente\n 2-Listar\n 3-Cadastrar]
+    n5["Editar\nReserva\nde Mesa"]
+    n12 --> C[/Ler Opção/]
+    C --> D{Opção?}
+    D -- "1 - Buscar" --> n2((33))
+    D -- "2 - Listar" --> n3((35))
+    D -- "3 - Cadastrar" --> n4((31))
+    D -- Outra --> n6[Erro:\nOpção\nInválida]
+    n2 --> H
+    n3 --> H
+    n4 --> F{Nova\nreserva\ncriada?}
+    n6 --> n12
+    F -- Sim --> n7[/Deseja usar a\nnova reserva? s/n/]
+    F -- Não --> H
+    n7 --> I{Resposta?}
+    I -- s --> G[id_reserva =\n id_nova_reserva]
+    I -- n --> H[/Ler ID da reserva/]
+    H --> J{id_reserva == 0?}
+    J -- Sim --> n12
+    J -- Não --> K[/Ler novos dados e Validar/]
+    G --> K
+    K --> L{Tudo igual\na -1?}
+    L -- Sim --> n8[Imprime que\nnada foi alterado]
+    L -- Não --> M[Preparar e\nexecutar SQL UPDATE]
+    M --> N{"Preparou e\nexecutou\ncom sucesso?"}
+    N -- Não --> n9["Imprime Erro"]
+    N -- Sim --> n10["Imprimir\nSucesso"]
+
+	n8 --> n11((36))
+	n9 --> n11
+	n10 --> n11
+
+    n6@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n9@{ shape: doc}
+    n10@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}

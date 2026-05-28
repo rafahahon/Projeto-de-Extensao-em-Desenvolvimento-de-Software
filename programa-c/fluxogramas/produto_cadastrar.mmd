@@ -1,0 +1,50 @@
+flowchart TB
+    n1((18)) --> n2["Imprime opções\nde cliente:\n 1-Buscar\n 2-Listar\n 3-Cadastrar"]
+    n5["Cadastrar\nProduto"]
+    n2 --> A[/"Ler Opção"/]
+    A --> B{"Opção?"}
+    B -- "1 - Buscar" --> n3(("15"))
+    B -- "2 - Listar" --> n4(("16"))
+    B -- "3 - Cadastrar" --> n6(("13"))
+    B -- Outra --> n7["Erro:\nOpção\nInválida"]
+    n3 --> C{"id_cliente == 0?"}
+    n4 --> C
+    n6 --> C
+    n7 --> n2
+    C -- Sim --> n2
+    C -- Não -->
+    C -- Sim --> D[/Ler preço e quantidade em estoque/]
+    D --> n11[Imprime opções:\n 1-Buscar\n 2-Listar\n 3-Cadastrar]
+    n11 --> E[/Ler Opção/]
+    E --> F{Opção?}
+    F -- "1 - Buscar" --> n2((29))
+    F -- "2 - Listar" --> n3((30))
+    F -- "3 - Cadastrar" --> n4((27))
+    F -- Outra --> n12[Erro:\nOpção\nInválida]
+    n2 --> K
+    n3 --> K
+    n4 --> H{Nova\ncategoria\ncriada?}
+    n12 --> n11
+    H -- Sim --> n6[/Deseja usar a\nnova categoria? s/n/]
+    H -- Não --> K
+    n6 --> I{Resposta?}
+    I -- n --> K[/Ler ID da categoria/]
+    I -- s --> J[id_cat =\n id_nova_cat]
+    J --> L{id_cat == 0?}
+    K --> L
+    L -- Sim --> n11
+    L -- Não --> M[Preparar e\nexecutar INSERT SQL]
+    M --> O{Executou com\nsucesso?}
+    O -- Não --> n7[Imprime erro]
+    O -- Sim --> P[Obter ID gerado]
+    P --> n8[Imprime sucesso]
+    n7 --> Q([Retornar 0])
+    n8 --> R([Retornar ID])
+    Q --> n9((26))
+    R --> n9
+    n6@{ shape: doc}
+    n7@{ shape: doc}
+    n8@{ shape: doc}
+    n11@{ shape: doc}
+    n12@{ shape: doc}
+    n5@{ shape: comment}
