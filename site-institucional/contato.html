@@ -11,7 +11,7 @@
  ================================================
  | Nome                            | RA         |
  ================================================
- | Ana Santos Nascimento           | 3036101499 |
+ | Ana Santos Nascimento           | 3026101499 |
  | Breno Fessel Da Paz             | 3026104340 |
  | Gabrielli Minhano Barbosa       | 3026103592 |
  | Rafael Baptista de Almeida      | 3026101346 |
@@ -108,14 +108,14 @@ Site Institucional Code Cat Coffee - Página de Contato
             </ul>
             <div class="formulario">
                 <h3>Envie uma Mensagem</h3>
-                <form>
+                <form id="form-contato">
                     <label for="contato-nome">Nome</label>
-                    <input name="nome" id="contato-nome" type="text" placeholder="Seu nome">
+                    <input name="nome" id="contato-nome" type="text" placeholder="Seu nome" minlength="4" required>
                     <label for="contato-email">E-mail</label>
-                    <input name="email" id="contato-email" type="email" placeholder="seu@email.com">
+                    <input name="email" id="contato-email" type="email" placeholder="seu@email.com" required>
                     <label for="contato-msg">Mensagem</label>
                     <textarea name="mensagem" id="contato-msg" rows="5"
-                              placeholder="Escreva sua mensagem..."></textarea>
+                              placeholder="Escreva sua mensagem..." required></textarea>
                     <button type="submit" class="btn-enviar">Enviar Mensagem</button>
                 </form>
             </div>
@@ -276,5 +276,6 @@ Site Institucional Code Cat Coffee - Página de Contato
         </div>
     </div>
 </footer>
+<script src="scripts/contato.js"></script>
 </body>
 </html>

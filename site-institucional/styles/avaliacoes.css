@@ -3,7 +3,7 @@
  * ================================================
  * | Nome                            | RA         |
  * ================================================
- * | Ana Santos Nascimento           | 3036101499 |
+ * | Ana Santos Nascimento           | 3026101499 |
  * | Breno Fessel Da Paz             | 3026104340 |
  * | Gabrielli Minhano Barbosa       | 3026103592 |
  * | Rafael Baptista de Almeida      | 3026101346 |
@@ -92,6 +92,26 @@
         label:hover ~ label {
             color: var(--destaque-laranja);
         }
+    }
+
+    label:not([for*="estrela"])  {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--fundo-marrom);
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    input {
+        resize: none;
+        flex: 1;
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 12px;
+        border: 1px solid var(--branco);
+        border-radius: 10px;
+        background-color: var(--campo-fundo-branco);
+        font-family: inherit;
     }
 
     textarea {

@@ -11,7 +11,7 @@
  ================================================
  | Nome                            | RA         |
  ================================================
- | Ana Santos Nascimento           | 3036101499 |
+ | Ana Santos Nascimento           | 3026101499 |
  | Breno Fessel Da Paz             | 3026104340 |
  | Gabrielli Minhano Barbosa       | 3026103592 |
  | Rafael Baptista de Almeida      | 3026101346 |
@@ -57,21 +57,23 @@ Site Institucional Code Cat Coffee - Página de Avaliações
             <div class="nota-estrelas">★★★★★</div>
             <div class="valor-nota">5.0</div>
             <div class="filtro">
-                <input type="radio" name="filtro" id="filtro-todas" checked hidden><label for="filtro-todas">Todas</label>
-                <input type="radio" name="filtro" id="filtro-5" hidden><label for="filtro-5">5 Estrelas</label>
-                <input type="radio" name="filtro" id="filtro-4" hidden><label for="filtro-4">4 Estrelas</label>
+                <input type="radio" name="filtro" id="filtro-todas" value="0" checked hidden><label for="filtro-todas">Todas</label>
+                <input type="radio" name="filtro" id="filtro-5" value="5" hidden><label for="filtro-5">5 Estrelas</label>
+                <input type="radio" name="filtro" id="filtro-4" value="4" hidden><label for="filtro-4">4 Estrelas</label>
             </div>
         </section>
-        <form class="formulario">
+        <form id="form-avaliacao" class="formulario">
             <h3>Deixe sua avaliação</h3>
             <div class="avaliacao">
-                <input type="radio" name="estrelas" id="estrela5" hidden><label for="estrela5">★</label>
-                <input type="radio" name="estrelas" id="estrela4" hidden><label for="estrela4">★</label>
-                <input type="radio" name="estrelas" id="estrela3" hidden><label for="estrela3">★</label>
-                <input type="radio" name="estrelas" id="estrela2" hidden><label for="estrela2">★</label>
-                <input type="radio" name="estrelas" id="estrela1" hidden><label for="estrela1">★</label>
+                <input type="radio" name="estrelas" id="estrela5" value="5" hidden><label for="estrela5">★</label>
+                <input type="radio" name="estrelas" id="estrela4" value="4" hidden><label for="estrela4">★</label>
+                <input type="radio" name="estrelas" id="estrela3" value="3" hidden><label for="estrela3">★</label>
+                <input type="radio" name="estrelas" id="estrela2" value="2" hidden><label for="estrela2">★</label>
+                <input type="radio" name="estrelas" id="estrela1" value="1" hidden><label for="estrela1">★</label>
             </div>
-            <textarea name="avaliacao" placeholder="Conte-nos como foi sua experiência..."></textarea>
+            <label for="avaliacao-nome">Nome</label>
+            <input name="nome" id="avaliacao-nome" type="text" placeholder="Seu nome" minlength="4" required>
+            <textarea name="avaliacao" rows="5" placeholder="Conte-nos como foi sua experiência..." required></textarea>
             <button class="btn-publicar">Publicar Avaliação</button>
         </form>
         <section class="grade-avaliacoes">
@@ -89,6 +91,15 @@ Site Institucional Code Cat Coffee - Página de Avaliações
                     <small class="autor">Pedro Almeida</small>
                 </blockquote>
             </div>
+            <template id="tmplt-avaliacao">
+                <div class="cartao-avaliacao" data-nota="">
+                    <div class="nota-estrelas"></div>
+                    <blockquote>
+                        <p></p>
+                        <small class="autor"></small>
+                    </blockquote>
+                </div>
+            </template>
         </section>
     </div>
 </main>
@@ -198,5 +209,6 @@ Site Institucional Code Cat Coffee - Página de Avaliações
         </div>
     </div>
 </footer>
+<script src="scripts/avaliacoes.js"></script>
 </body>
 </html>
