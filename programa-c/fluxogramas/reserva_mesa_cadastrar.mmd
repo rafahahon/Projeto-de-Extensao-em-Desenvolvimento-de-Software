@@ -3,9 +3,9 @@ flowchart TB
     n5["Cadastrar\nReserva de\nMesas"]
     n2 --> A[/"Ler Opção"/]
     A --> B{"Opção?"}
-    B -- "1 - Buscar" --> n3(("15"))
-    B -- "2 - Listar" --> n4(("16"))
-    B -- "3 - Cadastrar" --> n6(("13"))
+    B -- "1 - Buscar" --> n3((15))
+    B -- "2 - Listar" --> n4((16))
+    B -- "3 - Cadastrar" --> n6((13))
     B -- Outra --> n7["Erro:\nOpção\nInválida"]
     n3 --> C{"id_cliente == 0?"}
     n4 --> C
@@ -15,9 +15,9 @@ flowchart TB
     C -- Não --> n8["Imprime opções\nde mesa:\n 1-Buscar\n 2-Listar\n 3-Cadastrar"]
     n8 --> D[/"Ler Opção"/]
     D --> E{"Opção?"}
-    E -- "1 - Buscar" --> n9(("29"))
-    E -- "2 - Listar" --> n10(("30"))
-    E -- "3 - Cadastrar" --> n11(("27"))
+    E -- "1 - Buscar" --> n9((29))
+    E -- "2 - Listar" --> n10((30))
+    E -- "3 - Cadastrar" --> n11((27))
     E -- Outra --> n12["Erro:\nOpção\nInválida"]
     n9 --> F{"id_mesa == 0?"}
     n10 --> F

@@ -1,5 +1,5 @@
 flowchart TB
-    n1(("41")) --> B[/"Ler nome do\ngato"/]
+    n1((41)) --> B[/"Ler nome do\ngato"/]
     n50["Cadastrar\nGato"]
     B --> C{"Nome >=\n3 letras?"}
     C -- Não --> B
@@ -7,9 +7,9 @@ flowchart TB
     D --> n2["Imprime opções\nde playground:\n 1-Buscar\n 2-Listar\n 3-Cadastrar"]
     n2 --> F[/"Ler Opção"/]
     F --> G{"Opção?"}
-    G -- "1 - Buscar" --> n3(("39"))
-    G -- "2 - Listar" --> n4(("40"))
-    G -- "3 - Cadastrar" --> n5(("37"))
+    G -- "1 - Buscar" --> n3((39))
+    G -- "2 - Listar" --> n4((40))
+    G -- "3 - Cadastrar" --> n5((37))
     G -- Outra --> n6["Erro:\nOpção\nInválida"]
     n3 --> M{"id_play == 0?"}
     n4 --> M
@@ -24,7 +24,7 @@ flowchart TB
     Q --> n9["Imprime sucesso"]
     n8 --> R(["Retornar 0"])
     n9 --> S(["Retornar ID"])
-    R --> n10(("50"))
+    R --> n10((50))
     S --> n10
 
     n50@{ shape: comment}

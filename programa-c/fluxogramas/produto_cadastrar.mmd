@@ -3,9 +3,9 @@ flowchart TB
     n5["Cadastrar\nProduto"]
     n2 --> A[/"Ler Opção"/]
     A --> B{"Opção?"}
-    B -- "1 - Buscar" --> n3(("15"))
-    B -- "2 - Listar" --> n4(("16"))
-    B -- "3 - Cadastrar" --> n6(("13"))
+    B -- "1 - Buscar" --> n3((15))
+    B -- "2 - Listar" --> n4((16))
+    B -- "3 - Cadastrar" --> n6((13))
     B -- Outra --> n7["Erro:\nOpção\nInválida"]
     n3 --> C{"id_cliente == 0?"}
     n4 --> C
