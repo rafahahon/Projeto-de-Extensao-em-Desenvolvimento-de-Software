@@ -57,9 +57,9 @@ Site Institucional Code Cat Coffee - Página de Avaliações
             <div class="nota-estrelas">★★★★★</div>
             <div class="valor-nota">5.0</div>
             <div class="filtro">
-                <input type="radio" name="filtro" id="filtro-todas" checked hidden><label for="filtro-todas">Todas</label>
-                <input type="radio" name="filtro" id="filtro-5" hidden><label for="filtro-5">5 Estrelas</label>
-                <input type="radio" name="filtro" id="filtro-4" hidden><label for="filtro-4">4 Estrelas</label>
+                <input type="radio" name="filtro" id="filtro-todas" value="0" checked hidden><label for="filtro-todas">Todas</label>
+                <input type="radio" name="filtro" id="filtro-5" value="5" hidden><label for="filtro-5">5 Estrelas</label>
+                <input type="radio" name="filtro" id="filtro-4" value="4" hidden><label for="filtro-4">4 Estrelas</label>
             </div>
         </section>
         <form class="formulario">
@@ -89,6 +89,15 @@ Site Institucional Code Cat Coffee - Página de Avaliações
                     <small class="autor">Pedro Almeida</small>
                 </blockquote>
             </div>
+            <template id="tmplt-avaliacao">
+                <div class="cartao-avaliacao" data-nota="">
+                    <div class="nota-estrelas"></div>
+                    <blockquote>
+                        <p></p>
+                        <small class="autor"></small>
+                    </blockquote>
+                </div>
+            </template>
         </section>
     </div>
 </main>
@@ -198,5 +207,6 @@ Site Institucional Code Cat Coffee - Página de Avaliações
         </div>
     </div>
 </footer>
+<script src="scripts/avaliacoes.js"></script>
 </body>
 </html>
